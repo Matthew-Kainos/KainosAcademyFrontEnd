@@ -1,0 +1,13 @@
+{% block content %}
+<body>
+    {% if error %} 
+    <h2>{{error}}</h2>
+    {% endif %}
+    <form class="form" action="http://localhost:3001/capabilities/findByJobId" method="get">
+    <label for="jobID">Enter Job Id:</label><br>
+    <input type="text" id="jobID" name="jobID"><br>
+    <input type="submit" value="Submit">
+    </form>
+
+</body>
+{% endblock %}
