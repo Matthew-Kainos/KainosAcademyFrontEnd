@@ -7,11 +7,13 @@
 <table style="margin: auto">
 <tr>
 <th>Job Role ID</th>
+<th>Job Role Name</th>
 <th>Specification Summary</th>
 </tr>
 {% for job in jobs %}
 <tr>
 <td>{{job.Role_ID}}</td>
+<td>{{job.Name}}</td>
 <td>{{job.Spec_Sum}}</td>
 </tr>
 {% endfor %}
