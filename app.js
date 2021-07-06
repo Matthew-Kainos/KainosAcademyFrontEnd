@@ -4,10 +4,24 @@ require('dotenv').config();
 
 const jobs  = require('./routes/jobs');
 
+const nunjucks = require('nunjucks');
+
+nunjucks.configure('views', {
+
+express: app
+
+});
+
+app.set('view engine', 'njk');
+
 app.use(express.json());
 app.use(express.urlencoded());
 
 app.use('/jobs', jobs);
+
+app.get('/job-roles-spec/:Role_ID', (req, res) => {
+    res.render('job-spec')
+})
 
 // 404 Path
 app.use((req, res) => {
