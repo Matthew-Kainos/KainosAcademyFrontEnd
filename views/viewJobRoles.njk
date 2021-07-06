@@ -1,0 +1,23 @@
+{% block content %}
+<div class="row">
+<div class="col s2">
+</div>
+<h1>List of Job Roles</h1>
+{% if jobs and jobs.length > 0 %}
+<table style="margin: auto">
+<tr>
+<th>Job Role ID</th>
+<th>Job Role Name</th>
+</tr>
+{% for job in jobs %}
+<tr>
+<td>{{job.Role_ID}}</td>
+<td>{{job.Name}}</td>
+</tr>
+{% endfor %}
+</table>
+</div>
+{% else %}
+No job.
+{% endif %}
+{% endblock %}
