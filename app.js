@@ -3,11 +3,13 @@ const app = express();
 require('dotenv').config();
 
 const jobs  = require('./routes/jobs');
+const capabilities  = require('./routes/capabilities');
 
 app.use(express.json());
 app.use(express.urlencoded());
 
 app.use('/jobs', jobs);
+app.use('/capabilities', capabilities);
 
 // 404 Path
 app.use((req, res) => {
