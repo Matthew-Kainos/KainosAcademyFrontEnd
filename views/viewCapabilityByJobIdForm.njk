@@ -1,13 +1,63 @@
-{% block content %}
-<body>
-    {% if error %} 
-    <h2>{{error}}</h2>
-    {% endif %}
-    <form class="form" action="http://localhost:3001/capabilities/findByJobId" method="get">
-    <label for="jobID">Enter Job Id:</label><br>
-    <input type="text" id="jobID" name="jobID"><br>
-    <input type="submit" value="Submit">
-    </form>
+<style>
+groupB-error-message {
+    font-family: "Century Gothic";
+    font-weight: 700;
+    font-size: 16px;
+    font-size: 1rem;
+    line-height: 1.25;
+    display: block;
+    margin-bottom: 15px;
+    clear: both;
+    color: #d4351c;
+}
 
+label {
+    font-family: "Century Gothic";
+    color: #283583;
+    font-weight: bold;
+    display: block;
+    float: left;
+    margin: 10px 2px;
+}
+
+input[type=button], input[type=submit], input[type=reset] {
+    font-family: "Century Gothic";
+    background-color: #61a83f;
+    border: none;
+    color: white;
+    padding: 4px 7px;
+    text-decoration: none;
+    margin: 15px 2px;
+    cursor: pointer;
+    font-size: 16px;
+}
+body {
+    text-align: center;
+}
+form {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+</style>
+
+{% block content %}
+<title>Search for Capability by Job Id</title>
+<body>
+    <div class="row">
+    <div class="col s1">
+    {% if error %} 
+        <h2 id="errorMessage">{{error}}</h2>
+    {% endif %}
+        <form class="form" action="http://localhost:3001/capabilities/findByJobId" method="get">
+            <label for="jobID">Enter Job Id:</label><br>
+            <div class="col-75">
+            <input type="text" id="jobID" name="jobID"><br>
+            </div>
+            <input type="submit" id="submitbutton" value="Submit">
+        </form>
+      </div>
+  </div>
 </body>
 {% endblock %}
