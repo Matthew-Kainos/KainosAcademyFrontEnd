@@ -4,20 +4,22 @@
 </div>
 <h1>List of Job Roles</h1>
 {% if jobs and jobs.length > 0 %}
-<table style="margin: auto">
+<table style="margin: auto" border="1">
 <tr>
-<th>Job Role ID</th>
-<th>Job Role Name</th>
+<th><h3>Job Role ID</h3></th>
+<th><h3>Job Role Name</h3></th>
+<th><h3>Band Level</h3></th>
 </tr>
 {% for job in jobs %}
 <tr>
 <td>{{job.Role_ID}}</td>
 <td>{{job.Name}}</td>
+<td>{{job.Level}}</td>
 </tr>
 {% endfor %}
 </table>
 </div>
 {% else %}
-No job.
+No Job Roles in database.
 {% endif %}
 {% endblock %}
