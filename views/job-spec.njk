@@ -4,23 +4,29 @@
 </div>
 <h1>Job Specification Summary</h1>
 {% if jobs and jobs.length > 0 %}
-<table style="margin: auto">
+<table style="margin: auto" border="1">
 <tr>
 <th>Job Role ID</th>
 <th>Job Role Name</th>
 <th>Specification Summary</th>
+<th>Sharepoint Link</th>
 </tr>
 {% for job in jobs %}
 <tr>
-<td>{{job.Role_ID}}</td>
-<td>{{job.Name}}</td>
-<td>{{job.Spec_Sum}}</td>
+<td><h3>{{job.Role_ID}}</h3></td>
+<td><h3>{{job.Name}}</h3></td>
+<td><h3>{{job.Spec_Sum}}</h3></td>
+{% if job.Spec_Link == NULL %}
+<td><h3>No link available.</h3></td>
+{% else %}
+<td><a href={{job.Spec_Link}}>Sharepoint Link</a></td>
+{% endif %}
 </tr>
 {% endfor %}
 </table>
 </div>
 {% else %}
-No job.
+<h3>No jobs with that ID</h3>
 {% endif %}
 
 {% endblock %}
