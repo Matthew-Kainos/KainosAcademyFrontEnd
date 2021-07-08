@@ -3,25 +3,20 @@ const { until } = require('selenium-webdriver');
 const { By } = require('selenium-webdriver');
 const assert = require('assert');
 
-describe('webdriver', () => {
-    let driver;
-    before(async () => {
-      driver = new webdriver.Builder().forBrowser('chrome')
-      .build();
-     
-      await driver.get(`https://localhost:3001`);
-    });
-  
-    after(async () => {
-      await driver.quit();
-    });
-  
-    it('test google search', async () => {
+describe('Test Suite', function() {
+  this.timeout(0);
 
-        await driver.findElement(webdriver.By.name('q')).sendKeys('webdriver\n')
-        
-        const title = await driver.getTitle()
-        console.log(title)
-        assert.strictEqual(title, "webdriver - Google Search")
-    });
+  before(async function() {
+      this.driver = await new webdriver.Builder().forBrowser('chrome').build();
   });
+
+  it('should do', async function() {
+      await this.driver.get('http://www.google.com');
+      const title = await this.driver.getTitle();
+      assert.strictEqual(title, 'Google');
+  })
+
+  after(async function() {
+      this.driver.quit();
+  })
+});
