@@ -2,6 +2,10 @@ const express = require('express');
 const app = express();
 require('dotenv').config();
 
+const nunjucks = require('nunjucks');
+nunjucks.configure('views', {express: app});
+app.set('view engine', 'njk');
+
 const jobs  = require('./routes/jobs');
 
 app.use(express.json());

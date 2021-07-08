@@ -1,0 +1,33 @@
+{% block content %}
+table, th, td {
+  border: 1px solid black;
+}
+<div class="row">
+<div class="col s2">
+</div>
+<h1>Job role by band</h1>
+<form class="form" action="/jobs/viewRoleByBand" method="post">
+  <label for="band">Band:</label><br>
+  <input type="text" id="band" name="band"><br>
+</form>
+{% if error != "No Errors" %} 
+<div style="color: red;">{{ error }}</div>  
+{% elif roles and roles.length > 0 %}
+<table style="margin: auto">
+<tr>
+<th>Job Role</th>
+<th>Job Band</th>
+</tr>
+{% for role in roles %}
+<tr>
+<td>{{role.Role}}</td>
+<td>{{role.RoleBand}}</td>
+</tr>
+{% endfor %}
+</table>
+</div>
+{% else %}
+No job in band
+{% endif %}
+
+{% endblock %}
