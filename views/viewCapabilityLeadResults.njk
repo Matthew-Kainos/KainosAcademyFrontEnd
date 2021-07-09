@@ -1,0 +1,25 @@
+{% block content %}
+<div class="row">
+<div class="col s2">
+</div>
+<h2>View Capability Lead: {{capID}} </h2>
+{% if capabilities and capabilities.length > 0 %} 
+<table style="margin: auto">
+<th>Capability Name</th>
+<th>Job Family</th>
+<th>Capability Lead</th>
+<th>Message</th>
+</tr>
+{% for cap in capabilities %}
+<tr>
+<td>{{cap.Name}}</td>
+<td>{{cap.Job_Family}}
+<td>{{cap.LeadName}}</td>
+<td>{{cap.LeadMessage}}</td>
+</tr>
+{% endfor %} 
+</table>
+{% else %}
+No Capability Leads. 
+{% endif %}
+{% endblock %}
