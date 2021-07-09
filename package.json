@@ -4,14 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha tests --exit",
+    "tests": "mocha tests/jobsTests",
     "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Matthew-Kainos/KainosAcademyFrontEnd.git"
   },
-  "author": "Aileen Tracey <aileen.tracey@kainos.com>",
+  "author": "Group B",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Matthew-Kainos/KainosAcademyFrontEnd/issues"
@@ -19,9 +20,13 @@
   "homepage": "https://github.com/Matthew-Kainos/KainosAcademyFrontEnd#readme",
   "dependencies": {
     "axios": "^0.21.1",
+    "chai": "^4.3.4",
+    "chromedriver": "^91.0.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "mocha": "^9.0.2",
     "nodemon": "^2.0.9",
-    "nunjucks": "^3.2.3"
+    "nunjucks": "^3.2.3",
+    "selenium-webdriver": "^4.0.0-beta.4"
   }
 }
