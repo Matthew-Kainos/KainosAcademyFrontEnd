@@ -16,13 +16,13 @@
 {% elif roles and roles.length > 0 %}
 <table style="margin: auto">
 <tr>
-<th>Job Role</th>
-<th>Job Band</th>
+<th id="RoleCol">Job Role</th>
+<th id="BandCol">Job Band</th>
 </tr>
 {% for role in roles %}
 <tr>
-<td>{{role.Role}}</td>
-<td>{{role.RoleBand}}</td>
+<td id="RoleElement">{{role.Role}}</td>
+<td id="BandElement">{{role.RoleBand}}</td>
 </tr>
 {% endfor %}
 </table>
