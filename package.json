@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha tests --exit",
-    "tests": "mocha tests/jobsTests",
+    "jobTests": "mocha tests/jobsTests",
+    "capabilityTest": "mocha tests/capabilitiesTests --exit",
     "start": "nodemon app.js"
   },
   "repository": {
