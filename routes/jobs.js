@@ -8,7 +8,6 @@ router.get('/viewRoleByBand', async function (req, res) {
       var path = `${backEndURL}/jobs/band`;
       console.log(path);
       const response = await axios(path);
-      console.log(response);
       res.render("viewRoleByBand"
       ,{
         roles: response.data,
@@ -23,20 +22,16 @@ router.get('/viewRoleByBand', async function (req, res) {
 
 router.post('/viewRoleByBand', async (req, res) => {
   try {
-    var path = `${backEndURL}/jobs/band/${req.body.band.replace(' ', '_')}`;
+    var path = `${backEndURL}/jobs/band/${req.body.roleInput.replace(' ', '_')}`;
     const response = await axios(path);
-    console.log(typeof response.data);
     if(typeof response.data == 'string'){
       res.render("viewRoleByBand",{
-        band: req.body.band,
         roles: [],
         error: response.data
       })
     }
     if(typeof response.data == 'object'){
-      console.log(response.data);
       res.render("viewRoleByBand",{
-        band: req.body.band,
         roles: response.data,
         error: "No Errors"
       })

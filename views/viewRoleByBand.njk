@@ -5,11 +5,14 @@
 </div>
 <h1>Job role by band</h1>
 <form class="form" action="/jobs/viewRoleByBand" method="post">
-  <label for="band">Band:</label><br>
-  <input type="text" id="band" name="band"><br>
+  <label for="roleInput">Role:</label><br>
+  <input type="text" id="roleInput" name="roleInput"><br>
+  <input type="submit" id="getRoles" value="Get Roles"><br>
 </form>
 {% if error != "No Errors" %} 
-<div style="color: red;">{{ error }}</div>  
+<span id="errorMessage" style="color: red;">
+{{ error }}
+</span>  
 {% elif roles and roles.length > 0 %}
 <table style="margin: auto">
 <tr>
@@ -25,7 +28,7 @@
 </table>
 </div>
 {% else %}
-No job in band
+<span id="errorMessage">Role not found. Ensure the role exists and is spelt correctly</span>
 {% endif %}
 
 {% endblock %}
