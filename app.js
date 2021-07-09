@@ -10,7 +10,6 @@ app.set('view engine', 'njk');
 const jobs  = require('./routes/jobs');
 const capabilities  = require('./routes/capabilities');
 
-const nunjucks = require('nunjucks'); 
 nunjucks.configure('views', { 
          express: app 
 }); 
