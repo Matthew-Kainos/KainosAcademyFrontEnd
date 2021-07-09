@@ -53,7 +53,7 @@ describe('Jobs', function () {
         expect(specSumText).equal('Takes care of computer systems and IT processes');
 
         const roleLinkText = await this.driver.findElement(webdriver.By.id('noLink')).getText();
-        expect(roleLinkText).equal('No link available.');
+        expect(roleLinkText).equal('No link Available.');
     })
 
     it('should render job spec page with warning message when role id is not valid', async function () {
