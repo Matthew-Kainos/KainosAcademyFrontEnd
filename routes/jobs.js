@@ -4,13 +4,13 @@ const axios = require('axios').default;
 const backEndURL = process.env.BACK_END_URL;
 
 router.get('/allJobIds', async function (req, res) {
-  try {
-      const response = await axios(`${backEndURL}/jobs/allJobIds`);
-      res.send(response.data);
-      res.status(200);
-    } catch (error) {
-      console.error(error);
-    }
+    try {
+        const response = await axios(`${backEndURL}/jobs/allJobIds`);
+        res.send(response.data);
+        res.status(200);
+      } catch (error) {
+        console.error(error);
+      }
 })
 
 router.get('/viewRoleByBand', async function (req, res) {

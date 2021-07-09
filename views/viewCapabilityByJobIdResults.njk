@@ -1,0 +1,23 @@
+{% block content %}
+<title>Capability By Job ID Results</title>
+<div class="row">
+<div class="col s2">
+</div>
+<h2>Capability fo Job with ID: {{jobID}} </h2>
+{% if capability and capability.length > 0 %} 
+<table style="margin: auto">
+<tr>
+<th>Capability ID</th>
+<th>Capability Name</th>
+</tr>
+{% for cap in capability %}
+<tr>
+<td>{{cap.cap_id}} </td>
+<td>{{cap.name}}</td>
+</tr>
+{% endfor %} 
+</table>
+{% else %}
+Job ID has no capability. 
+{% endif %}
+{% endblock %}
