@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha tests --exit",
-    "jobTests": "mocha tests/jobsTests",
+    "jobTests": "mocha tests/jobsTests --exit",
     "capabilityTest": "mocha tests/capabilitiesTests --exit",
     "start": "nodemon app.js"
   },
