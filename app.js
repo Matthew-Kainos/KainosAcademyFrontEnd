@@ -13,8 +13,6 @@ nunjucks.configure('views', {
 
 app.set('view engine', 'njk');
 
-const nunjucks = require('nunjucks');
-
 nunjucks.configure('views', {
 
 express: app
