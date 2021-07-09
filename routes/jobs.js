@@ -3,17 +3,25 @@ const router = express.Router();
 const axios = require('axios').default;
 const backEndURL = process.env.BACK_END_URL;
 
+router.get('/allJobIds', async function (req, res) {
+  try {
+      const response = await axios(`${backEndURL}/jobs/allJobIds`);
+      res.send(response.data);
+      res.status(200);
+    } catch (error) {
+      console.error(error);
+    }
+})
+
 router.get('/viewRoleByBand', async function (req, res) {
   try {
       var path = `${backEndURL}/jobs/band`;
       console.log(path);
       const response = await axios(path);
-      res.render("viewRoleByBand"
-      ,{
+      res.render("viewRoleByBand",{
         roles: response.data,
         error: "No Errors"
-      }
-      )
+      })
       res.status(200);
     } catch (error) {
       console.error(error);
