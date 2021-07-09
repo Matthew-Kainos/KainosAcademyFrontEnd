@@ -1,7 +1,4 @@
 const webdriver = require('selenium-webdriver');
-const { until } = require('selenium-webdriver');
-const { By } = require('selenium-webdriver');
-const assert = require('assert');
 const chai = require('chai');
 const expect = chai.expect;
 
@@ -9,60 +6,59 @@ let driver;
 
 describe('Jobs', function () {
     this.timeout(0);
-
-    before(async function () {
-        this.driver = await new webdriver.Builder().forBrowser('chrome').build();
+    before(async function() {
+        driver = await new webdriver.Builder().forBrowser('chrome').build();
     });
 
     after(async function () {
-        this.driver.quit();
+        driver.quit();
     })
 
     it('should render job spec page with job roles details when role id is valid', async function () {
-        await this.driver.get('http://localhost:3001/jobs/job-roles-spec/2');
+        await driver.get('http://localhost:3001/jobs/job-roles-spec/2');
         
-        const title = await this.driver.getTitle();
+        const title = await driver.getTitle();
         expect(title).equal('Specification for Job Role');  
 
-        const roleIDText = await this.driver.findElement(webdriver.By.id('roleID')).getText();
+        const roleIDText = await driver.findElement(webdriver.By.id('roleID')).getText();
         expect(roleIDText).equal('2');
 
-        const roleNameText = await this.driver.findElement(webdriver.By.id('roleName')).getText();
+        const roleNameText = await driver.findElement(webdriver.By.id('roleName')).getText();
         expect(roleNameText).equal('Innovation Lead');
 
-        const specSumText = await this.driver.findElement(webdriver.By.id('specSum')).getText();
+        const specSumText = await driver.findElement(webdriver.By.id('specSum')).getText();
         expect(specSumText).equal('As an Innovation Lead (Consultant) in Kainos, you’ll be responsible will lead the team, working with the Innovation Lead in a dynamic and hands-on role');
 
-        const roleLinkText = await this.driver.findElement(webdriver.By.id('specLink')).getText();
+        const roleLinkText = await driver.findElement(webdriver.By.id('specLink')).getText();
         expect(roleLinkText).equal('Sharepoint Link');
     })
 
     it('should render job spec page with all details when there is no sharepoint link and role id is valid', async function () {
-        await this.driver.get('http://localhost:3001/jobs/job-roles-spec/1');
+        await driver.get('http://localhost:3001/jobs/job-roles-spec/1');
         
-        const title = await this.driver.getTitle();
+        const title = await driver.getTitle();
         expect(title).equal('Specification for Job Role');  
 
-        const roleIDText = await this.driver.findElement(webdriver.By.id('roleID')).getText();
+        const roleIDText = await driver.findElement(webdriver.By.id('roleID')).getText();
         expect(roleIDText).equal('1');
 
-        const roleNameText = await this.driver.findElement(webdriver.By.id('roleName')).getText();
+        const roleNameText = await driver.findElement(webdriver.By.id('roleName')).getText();
         expect(roleNameText).equal('Chief Technical Officer');
 
-        const specSumText = await this.driver.findElement(webdriver.By.id('specSum')).getText();
+        const specSumText = await driver.findElement(webdriver.By.id('specSum')).getText();
         expect(specSumText).equal('Takes care of computer systems and IT processes');
 
-        const roleLinkText = await this.driver.findElement(webdriver.By.id('noLink')).getText();
+        const roleLinkText = await driver.findElement(webdriver.By.id('noLink')).getText();
         expect(roleLinkText).equal('No link Available.');
     })
 
     it('should render job spec page with warning message when role id is not valid', async function () {
-        await this.driver.get('http://localhost:3001/jobs/job-roles-spec/99999999');
+        await driver.get('http://localhost:3001/jobs/job-roles-spec/99999999');
         
-        const title = await this.driver.getTitle();
+        const title = await driver.getTitle();
         expect(title).equal('Specification for Job Role');  
 
-        const noJobsText = await this.driver.findElement(webdriver.By.id('noJobs')).getText();
+        const noJobsText = await driver.findElement(webdriver.By.id('noJobs')).getText();
         expect(noJobsText).equal('No jobs Specification with that ID');
     })
 
