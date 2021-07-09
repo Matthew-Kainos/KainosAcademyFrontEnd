@@ -14,35 +14,35 @@ describe('Capabilities', function() {
         driver.quit();
     });
     
-    it('should successfully render details page when valid job id added to form', async function() {
-        await driver.get('http://localhost:3001/');
+    it('should successfully render details page when valid job name added to form', async function() {
+        await driver.get('http://localhost:3001/capabilities/findByJobNameForm');
         const title = await driver.getTitle();
-        expect(title).equal('Search for Capability by Job Id');
-        await driver.findElement(webdriver.By.id('jobID')).sendKeys('1');
+        expect(title).equal('Search for Capability by Job Name');
+        await driver.findElement(webdriver.By.id('jobName')).sendKeys('Chief Technical Officer');
         await driver.findElement(webdriver.By.id('submitbutton')).click();
         const resultsTitle = await driver.getTitle();
-        expect(resultsTitle).equal('Capability By Job ID Results');
+        expect(resultsTitle).equal('Capability By Job Name Results');
     })
-    it('should successfully render form page again and error message if job id entered is of wrong type', async function() {
-        await driver.get('http://localhost:3001/');
+    it('should successfully render form page again and error message if job name entered is not valid', async function() {
+        const invalidName = 'abc'
+        await driver.get('http://localhost:3001/capabilities/findByJobNameForm');
         const title = await driver.getTitle();
-        expect(title).equal('Search for Capability by Job Id');
-        await driver.findElement(webdriver.By.id('jobID')).sendKeys('abc');
+        expect(title).equal('Search for Capability by Job Name');
+        await driver.findElement(webdriver.By.id('jobName')).sendKeys(invalidName);
         await driver.findElement(webdriver.By.id('submitbutton')).click();
         const resultsTitle = await driver.getTitle();
-        expect(resultsTitle).equal('Search for Capability by Job Id');
+        expect(resultsTitle).equal('Search for Capability by Job Name');
         const errorMessage = await driver.findElement(webdriver.By.id('errorMessage')).getText();
-        expect(errorMessage).equal('Invalid selection. Enter Integer');
+        expect(errorMessage).equal(`Job Role with name "${invalidName}" does not exist`);
     })
-    it('should successfully render form page again and error message if job id entered not present in database', async function() {
-        await driver.get('http://localhost:3001/');
+    it('should successfully render form page again and error message if no job name entered', async function() {
+        await driver.get('http://localhost:3001/capabilities/findByJobNameForm');
         const title = await driver.getTitle();
-        expect(title).equal('Search for Capability by Job Id');
-        await driver.findElement(webdriver.By.id('jobID')).sendKeys('10000');
+        expect(title).equal('Search for Capability by Job Name');
         await driver.findElement(webdriver.By.id('submitbutton')).click();
         const resultsTitle = await driver.getTitle();
-        expect(resultsTitle).equal('Search for Capability by Job Id');
+        expect(resultsTitle).equal('Search for Capability by Job Name');
         const errorMessage = await driver.findElement(webdriver.By.id('errorMessage')).getText();
-        expect(errorMessage).equal('Employee ID does not exist. Select again');
+        expect(errorMessage).equal('Enter Selection');
     })  
 });

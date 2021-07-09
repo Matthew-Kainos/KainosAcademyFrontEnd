@@ -19,10 +19,6 @@ app.use(express.urlencoded());
 app.use('/jobs', jobs);
 app.use('/capabilities', capabilities);
 
-app.get('/', (req, res) => { 
-    res.render('viewCapabilityByJobIdForm'); 
-}); 
-
 // 404 Path
 app.use((req, res) => {
     res.status(404).json({

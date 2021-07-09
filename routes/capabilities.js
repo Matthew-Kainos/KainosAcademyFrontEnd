@@ -3,21 +3,26 @@ const router = express.Router();
 const axios = require('axios').default;
 const backEndURL = process.env.BACK_END_URL;
 
-router.get('/findByJobId', async function (req, res) {
+
+router.get('/findByJobNameForm', (req, res) => { 
+  res.render('viewCapabilityByJobNameForm'); 
+}); 
+
+router.get('/findByJobName', async function (req, res) {
   try {
-      const jobID = req.query.jobID;
-        if(!isNaN(jobID) && jobID){
-          const response = await axios(`${backEndURL}/jobs/checkIfJobExists/${jobID}`);
+      const jobName = req.query.jobName;
+        if(jobName){
+          const response = await axios(`${backEndURL}/jobs/checkIfJobExists/${jobName}`);
             if(response.data === true){
-              const response = await axios(`${backEndURL}/capabilities/findByJobId/${jobID}`);
-              res.render('viewCapabilityByJobIdResults',  { capability: response.data, jobID }); 
+              const response = await axios(`${backEndURL}/capabilities/findByJobName/${jobName}`);
+              res.render('viewCapabilityByJobNameResults',  { capability: response.data, jobName }); 
               res.status(200);
             } else {
-              res.render('viewCapabilityByJobIdForm',  { error: 'Employee ID does not exist. Select again'});
+              res.render('viewCapabilityByJobNameForm',  { error: `Job Role with name "${jobName}" does not exist`});
               res.status(400); 
           }
         } else {
-          res.render('viewCapabilityByJobIdForm',  { error: 'Invalid selection. Enter Integer'});
+          res.render('viewCapabilityByJobNameForm',  { error: 'Enter Selection'});
           res.status(400);
         }
       } catch (error) {
