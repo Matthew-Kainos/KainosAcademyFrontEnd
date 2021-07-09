@@ -24,16 +24,16 @@ describe('Jobs', function () {
         const title = await this.driver.getTitle();
         expect(title).equal('Specification for Job Role');  
 
-        var roleIDText = await this.driver.findElement(webdriver.By.id('roleID')).getText();
+        const roleIDText = await this.driver.findElement(webdriver.By.id('roleID')).getText();
         expect(roleIDText).equal('2');
 
-        var roleNameText = await this.driver.findElement(webdriver.By.id('roleName')).getText();
+        const roleNameText = await this.driver.findElement(webdriver.By.id('roleName')).getText();
         expect(roleNameText).equal('Innovation Lead');
 
-        var specSumText = await this.driver.findElement(webdriver.By.id('specSum')).getText();
+        const specSumText = await this.driver.findElement(webdriver.By.id('specSum')).getText();
         expect(specSumText).equal('As an Innovation Lead (Consultant) in Kainos, you’ll be responsible will lead the team, working with the Innovation Lead in a dynamic and hands-on role');
 
-        var roleLinkText = await this.driver.findElement(webdriver.By.id('specLink')).getText();
+        const roleLinkText = await this.driver.findElement(webdriver.By.id('specLink')).getText();
         expect(roleLinkText).equal('Sharepoint Link');
     })
 
@@ -43,16 +43,16 @@ describe('Jobs', function () {
         const title = await this.driver.getTitle();
         expect(title).equal('Specification for Job Role');  
 
-        var roleIDText = await this.driver.findElement(webdriver.By.id('roleID')).getText();
+        const roleIDText = await this.driver.findElement(webdriver.By.id('roleID')).getText();
         expect(roleIDText).equal('1');
 
-        var roleNameText = await this.driver.findElement(webdriver.By.id('roleName')).getText();
+        const roleNameText = await this.driver.findElement(webdriver.By.id('roleName')).getText();
         expect(roleNameText).equal('Chief Technical Officer');
 
-        var specSumText = await this.driver.findElement(webdriver.By.id('specSum')).getText();
+        const specSumText = await this.driver.findElement(webdriver.By.id('specSum')).getText();
         expect(specSumText).equal('Takes care of computer systems and IT processes');
 
-        var roleLinkText = await this.driver.findElement(webdriver.By.id('noLink')).getText();
+        const roleLinkText = await this.driver.findElement(webdriver.By.id('noLink')).getText();
         expect(roleLinkText).equal('No link available.');
     })
 
@@ -62,7 +62,7 @@ describe('Jobs', function () {
         const title = await this.driver.getTitle();
         expect(title).equal('Specification for Job Role');  
 
-        var noJobsText = await this.driver.findElement(webdriver.By.id('noJobs')).getText();
+        const noJobsText = await this.driver.findElement(webdriver.By.id('noJobs')).getText();
         expect(noJobsText).equal('No jobs Specification with that ID');
     })
 
