@@ -13,6 +13,14 @@ nunjucks.configure('views', {
 
 app.set('view engine', 'njk');
 
+nunjucks.configure('views', {
+
+express: app
+
+});
+
+app.set('view engine', 'njk');
+
 app.use(express.json());
 app.use(express.urlencoded());
 
@@ -27,12 +35,17 @@ app.get('/', (req, res) => {
   res.status(200);
 });
 
+app.get('/job-roles-spec/:Role_ID', (req, res) => {
+    res.render('job-spec')
+})
+
 // 404 Path
 app.use((req, res) => {
-  res.status(404).json({
-    message: `Unable to find path ${req.path}`,
-  });
-});
-app.listen(3001, () => {
-  console.log('Express FrontEnd started');
-});
+    res.status(404).json({
+        message: `Unable to find path ${req.path}`
+    })
+})
+
+app.listen(3001, function() { 
+    console.log('Express FrontEnd started') 
+ });
