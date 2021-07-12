@@ -6,6 +6,7 @@
   "scripts": {
     "lint": "eslint '**/*.js'",
     "test": "npm run lint && mocha tests --exit",
+    "jobTests": "npm run lint && mocha tests/jobsTest --exit",
     "capabilityTests": "npm run lint && mocha tests/capabilitiesTests --exit",
     "start": "nodemon app.js"
   },
