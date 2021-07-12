@@ -1,0 +1,37 @@
+<script>
+function searchJobs() {
+  let searchBar = document.getElementById('searchBar');
+  let searchValue = searchBar.value.toUpperCase();
+  let allJobsList = document.getElementById("allJobsList");
+  let jobItems = allJobsList.getElementsByTagName('li');
+  let hiddenCount = 0;
+  for (let i = 0; i < jobItems.length; i++) {
+    let jobName = jobItems[i].getElementsByTagName('h2')[0].innerHTML;;
+    if (jobName.toUpperCase().indexOf(searchValue) > -1) {
+      if(document.getElementById('errormessage')){
+        let errorOption = document.getElementById('errormessage');
+        allJobsList.removeChild(errorOption);
+      }
+      jobItems[i].style.display = "";
+    } else {
+      hiddenCount++;
+      jobItems[i].style.display = "none";
+    }
+  }
+  if(hiddenCount===jobItems.length){
+      let errorOption = document.createElement("li");
+      let h2Text = document.createElement("h2");
+      let text = document.createTextNode("No Results Matching Name");
+      h2Text.appendChild(text);
+      h2Text.className = 'resultText';
+      errorOption.appendChild(h2Text);
+      errorOption.id = 'errormessage';
+      errorOption.className = 'resultBox';
+      allJobsList.appendChild(errorOption);
+  }
+}
+</script>
+
+<div class= "searchContainer">
+    <input class="searchBar" type="text" id="searchBar" placeholder="Search for Job Name ..." onkeyup="searchJobs()">
+<div>
