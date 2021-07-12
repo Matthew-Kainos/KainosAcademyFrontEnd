@@ -26,21 +26,7 @@ router.get('/job-roles', async function (req, res) {
         res.send('Backend not running');
         res.status(500);
       }
-      //console.error(error);
-  }
+      // console.error(error);
+    }
 })
 module.exports = router;
-
-// router.get('/job-roles', async function (req, res) {
-//   try {
-//       const response = await axios(`${backEndURL}/jobs/job-roles`);
-//       //res.send(response.data);
-//       res.render('viewJobRoles', {
-//         jobs: response.data
-//       });
-//       res.status(200);
-//     } catch (error) {
-//       console.error(error);
-//     }
-// })
-// module.exports = router;
