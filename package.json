@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha tests --exit",
-    "capabilityTests": "mocha tests/capabilitiesTests --exit",
-    "tests": "mocha tests/capabilitiesTests",
+    "lint": "eslint '**/*.js'",
+    "test": "npm run lint && mocha tests --exit",
+    "capabilityTests": "npm run lint && mocha tests/capabilitiesTests --exit",
     "start": "nodemon app.js"
   },
   "repository": {
@@ -29,5 +29,10 @@
     "nodemon": "^2.0.9",
     "nunjucks": "^3.2.3",
     "selenium-webdriver": "^4.0.0-beta.4"
+  },
+  "devDependencies": {
+    "eslint": "^7.30.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.23.4"
   }
 }
