@@ -1,0 +1,25 @@
+{% block content %}
+<title>Family By Capability Name Results</title>
+<div class="row">
+<div class="col s2">
+</div>
+<h2>Family for Capability with Name: {{capName}} </h2>
+{% if family and family.length > 0 %} 
+<table style="margin: auto">
+<tr>
+<th>Capability Name</th>
+<th>Family Name</th>
+</tr>
+{% for fam in family %}
+<tr>
+<td>{{capName}} </td>
+<td>{{fam.Job_Family}}</td>
+</tr>
+{% endfor %} 
+</table>
+{% else %}
+Capability Name has no family. 
+{% endif %}
+{% endblock %}
+
+

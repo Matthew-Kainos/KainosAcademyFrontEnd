@@ -3,19 +3,48 @@ const router = express.Router();
 const axios = require('axios').default;
 const backEndURL = process.env.BACK_END_URL;
 
+router.get('/familyform' , async function (req, res) {
+    res.render('viewFamilyByCapabilityForm')
+    })
+ 
 
- router.get('/family/:id', async function (req, res) {
+router.get('/family', async function (req, res) {
     try {
-        const id = req.params.id;
-        const response = await axios(`${backEndURL}/capabilities/family/${id}`);
-        //res.send(response.data);
-        console.log(response.data);
-        res.render('viewFamilyByCapabilityForm', {
-          family: response.data
-        });
-        res.status(200);
-      } catch (error) {
-        console.error(error);
+        const capName = req.query.capName;
+          
+            const response = await axios(`${backEndURL}/capabilities/checkIfCapabilityExists/${capName}`);
+            console.log(response.date);  
+            if(response.data === true){
+                const response = await axios(`${backEndURL}/capabilities/family/${capName}`);
+                res.render('viewFamilyByCapabilityResults',  { family: response.data, capName }); 
+                res.status(200);
+              } else {
+                res.render('viewFamilyByCapabilityForm',  { error: 'Enter Selection'});
+                res.status(400); 
+            }
+    
+        } catch (error) {
+          if(error.code === 'ECONNREFUSED'){
+            res.send('Backend not running');
+            res.status(500);
+          }
+          console.error(error);
       }
-  })
+  }) 
+
+  /* router.get('/family', async function (req, res) {
+    try {
+          const allCapabilities = await axios(`${backEndURL}/jobs/getAllFamiliesWithCapability`);
+          res.render('pages/viewFamilyByCapability',  { title: 'Search for Family by Capability Name', results: allCapabilities.data}); 
+          res.status(200);
+        } catch (error) {
+          if(error.code === 'ECONNREFUSED'){
+            res.send('Backend not running');
+            res.status(500);
+          }
+          console.error(error);
+      }
+  }) */
+
+
   module.exports = router;
