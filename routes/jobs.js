@@ -15,27 +15,27 @@ router.get('/getAllJobs', async (req, res) => {
   }
 });
 
-router.get('/allJobIds', async function (req, res) {
-    try {
-        const response = await axios(`${backEndURL}/jobs/allJobIds`);
-        res.send(response.data);
-        res.status(200);
-      } catch (error) {
-        console.error(error);
-      }
-})
-
-router.get('/job-roles-spec/:Role_ID', async function (req, res) {
+router.get('/allJobIds', async (req, res) => {
   try {
-      const Role_ID = req.params.Role_ID;
-      const response = await axios(`${backEndURL}/jobs/job-roles-spec/${Role_ID}`);
-      res.render('job-spec', {
-          jobs: response.data
-      });
-      res.status(200);
-    } catch (error) {
-      console.error(error);
-    }
-})
+    const response = await axios(`${backEndURL}/jobs/allJobIds`);
+    res.send(response.data);
+    res.status(200);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+router.get('/job-roles-spec/:roleID', async (req, res) => {
+  try {
+    const { roleID } = req.params;
+    const response = await axios(`${backEndURL}/jobs/job-roles-spec/${roleID}`);
+    res.render('job-spec', {
+      jobs: response.data,
+    });
+    res.status(200);
+  } catch (error) {
+    console.error(error);
+  }
+});
 
 module.exports = router;

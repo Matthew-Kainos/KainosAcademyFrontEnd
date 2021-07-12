@@ -15,7 +15,7 @@ app.set('view engine', 'njk');
 
 nunjucks.configure('views', {
 
-express: app
+  express: app,
 
 });
 
@@ -36,16 +36,16 @@ app.get('/', (req, res) => {
 });
 
 app.get('/job-roles-spec/:Role_ID', (req, res) => {
-    res.render('job-spec')
-})
+  res.render('job-spec');
+});
 
 // 404 Path
 app.use((req, res) => {
-    res.status(404).json({
-        message: `Unable to find path ${req.path}`
-    })
-})
+  res.status(404).json({
+    message: `Unable to find path ${req.path}`,
+  });
+});
 
-app.listen(3001, function() { 
-    console.log('Express FrontEnd started') 
- });
+app.listen(3001, () => {
+  console.log('Express FrontEnd started');
+});
