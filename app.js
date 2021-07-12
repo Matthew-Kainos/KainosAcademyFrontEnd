@@ -13,6 +13,14 @@ nunjucks.configure('views', {
 
 app.set('view engine', 'njk');
 
+nunjucks.configure('views', {
+
+express: app
+
+});
+
+app.set('view engine', 'njk');
+
 app.use(express.json());
 app.use(express.urlencoded());
 
@@ -22,6 +30,10 @@ app.use('/capabilities', capabilities);
 app.get('/', (req, res) => { 
     res.render('viewCapabilityByJobIdForm'); 
 }); 
+
+app.get('/job-roles-spec/:Role_ID', (req, res) => {
+    res.render('job-spec')
+})
 
 // 404 Path
 app.use((req, res) => {
