@@ -15,7 +15,11 @@ describe('Test Suite', function() {
   it('should render on view job role by band page', async function() {
       await driver.get('http://localhost:3001/jobs/viewRoleByBand');
       const title = await driver.getTitle();
-      expect(title).equal('Job role by band')
+      expect(title).equal('Job role by band');
+      const roleHeader = await driver.findElement(webdriver.By.id('RoleCol')).getText();
+      const bandHeader = await driver.findElement(webdriver.By.id('BandCol')).getText();
+      expect(roleHeader).equal('Job Role');
+      expect(bandHeader).equal('Job Band');
   })
 
   it('should render on view job role by band page, enter invalid input and get error message back', async function() {
@@ -26,8 +30,12 @@ describe('Test Suite', function() {
     expect(title).equal('Job role by band');
     const roleHeader = await driver.findElement(webdriver.By.id('RoleCol')).getText();
     const bandHeader = await driver.findElement(webdriver.By.id('BandCol')).getText();
+    const roleElement = await driver.findElement(webdriver.By.id('RoleElement')).getText();
+    const bandElement = await driver.findElement(webdriver.By.id('BandElement')).getText();
     expect(roleHeader).equal('Job Role');
     expect(bandHeader).equal('Job Band');
+    expect(roleElement).equal('Chief Technical Officer');
+    expect(bandElement).equal('Leadership Community');
   })
 
   it('should render on view job role by band page, enter invalid input and get error message back', async function() {
@@ -48,7 +56,6 @@ describe('Test Suite', function() {
     await driver.findElement(webdriver.By.id('getRoles')).click();
     const errorMessage = await driver.findElement(webdriver.By.id('errorMessage')).getText();
     expect(errorMessage).equal('Role not found. Ensure the role exists and is spelt correctly');
-    var doesIdExists = !!driver.findElement
   })
 
   after(async function() {
