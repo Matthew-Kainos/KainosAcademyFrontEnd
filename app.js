@@ -7,9 +7,8 @@ const jobs  = require('./routes/jobs');
 const capabilities = require('./routes/capabilities');
 const bands = require('./routes/capabilities');
 
-const nunjucks = require('nunjucks');
-nunjucks.configure('views',{
-       express:app
+nunjucks.configure('views', {
+  express: app,
 });
 
 app.set('view engine', 'njk');

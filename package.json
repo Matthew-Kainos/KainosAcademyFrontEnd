@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "jobByBandTest": "npm run lint && mocha tests/jobByBandTests --exit",
     "lint": "eslint '**/*.js'",
     "test": "npm run lint && mocha tests --exit",
     "jobTests": "npm run lint && mocha tests/jobsTest --exit",
