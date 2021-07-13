@@ -74,7 +74,7 @@ router.get('/allJobIds', async (req, res) => {
 router.get('/jobSpec/:roleID', async (req, res) => {
   try {
     const { roleID } = req.params;
-    const response = await axios(`${backEndURL}/jobs/job-roles-spec/${roleID}`);
+    const response = await axios(`${backEndURL}/jobs/jobSpec/${roleID}`);
     res.render('pages/jobSpec', {
       jobs: response.data,
     });

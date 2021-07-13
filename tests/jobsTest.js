@@ -16,7 +16,7 @@ describe('Jobs', function () {
   });
 
   it('should render job spec page with job roles details when role id is valid', async () => {
-    await driver.get('http://localhost:3001/jobs/job-roles-spec/2');
+    await driver.get('http://localhost:3001/jobs/jobSpec/2');
 
     const title = await driver.getTitle();
     expect(title).equal('Specification for Job Role');
@@ -35,7 +35,7 @@ describe('Jobs', function () {
   });
 
   it('should render job spec page with all details when there is no sharepoint link and role id is valid', async () => {
-    await driver.get('http://localhost:3001/jobs/job-roles-spec/1');
+    await driver.get('http://localhost:3001/jobs/jobSpec/1');
 
     const title = await driver.getTitle();
     expect(title).equal('Specification for Job Role');
@@ -54,7 +54,7 @@ describe('Jobs', function () {
   });
 
   it('should render job spec page with warning message when role id is not valid', async () => {
-    await driver.get('http://localhost:3001/jobs/job-roles-spec/99999999');
+    await driver.get('http://localhost:3001/jobs/jobSpec/99999999');
 
     const title = await driver.getTitle();
     expect(title).equal('Specification for Job Role');
