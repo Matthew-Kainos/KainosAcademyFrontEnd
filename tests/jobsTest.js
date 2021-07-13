@@ -5,6 +5,7 @@ const { expect } = chai;
 
 let driver;
 
+// eslint-disable-next-line func-names
 describe('Jobs', function () {
   this.timeout(0);
   before(async () => {
