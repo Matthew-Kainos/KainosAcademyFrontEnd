@@ -26,7 +26,7 @@ describe('Login', function () {
     await driver.quit();
   });
 
-  it('should give appropiate menssage if incorrect userame provided', async () => {
+  it('should give appropriate message if incorrect username provided.', async () => {
     await driver.get('http://localhost:3001/');
     const title = await driver.getTitle();
     expect(title).equal('Login');
@@ -39,7 +39,7 @@ describe('Login', function () {
     expect(errorText).to.equal('Incorrect Username');
   });
 
-  it('should give appropiate menssage if incorrect password provided', async () => {
+  it('should give appropiate message if incorrect password provided', async () => {
     await driver.get('http://localhost:3001/');
     const title = await driver.getTitle();
     expect(title).equal('Login');

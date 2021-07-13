@@ -29,7 +29,7 @@ describe('App', () => {
     });
   });
   describe('initiliseSessionPermissions', async () => {
-    it('Should successfuly initilise admin session', async () => {
+    it('Should successfuly initalise admin session', async () => {
       const checkIfAdminStub = sinon.stub(app, 'checkIfAdmin');
       checkIfAdminStub.resolves({ data: true });
       const req = { session: {} };
@@ -40,7 +40,7 @@ describe('App', () => {
       expect(req.session.isAdmin).equal(true);
       checkIfAdminStub.restore();
     });
-    it('Should successfuly initilise employee session', async () => {
+    it('Should successfuly initalise employee session', async () => {
       const checkIfAdminStub = sinon.stub(app, 'checkIfAdmin');
       checkIfAdminStub.resolves({ data: false });
       const req = { session: {} };
