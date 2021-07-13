@@ -28,13 +28,13 @@ describe('App', () => {
       postStub.restore();
     });
   });
-  describe('initiliseSessionPermissions', async () => {
+  describe('initaliseSessionPermissions', async () => {
     it('Should successfuly initalise admin session', async () => {
       const checkIfAdminStub = sinon.stub(app, 'checkIfAdmin');
       checkIfAdminStub.resolves({ data: true });
       const req = { session: {} };
       const username = 'MyName';
-      await app.initiliseSessionPermissions(req, username);
+      await app.initaliseSessionPermissions(req, username);
       expect(req.session.userID).equal(username);
       expect(req.session.isLoggedIn).equal(true);
       expect(req.session.isAdmin).equal(true);
@@ -45,7 +45,7 @@ describe('App', () => {
       checkIfAdminStub.resolves({ data: false });
       const req = { session: {} };
       const username = 'MyName';
-      await app.initiliseSessionPermissions(req, username);
+      await app.initaliseSessionPermissions(req, username);
       expect(req.session.userID).equal(username);
       expect(req.session.isLoggedIn).equal(true);
       expect(req.session.isAdmin).equal(false);

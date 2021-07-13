@@ -66,7 +66,7 @@ app.post('/login', async (req, res) => {
     const doesUserExist = await axios(`${backEndURL}/login/checkIfUserExists/${username}`);
     if (doesUserExist.data === true) {
       if (await this.checkIfPasswordValid(username, password) === true) {
-        await this.initiliseSessionPermissions(req, username);
+        await this.initaliseSessionPermissions(req, username);
         res.redirect('/home');
       } else {
         res.render('pages/login', { title: 'Login', error: 'Incorrect Password' });
@@ -104,23 +104,23 @@ exports.getPassword = async (username) => {
 
 exports.checkIfAdmin = async (username) => axios(`${backEndURL}/login/checkIfAdmin/${username}`);
 
-exports.initiliseSessionPermissions = async (req, username) => {
+exports.initaliseSessionPermissions = async (req, username) => {
   const isUserAdmin = await this.checkIfAdmin(username);
   if (isUserAdmin.data === true) {
-    initiliseAdminSession(req, username);
+    initaliseAdminSession(req, username);
   } else {
-    initiliseUserSession(req, username);
+    initaliseUserSession(req, username);
   }
 };
 
-function initiliseAdminSession(req, username) {
+function initaliseAdminSession(req, username) {
   sess = req.session;
   sess.userID = username;
   sess.isAdmin = true;
   sess.isLoggedIn = true;
 }
 
-function initiliseUserSession(req, username) {
+function initaliseUserSession(req, username) {
   sess = req.session;
   sess.userID = username;
   sess.isAdmin = false;
