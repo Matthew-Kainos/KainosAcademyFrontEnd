@@ -1,4 +1,5 @@
 const express = require('express');
+
 const app = express();
 require('dotenv').config();
 
@@ -16,6 +17,9 @@ app.set('view engine', 'njk');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
+// For rendering css and images
+app.use(express.static('public'));
+
 app.use('/jobs', jobs);
 app.use('/capabilities', capabilities);
 app.use('/bands', bands);
@@ -26,11 +30,11 @@ app.get('/viewCapabilityLead/:capID', (req, res) => {
 
 // 404 Path
 app.use((req, res) => {
-    res.status(404).json({
-        message: `Unable to find path ${req.path}`
-    })
-})
+  res.status(404).json({
+    message: `Unable to find path ${req.path}`,
+  });
+});
 
-app.listen(3001, function() { 
-    console.log('Express FrontEnd started') 
- });
+app.listen(3001, () => {
+  console.log('Express FrontEnd started');
+});

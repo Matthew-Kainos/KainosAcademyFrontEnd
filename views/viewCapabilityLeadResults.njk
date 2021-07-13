@@ -9,6 +9,7 @@
 <th>Job Family</th>
 <th>Capability Lead</th>
 <th>Message</th>
+<th>Lead Image</th>
 </tr>
 {% for cap in capabilities %}
 <tr>
@@ -16,6 +17,7 @@
 <td>{{cap.Job_Family}}
 <td>{{cap.LeadName}}</td>
 <td>{{cap.LeadMessage}}</td>
+<td>{{'https://www.kainos.com/globalassets/images/5_logos/kainos_logo.png?mode=crop&width=400'}}</td>
 </tr>
 {% endfor %} 
 </table>
