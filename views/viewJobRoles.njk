@@ -31,7 +31,7 @@ body {
 {% for job in jobs %}
 <tr>
 <td>{{job.Role_ID}}</td>
-<td>{{job.Name}}</td>
+<td><a href=http://localhost:3001/jobs/job-roles-spec/{{job.Role_ID}}><div id="{{job.Role_ID}}joblink">{{job.Name}}</div></a></td>
 <td>{{job.Level}}</td>
 </tr>
 {% endfor %}
