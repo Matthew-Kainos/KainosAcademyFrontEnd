@@ -71,11 +71,11 @@ router.get('/allJobIds', async (req, res) => {
   }
 });
 
-router.get('/job-roles-spec/:roleID', async (req, res) => {
+router.get('/jobSpec/:roleID', async (req, res) => {
   try {
     const { roleID } = req.params;
     const response = await axios(`${backEndURL}/jobs/job-roles-spec/${roleID}`);
-    res.render('job-spec', {
+    res.render('pages/jobSpec', {
       jobs: response.data,
     });
     res.status(200);
