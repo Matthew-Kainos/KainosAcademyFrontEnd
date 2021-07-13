@@ -21,8 +21,6 @@ describe('Capabilities', function () {
     expect(title).equal('Search for Family by Capability Name');
     await driver.findElement(webdriver.By.id('capName')).sendKeys('Engineering');
     await driver.findElement(webdriver.By.id('submitbutton')).click();
-    // const resultsTitle = await driver.getTitle();
-    // expect(resultsTitle).equal('Search for Family by Capability Name');
   });
   it('should successfully render form page again and error message if capability name entered is not valid', async () => {
     await driver.get('http://localhost:3001/capabilities/familyform');
