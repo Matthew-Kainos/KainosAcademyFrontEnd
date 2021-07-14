@@ -7,12 +7,12 @@ let driver;
 
 describe('Jobs', function () {
   this.timeout(0);
-  before(async () => {
+  beforeEach(async () => {
     driver = await new webdriver.Builder().forBrowser('chrome').build();
   });
 
-  after(async () => {
-    driver.quit();
+  afterEach(async () => {
+    await driver.quit();
   });
 
   it('should render job spec page with job roles details when role id is valid', async () => {

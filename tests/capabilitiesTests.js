@@ -7,12 +7,12 @@ let driver;
 
 describe('Capabilities', function () {
   this.timeout(0);
-  before(async () => {
+  beforeEach(async () => {
     driver = await new webdriver.Builder().forBrowser('chrome').build();
   });
 
-  after(async () => {
-    driver.quit();
+  afterEach(async () => {
+    await driver.quit();
   });
 
   it('should successfully render list all jobs and capability associated', async () => {
