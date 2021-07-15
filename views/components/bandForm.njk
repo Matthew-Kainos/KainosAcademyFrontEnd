@@ -1,27 +1,51 @@
 <div class= "bandFormContainer">
-    <form>
+    <form action="/bands/addBand" method="post"> 
         <div>
             <label for="bandName">Band name:</label><br>
             <input type="text" id="bandName" name="bandName"><br><br>
 
             <label for="band-select">Place new band:</label>
             <div>
-                <input type="radio" id="bandAbove" name="drone" value="bandAbove">
+                <input type="radio" id="bandAbove" name="bandPlace" value="bandAbove">
                 <label for="bandAbove">above</label>
             </div>
 
             <div>
-                <input type="radio" id="bandBelow" name="drone" value="bandBelow">
+                <input type="radio" id="bandBelow" name="bandPlace" value="bandBelow">
                 <label for="bandBelow">below</label>
             </div>
 
             <div>
-                <select name="bands" id="band-select">
+                <select name="bands" id="bandSelect">
                     {% for band in bands %}
                     <option value="{{band}}">{{band}}</option>
                     {% endfor %}
                 </select>
-            </div>
+            </div><br>
+
+            <label for="trainingSelect">Training:</label>
+            <div id="trainingList">
+                <ul>
+                    {% for course in training %}
+                    <li><label for="{{course}}"> {{course}}</label>
+                    <input type="checkbox" id="{{course}}" name="training" value="{{course}}"></li>
+                    {% endfor %}
+                </ul>
+            </div><br>
+
+            <label for="competencySelect">Competency:</label>
+            <div>
+                <select name="competencySelect" id="competencySelect" name="competencySelect">
+                    {% for competency in competencies %}
+                    <option value="{{competency}}">{{competency}}</option>
+                    {% endfor %}
+                </select>
+            </div><br>
+
+            <label for="responsiblities">Responsiblities:</label><br>
+            <textarea class="responsiblities" id="responsiblities" name="responsiblities" cols="30" rows="10"></textarea><br><br>
+
+            <input type="submit" id="addBand" value="Add Band"><br>
         </div>
     </form>
 <div>

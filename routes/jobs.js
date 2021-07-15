@@ -18,7 +18,6 @@ router.get('/allJobIds', async (req, res) => {
 router.get('/viewRoleByBand', async (req, res) => {
   try {
     const path = `${backEndURL}/jobs/band`;
-    console.log(path);
     const response = await axios(path);
     res.render('viewRoleByBand', {
       roles: response.data,

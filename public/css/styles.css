@@ -216,5 +216,21 @@ label {
 
 select {
   font-size: 40px;
-  padding: 2px 5px;
 }
+
+#trainingList {
+	height: 150px;
+	width: 800px;
+	overflow: scroll; /* This is the key!! */
+	border: 1px #aabbcc solid;
+	padding: 10px;
+}
+
+#responsiblities {
+  height: 150px;
+	width: 800px;
+}
+
+textarea { font-size: 30px; }
+
+input { font-size: 30px; }
