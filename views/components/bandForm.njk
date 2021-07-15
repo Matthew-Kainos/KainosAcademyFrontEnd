@@ -1,0 +1,27 @@
+<div class= "bandFormContainer">
+    <form>
+        <div>
+            <label for="bandName">Band name:</label><br>
+            <input type="text" id="bandName" name="bandName"><br><br>
+
+            <label for="band-select">Place new band:</label>
+            <div>
+                <input type="radio" id="bandAbove" name="drone" value="bandAbove">
+                <label for="bandAbove">above</label>
+            </div>
+
+            <div>
+                <input type="radio" id="bandBelow" name="drone" value="bandBelow">
+                <label for="bandBelow">below</label>
+            </div>
+
+            <div>
+                <select name="bands" id="band-select">
+                    {% for band in bands %}
+                    <option value="{{band}}">{{band}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    </form>
+<div>

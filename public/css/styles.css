@@ -208,3 +208,13 @@ a {
 .homecard:hover {
   box-shadow: 0 5px 10px 0 #61a83f;
 }
+
+label {
+  font-size: 40px;
+  padding-right: 10px;
+}
+
+select {
+  font-size: 40px;
+  padding: 2px 5px;
+}

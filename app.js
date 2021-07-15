@@ -6,6 +6,7 @@ require('dotenv').config();
 const nunjucks = require('nunjucks');
 const jobs = require('./routes/jobs');
 const capabilities = require('./routes/capabilities');
+const bands = require('./routes/bands');
 
 nunjucks.configure('views', {
   express: app,
@@ -19,6 +20,7 @@ app.use(express.urlencoded());
 // For rendering css and images
 app.use(express.static('public'));
 
+app.use('/bands', bands);
 app.use('/jobs', jobs);
 app.use('/capabilities', capabilities);
 
