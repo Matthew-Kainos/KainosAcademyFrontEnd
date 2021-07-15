@@ -13,14 +13,6 @@ nunjucks.configure('views', {
 
 app.set('view engine', 'njk');
 
-nunjucks.configure('views', {
-
-  express: app,
-
-});
-
-app.set('view engine', 'njk');
-
 app.use(express.json());
 app.use(express.urlencoded());
 
