@@ -1,14 +1,25 @@
 const webdriver = require('selenium-webdriver');
 const chai = require('chai');
+require('dotenv').config();
 
 const { expect } = chai;
 
 let driver;
 
+const userDetails = {
+  username: process.env.DB_User_Username,
+  password: process.env.DB_User_Pw,
+};
+
 describe('Jobs', function () {
   this.timeout(0);
   beforeEach(async () => {
     driver = await new webdriver.Builder().forBrowser('chrome').build();
+    // Login as employee before each test
+    await driver.get('http://localhost:3001/');
+    await driver.findElement(webdriver.By.id('Username')).sendKeys(userDetails.username);
+    await driver.findElement(webdriver.By.id('Password')).sendKeys(userDetails.password);
+    await driver.findElement(webdriver.By.id('SubmitButton')).click();
   });
 
   afterEach(async () => {
