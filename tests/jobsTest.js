@@ -12,7 +12,7 @@ describe('Jobs', function () {
   });
 
   afterEach(async () => {
-    driver.quit();
+    await driver.quit();
   });
 
   it('should render job spec page with job roles details when role id is valid', async () => {
@@ -20,9 +20,6 @@ describe('Jobs', function () {
 
     const title = await driver.getTitle();
     expect(title).equal('Specification for Job Role');
-
-    const roleIDText = await driver.findElement(webdriver.By.id('roleID')).getText();
-    expect(roleIDText).equal('2');
 
     const roleNameText = await driver.findElement(webdriver.By.id('roleName')).getText();
     expect(roleNameText).equal('Innovation Lead');
@@ -39,9 +36,6 @@ describe('Jobs', function () {
 
     const title = await driver.getTitle();
     expect(title).equal('Specification for Job Role');
-
-    const roleIDText = await driver.findElement(webdriver.By.id('roleID')).getText();
-    expect(roleIDText).equal('1');
 
     const roleNameText = await driver.findElement(webdriver.By.id('roleName')).getText();
     expect(roleNameText).equal('Chief Technical Officer');
@@ -60,6 +54,6 @@ describe('Jobs', function () {
     expect(title).equal('Specification for Job Role');
 
     const noJobsText = await driver.findElement(webdriver.By.id('noJobs')).getText();
-    expect(noJobsText).equal('No jobs Specification with that ID');
+    expect(noJobsText).equal('No job Specification with that ID');
   });
 });
