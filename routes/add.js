@@ -2,8 +2,9 @@ const express = require('express');
 const axios = require('axios').default;
 
 const backEndURL = process.env.BACK_END_URL;
-
 const router = express.Router();
+
+const validation = require('../validation');
 
 router.get('/role', async (req, res) => {
   if (req.session.isLoggedIn && req.session.isAdmin) {
@@ -41,19 +42,18 @@ router.post('/role', async (req, res) => {
         Capability,
         Band,
       };
-      const response = await axios({
-        method: 'post',
-        url: `${backEndURL}/add/role`,
-        data: {
-          newRoleDetails,
-        },
-      });
-      if (response.data.success === true) {
-        handleSuccessScenerio(req, response.data.message);
-        res.redirect('../add/role');
-        res.status(200);
+      const validateDetails = validation.validateNewRoleInput(newRoleDetails);
+      if (validateDetails.error === false) {
+        const response = await axios({
+          method: 'post',
+          url: `${backEndURL}/add/role`,
+          data: {
+            newRoleDetails,
+          },
+        });
+        handleResponse(res, req, response, '../add/role');
       } else {
-        handleErrorScenerio(req, response.data.message);
+        handleErrorScenerio(req, validateDetails.message);
         res.redirect('../add/role');
         res.status(400);
       }
@@ -67,6 +67,18 @@ router.post('/role', async (req, res) => {
     res.redirect('../');
   }
 });
+
+function handleResponse(res, req, response, page) {
+  if (response.data.success === true) {
+    handleSuccessScenerio(req, response.data.message);
+    res.redirect(page);
+    res.status(200);
+  } else {
+    handleErrorScenerio(req, response.data.message);
+    res.redirect(page);
+    res.status(400);
+  }
+}
 
 function handleSuccessScenerio(req, message) {
   req.session.popupType = 'success';
