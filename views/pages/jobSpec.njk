@@ -1,7 +1,8 @@
 {% extends './base.njk' %}
 {% block pageTitle %}
 {% endblock %}
-{% block header %}{% include "../components/header.njk" %}{% endblock %}
+{% block header %}{% include "../components/header.njk" %}
+{% endblock %}
 {% block main %}
 {% include "../components/navBar.njk" %}
 
@@ -9,6 +10,7 @@
     <div class= "pageTitle">
         <h2 class="pageTitle">Specification for Job Role</h2>
     </div>
+<div class="container">
 
     {% if jobs and jobs.length > 0 %}
     <table style="margin: auto" border="1" id="jobSpecTable">
@@ -20,22 +22,24 @@
     </tr>
     {% for job in jobs %}
     <tr>
-    <td><h3 id="roleID">{{job.Role_ID}}</h3></td>
-    <td><h3 id="roleName">{{job.Name}}</h3></td>
-    <td><h3 id="specSum">{{job.Spec_Sum}}</h3></td>
+    <td><h4 id="roleID">{{job.Role_ID}}</h4></td>
+    <td><h4 id="roleName">{{job.Name}}</h4></td>
+    <td><h4 id="specSum">{{job.Spec_Sum}}</h4></td>
     {% if job.Spec_Link == NULL %}
-    <td><h3 id="noLink">No link Available.</h3></td>
+    <td><h4 id="noLink">No link Available.</h4></td>
     {% else %}
-    <td id="specLink"><a href={{job.Spec_Link}}>Sharepoint Link</a></td>
+    <td id="specLink"><a href={{job.Spec_Link}}><h4>Sharepoint Link</h4></a></td>
     {% endif %}
     </tr>
     {% endfor %}
     </table>
 
     {% else %}
-    <a href="#"><button type="button">Back</button></a>
     <h1 id="noJobs">No job Specification with that ID</h1>
     {% endif %}
+    </div>
+    </div>
+    </div>
 </body>
 {% endblock %}
 {% block footer %} {% include "../components/footer.njk" %} {% endblock %}
