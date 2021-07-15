@@ -1,9 +1,16 @@
 <body>
 <div class = "nav">
 <ul class = "nav">
-  <li class = "nav"><a href="http://localhost:3001/">Home</a></li>
+  <li class = "nav"><a href="http://localhost:3001/home">Home</a></li>
   <li class = "nav"><a href="#">All Jobs</a></li>
-  <li class = "nav"><a href="#">Login</a></li>
+  {% if isAdmin === true %}
+  <li id="AdminOptionNav" class = "nav"><a href="http://localhost:3001/admin">Admin</a></li>
+  {% endif %}
+  {% if loggedIn === true %}
+  <li id="LogOutOptionNav" class = "nav"><a href="http://localhost:3001/logout">Log Out</a></li>
+  {% else %}
+    <li class = "nav"><a href="http://localhost:3001/">Login</a></li>
+  {% endif %}
 </ul>
 </div>
 </body>

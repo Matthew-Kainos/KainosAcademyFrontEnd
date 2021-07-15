@@ -1,7 +1,7 @@
 const express = require('express');
+const axios = require('axios').default;
 
 const router = express.Router();
-const axios = require('axios').default;
 
 const backEndURL = process.env.BACK_END_URL;
 

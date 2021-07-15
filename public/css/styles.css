@@ -208,3 +208,40 @@ a {
 .homecard:hover {
   box-shadow: 0 5px 10px 0 #61a83f;
 }
+
+
+.loginForm {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color: #fdfdfd;
+  border: 2px solid  #bebebe;
+  border-radius: 4px;
+  margin-top: 120px;
+  margin-left: 35%;
+  width: 20%;
+  padding-top: 20px;
+  padding-bottom: 60px;
+  padding-left: 40px;
+  padding-right: 40px;
+  text-align: center;
+}
+.loginFormSubmit{
+  width: 30%;
+  background-color: #61a83f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  margin-top: 40px;
+
+  cursor: pointer;
+}
+
+.loginFormText{
+  margin-top: 40px;
+  margin-bottom: 60px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.loginFormSubmit:hover {
+  box-shadow: 0 5px 10px 0 #61a83f;
+}

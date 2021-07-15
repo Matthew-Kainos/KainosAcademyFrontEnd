@@ -1,0 +1,28 @@
+{% extends './base.njk' %}
+{% block pageTitle %}
+{% endblock %}
+{% block header %}{% include "../components/header.njk" %}{% endblock %}
+{% block main %}
+
+<form action="/login" method="post" class="loginForm">
+    <h1>Login</h1>
+    {% if error %}
+        <h3 id="ErrorMessage"> {{error}} </h3>
+    {% endif %}
+    <div>
+    <label class="loginFormText" for="Username"><b>Username</b></label>
+        <input id="Username" type="text" name="Username" required>
+    </div>
+    <div>
+
+    <label class="loginFormText" for="Password"><b>Password</b></label>
+    <input id="Password" type="password" name="Password" required>
+    </div>
+
+    <button id="SubmitButton" class="loginFormSubmit" type="submit">Login</button>
+</form>
+
+
+
+{% endblock %}
+{% block footer %} {% include "../components/footer.njk" %} {% endblock %}
