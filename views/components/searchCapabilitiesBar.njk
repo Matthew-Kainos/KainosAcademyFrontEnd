@@ -1,0 +1,37 @@
+<script>
+function searchCapability() {
+  let searchBar = document.getElementById('searchBar');
+  let searchValue = searchBar.value.toUpperCase();
+  let allCapabilitiesList = document.getElementById("allCapabilitiesList");
+  let capItems = allCapabilitiesList.getElementsByTagName('li');
+  let hiddenCount = 0;
+  for (let i = 0; i < capItems.length; i++) {
+    let capName = capItems[i].getElementsByTagName('h2')[0].innerHTML;;
+    if (capName.toUpperCase().indexOf(searchValue) > -1) {
+      if(document.getElementById('errormessage')){
+        let errorOption = document.getElementById('errormessage');
+        allCapabilitiesList.removeChild(errorOption);
+      }
+      capItems[i].style.display = "";
+    } else {
+      hiddenCount++;
+      capItems[i].style.display = "none";
+    }
+  }
+  if(hiddenCount===capItems.length){
+      let errorOption = document.createElement("li");
+      let h2Text = document.createElement("h2");
+      let text = document.createTextNode("No Results Matching Name");
+      h2Text.appendChild(text);
+      h2Text.className = 'resultText';
+      errorOption.appendChild(h2Text);
+      errorOption.id = 'errormessage';
+      errorOption.className = 'resultBox';
+      allCapabilitiesList.appendChild(errorOption);
+  }
+}
+</script>
+
+<div class= "searchContainer">
+    <input class="searchBar" type="text" id="searchBar" placeholder="Search for Capability Name ..." onkeyup="searchCapability()">
+<div>

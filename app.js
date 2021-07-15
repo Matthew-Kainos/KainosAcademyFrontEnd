@@ -1,5 +1,5 @@
 const express = require('express');
-// const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 const session = require('express-session');
 
 const app = express();
@@ -88,12 +88,9 @@ app.post('/login', async (req, res) => {
 });
 
 exports.checkIfPasswordValid = async (username, password) => {
-  // const getPasswordResults = await this.getPassword(username);
-  // const isPwValid = await bcrypt.compare(password, getPasswordResults.data);
-  // return isPwValid;
-  console.log(username);
-  console.log(password);
-  return true;
+  const getPasswordResults = await this.getPassword(username);
+  const isPwValid = await bcrypt.compare(password, getPasswordResults.data);
+  return isPwValid;
 };
 
 exports.getPassword = async (username) => {
