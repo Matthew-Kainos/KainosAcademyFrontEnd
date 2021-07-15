@@ -1,10 +1,10 @@
+/* eslint-disable func-names */
 /* eslint-disable no-unused-vars */
 const webdriver = require('selenium-webdriver');
 const chai = require('chai');
 
 const { expect } = chai;
 
-// eslint-disable-next-line func-names
 describe('Test Suite', function () {
   this.timeout(0);
   let driver;
