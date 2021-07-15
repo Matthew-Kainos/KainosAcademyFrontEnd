@@ -7,8 +7,8 @@ describe('Test Suite', function () {
   this.timeout(0);
   let driver;
 
-  afterEach(async () => {
-    await driver.quit();
+  before(async () => {
+    driver = await new webdriver.Builder().forBrowser('chrome').build();
   });
 
   it('should render on view job role by band page', async () => {
@@ -56,7 +56,8 @@ describe('Test Suite', function () {
     const errorMessage = await driver.findElement(webdriver.By.id('errorMessage')).getText();
     expect(errorMessage).equal('Role not found. Ensure the role exists and is spelt correctly');
   });
-  beforeEach(async () => {
-    driver = await new webdriver.Builder().forBrowser('chrome').build();
+
+  after(async () => {
+    driver.quit();
   });
 });
