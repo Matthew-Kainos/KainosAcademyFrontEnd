@@ -1,0 +1,14 @@
+<div class= "resultsContainer">
+    <ul class="resultsContainer" id="allCapabilitiesList">
+        {% for result in results %}
+          <li class="resultBox">
+            <div class="resultText">
+              <h2 class="resultText" id="CapabilityName">{{result.Name}}</h2>
+              {% if result.Job_Family %}
+              <p class="resultText" id="Family">Family: {{result.Job_Family}}</p>
+              {% endif %}
+            </div>
+          </li>
+        {% endfor %}
+    </ul> 
+</div>
