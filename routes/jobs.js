@@ -52,6 +52,16 @@ router.post('/viewRoleByBand', async (req, res) => {
 });
 
 router.get('/getAllJobs', async (req, res) => {
+  try {
+    const response = await axios(`${backEndURL}/jobs/getAllJobs`);
+    res.send(response.data);
+    res.status(200);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+router.get('/getAllJobs', async (req, res) => {
   if (req.session.isLoggedIn) {
     try {
       const response = await axios(`${backEndURL}/jobs/getAllJobs`);
