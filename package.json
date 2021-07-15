@@ -7,8 +7,12 @@
     "jobByBandTest": "npm run lint && mocha tests/jobByBandTests --exit",
     "lint": "eslint '**/*.js'",
     "test": "npm run lint && mocha tests --exit",
-    "jobTests": "npm run lint && mocha tests/jobsTest --exit",
-    "capabilityTests": "npm run lint && mocha tests/capabilitiesTests --exit",
+    "unitTests": "npm run lint && mocha tests/unitTests --exit",
+    "uiTests": "npm run lint && mocha tests/uiTests --exit",
+    "jobTests": "npm run lint && mocha tests/uiTests/jobsTest --exit",
+    "capabilityTests": "npm run lint && mocha tests/uiTests/capabilitiesTests --exit",
+    "loginTests": "npm run lint && mocha tests/uiTests/loginTests --exit",
+    "adminTests": "npm run lint && mocha tests/uiTests/adminTests --exit",
     "start": "nodemon app.js"
   },
   "repository": {
@@ -23,14 +27,17 @@
   "homepage": "https://github.com/Matthew-Kainos/KainosAcademyFrontEnd#readme",
   "dependencies": {
     "axios": "^0.21.1",
+    "bcrypt": "^5.0.1",
     "chai": "^4.3.4",
     "chromedriver": "^91.0.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "express-session": "^1.17.2",
     "mocha": "^9.0.2",
     "nodemon": "^2.0.9",
     "nunjucks": "^3.2.3",
-    "selenium-webdriver": "^4.0.0-beta.4"
+    "selenium-webdriver": "^4.0.0-beta.4",
+    "sinon": "^11.1.1"
   },
   "devDependencies": {
     "eslint": "^7.30.0",
