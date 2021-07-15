@@ -68,7 +68,7 @@ describe('Jobs', function () {
     const title = await driver.getTitle();
     expect(title).equal('Show Job Roles in hierarchy');
     const table = await driver.findElement(webdriver.By.id('jobRolesTable')).getText();
-    expect(table).to.include('Job Role ID');
+    expect(table).to.include('Job Role Name');
   });
 
   it('should successfully render job spec for Job Role Name', async () => {
@@ -76,9 +76,6 @@ describe('Jobs', function () {
     await driver.findElement(webdriver.By.id('1joblink')).click();
     const title = await driver.getTitle();
     expect(title).equal('Specification for Job Role');
-
-    const roleIDText = await driver.findElement(webdriver.By.id('roleID')).getText();
-    expect(roleIDText).equal('1');
 
     const roleNameText = await driver.findElement(webdriver.By.id('roleName')).getText();
     expect(roleNameText).equal('Chief Technical Officer');
