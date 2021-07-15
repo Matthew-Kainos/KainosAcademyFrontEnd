@@ -6,6 +6,7 @@ require('dotenv').config();
 const nunjucks = require('nunjucks');
 const jobs = require('./routes/jobs');
 const capabilities = require('./routes/capabilities');
+const jobSpec = require('./routes/jobSpec');
 
 nunjucks.configure('views', {
   express: app,
@@ -21,6 +22,7 @@ app.use(express.static('public'));
 
 app.use('/jobs', jobs);
 app.use('/capabilities', capabilities);
+app.use('/jobSpec', jobSpec);
 
 app.get('/', (req, res) => {
   res.render('./pages/viewHome');
