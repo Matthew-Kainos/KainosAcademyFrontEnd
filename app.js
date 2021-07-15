@@ -13,6 +13,7 @@ const jobs = require('./routes/jobs');
 const capabilities = require('./routes/capabilities');
 const bands = require('./routes/capabilities');
 const admin = require('./routes/admin');
+const viewLead = require('./routes/viewCapabilityLead');
 
 let sess = {};
 
@@ -33,9 +34,10 @@ app.use(express.static('public'));
 app.use('/jobs', jobs);
 app.use('/capabilities', capabilities);
 app.use('/bands', bands);
+app.use('/viewCapabilityLead', viewLead);
 
 app.get('/viewCapabilityLead/:capID', (req, res) => {
-  res.render('viewCapabilityLeadResults');
+  res.render('pages/viewCapabilityLeadResults');
 });
 
 app.use('/admin', admin);

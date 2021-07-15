@@ -82,7 +82,7 @@ describe('Capabilities', function () {
   });
 
   it('should render capability lead information based on valid capability id', async () => {
-    await driver.get('http://localhost:3001/capabilities/viewCapabilityLead/1');
+    await driver.get('http://localhost:3001/viewCapabilityLead/1');
     const title = await driver.getTitle();
     expect(title).equal('View Capability Lead');
     const capIDText = await driver.findElement(webdriver.By.id('capID')).getText();
@@ -95,7 +95,7 @@ describe('Capabilities', function () {
     expect(capabilityLeadMessageText).equal('Test Message 2');
   });
   it('should successfully render no capability leads if capability lead unavailable', async () => {
-    await driver.get('http://localhost:3001/capabilities/viewCapabilityLead/999999');
+    await driver.get('http://localhost:3001/viewCapabilityLead/999999');
     const title = await driver.getTitle();
     expect(title).equal('View Capability Lead');
     const noLeadsText = await driver.findElement(webdriver.By.id('noLeads')).getText();
