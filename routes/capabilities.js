@@ -27,17 +27,6 @@ router.get('/findByJobNameForm', (req, res) => {
   res.render('viewCapabilityByJobNameForm');
 });
 
-// router.get('/viewCapabilityLead/:capID', async (req, res) => {
-//   try {
-//     const { capID } = req.params;
-//     const response = await axios(`${backEndURL}/capabilities/viewCapabilityLead/${capID}`);
-//     res.render('pages/viewCapabilityLeadResults', { capabilities: response.data, capID });
-//     res.status(200);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// });
-
 router.get('/findByJobName', async (req, res) => {
   if (req.session.isLoggedIn) {
     try {
