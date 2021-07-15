@@ -1,4 +1,3 @@
-/* eslint-disable func-names */
 const webdriver = require('selenium-webdriver');
 const chai = require('chai');
 
