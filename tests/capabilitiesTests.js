@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 const webdriver = require('selenium-webdriver');
 const chai = require('chai');
 
@@ -7,12 +8,12 @@ let driver;
 
 describe('Capabilities', function () {
   this.timeout(0);
-  before(async () => {
+  beforeEach(async () => {
     driver = await new webdriver.Builder().forBrowser('chrome').build();
   });
 
-  after(async () => {
-    driver.quit();
+  afterEach(async () => {
+    await driver.quit();
   });
 
   it('should successfully render list all jobs and capability associated', async () => {
@@ -39,5 +40,26 @@ describe('Capabilities', function () {
     await driver.findElement(webdriver.By.id('searchBar')).sendKeys('abc');
     const jobListText = await driver.findElement(webdriver.By.id('allJobsList')).getText();
     expect(jobListText).to.equal('No Results Matching Name');
+  });
+
+  it('should render capability lead information based on valid capability id', async () => {
+    await driver.get('http://localhost:3001/capabilities/viewCapabilityLead/1');
+    const title = await driver.getTitle();
+    expect(title).equal('View Capability Lead');
+    const capIDText = await driver.findElement(webdriver.By.id('capID')).getText();
+    expect(capIDText).equal('View Capability Lead: 1');
+    const capNameText = await driver.findElement(webdriver.By.id('capName')).getText();
+    expect(capNameText).equal('Engineering');
+    const capabilityLeadText = await driver.findElement(webdriver.By.id('capLeadName')).getText();
+    expect(capabilityLeadText).equal('Aislinn McBride');
+    const capabilityLeadMessageText = await driver.findElement(webdriver.By.id('capLeadMessage')).getText();
+    expect(capabilityLeadMessageText).equal('Test Message 2');
+  });
+  it('should successfully render no capability leads if capability lead unavailable', async () => {
+    await driver.get('http://localhost:3001/capabilities/viewCapabilityLead/999999');
+    const title = await driver.getTitle();
+    expect(title).equal('View Capability Lead');
+    const noLeadsText = await driver.findElement(webdriver.By.id('noLeads')).getText();
+    expect(noLeadsText).equal('No Capability Leads.');
   });
 });
