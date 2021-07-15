@@ -7,14 +7,12 @@
 <h1>Job Specification Summary</h1>
 <table style="margin: auto" border="1" id="jobSpecTable">
 <tr>
-<th>Job Role ID</th>
 <th>Job Role Name</th>
 <th>Specification Summary</th>
 <th>Sharepoint Link</th>
 </tr>
 {% for job in jobs %}
 <tr>
-<td><h3 id="roleID">{{job.Role_ID}}</h3></td>
 <td><h3 id="roleName">{{job.Name}}</h3></td>
 <td><h3 id="specSum">{{job.Spec_Sum}}</h3></td>
 {% if job.Spec_Link == NULL %}
@@ -27,7 +25,6 @@
 </table>
 </div>
 {% else %}
-<button>Back</button>
 <h1 id="noJobs">No jobs Specification with that ID</h1>
 {% endif %}
 
