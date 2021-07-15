@@ -11,18 +11,9 @@ router.get('/familyform', async (req, res) => {
 
 router.get('/family', async (req, res) => {
   try {
-    const { capName } = req.query;
-
-    const response = await axios(`${backEndURL}/capabilities/checkIfCapabilityExists/${capName}`);
-    console.log(response.date);
-    if (response.data === true) {
-      const familyResponse = await axios(`${backEndURL}/capabilities/family/${capName}`);
-      res.render('viewFamilyByCapabilityResults', { family: familyResponse.data, capName });
-      res.status(200);
-    } else {
-      res.render('viewFamilyByCapabilityForm', { error: 'Enter Selection' });
-      res.status(400);
-    }
+    const allCapabilities = await axios(`${backEndURL}/capabilities/getAllFamiliesWithCapability`);
+    res.render('pages/viewFamilyByCapability', { title: 'Search for Family by Capability Name', results: allCapabilities.data });
+    res.status(200);
   } catch (error) {
     if (error.code === 'ECONNREFUSED') {
       res.send('Backend not running');

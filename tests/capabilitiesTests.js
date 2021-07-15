@@ -15,35 +15,32 @@ describe('Capabilities', function () {
     driver.quit();
   });
 
-  it('should successfully render details page when valid capability name added to form', async () => {
-    await driver.get('http://localhost:3001/capabilities/familyform');
+  it('should successfully render list all capabilities and families associated', async () => {
+    await driver.get('http://localhost:3001/capabilities/family');
     const title = await driver.getTitle();
     expect(title).equal('Search for Family by Capability Name');
-    await driver.findElement(webdriver.By.id('capName')).sendKeys('Engineering');
-    await driver.findElement(webdriver.By.id('submitbutton')).click();
+    const capListText = await driver.findElement(webdriver.By.id('allCapabilitiesList')).getText();
+    expect(capListText.length).to.be.greaterThan(0);
+    expect(capListText).to.not.include('No Results Matching Name');
   });
-  it('should successfully render form page again and error message if capability name entered is not valid', async () => {
-    await driver.get('http://localhost:3001/capabilities/familyform');
+  it('should successfully search capabilities list for capabilites based on name and return family details', async () => {
+    await driver.get('http://localhost:3001/capabilities/family');
     const title = await driver.getTitle();
     expect(title).equal('Search for Family by Capability Name');
-    await driver.findElement(webdriver.By.id('capName')).sendKeys('abc');
-    await driver.findElement(webdriver.By.id('submitbutton')).click();
-    const resultsTitle = await driver.getTitle();
-    expect(resultsTitle).equal('Search for Family by Capability Name');
-    const errorMessage = await driver.findElement(webdriver.By.id('errorMessage')).getText();
-    expect(errorMessage).equal('Enter Selection');
+    await driver.findElement(webdriver.By.id('searchBar')).sendKeys('Engineering');
+    const capListText = await driver.findElement(webdriver.By.id('allCapabilitiesList')).getText();
+    expect(capListText).to.include('Engineering');
+    expect(capListText).to.include('Family: Engineering and Strategy Planning');
   });
-  it('should successfully render form page again and error message if no capability name is entered', async () => {
-    await driver.get('http://localhost:3001/capabilities/familyform');
-    const title = await driver.getTitle();
-    expect(title).equal('Search for Family by Capability Name');
-    await driver.findElement(webdriver.By.id('capName')).sendKeys('10000');
-    await driver.findElement(webdriver.By.id('submitbutton')).click();
-    const resultsTitle = await driver.getTitle();
-    expect(resultsTitle).equal('Search for Family by Capability Name');
-    const errorMessage = await driver.findElement(webdriver.By.id('errorMessage')).getText();
-    expect(errorMessage).equal('Enter Selection');
-  });
+  it('should successfully render no family details if capability searched does not exist',
+    async () => {
+      await driver.get('http://localhost:3001/capabilities/family');
+      const title = await driver.getTitle();
+      expect(title).equal('Search for Family by Capability Name');
+      await driver.findElement(webdriver.By.id('searchBar')).sendKeys('abc');
+      const capListText = await driver.findElement(webdriver.By.id('allCapabilitiesList')).getText();
+      expect(capListText).to.equal('No Results Matching Name');
+    });
 
   it('should successfully render list all jobs and capability associated', async () => {
     await driver.get('http://localhost:3001/capabilities/findByJobName');
