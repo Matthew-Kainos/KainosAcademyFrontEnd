@@ -4,18 +4,24 @@
 {% block header %}{% include "../components/header.njk" %}{% endblock %}
 {% block main %}
 {% include "../components/navBar.njk" %}
-
-
 <div class="menuRow">
+  <p class= "pageTitle">Add</p>
   <div class="menuContainer">
-    <a href="http://localhost:3001/capabilities/findByJobName">
+    <a href="http://localhost:3001/add/role">
     <div class="menuCard">
-        <div class="menuText">
-        <h4>Find Job's Capability</h4>
-        </div>
+        <h4 class="menuText">Role</h4>
     </div>
     </a>
-  </div>
+    <a href="http://localhost:3001/admin/edit">
+    <div class="menuCard">
+        <h4 class="menuText">Band</h4>
+    </div>
+    </a>
+    <a href="http://localhost:3001/admin/delete">
+    <div class="menuCard">
+        <h4 class="menuText">Capability</h4>
+    </div>
+    </a>
   </div>
 </div>
 {% endblock %}

@@ -1,0 +1,12 @@
+{% if popupType === 'success' %}
+  <div class="popupSuccess">
+    <span class="popupButton" onclick="this.parentElement.style.display='none'">&times;</span> 
+    {{popupMessage}}
+  </div>
+{% endif %}
+{% if popupType === 'error'%}
+  <div class="popupFailure">
+    <span class="popupButton" onclick="this.parentElement.style.display='none'">&times;</span> 
+    {{popupMessage}}
+  </div>
+{% endif %}
