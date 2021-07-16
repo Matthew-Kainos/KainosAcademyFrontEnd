@@ -9,3 +9,6 @@ npm test
 
 Capability Tests Only:
 npm run capabilityTest
+
+Job Test Only:
+npm run jobTest

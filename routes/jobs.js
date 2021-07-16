@@ -19,6 +19,23 @@ router.get('/allJobIds', async (req, res) => {
   }
 });
 
+router.get('/job-roles', async (req, res) => {
+  try {
+    const response = await axios(`${backEndURL}/jobs/job-roles`);
+    console.log(response);
+    res.render('pages/viewJobRoles', {
+      jobs: response.data,
+      title: 'Show Job Roles in hierarchy',
+    });
+    res.status(200);
+  } catch (error) {
+    if (error.code === 'ECONNREFUSED') {
+      res.send('Backend not running');
+      res.status(500);
+    }
+  }
+});
+
 router.get('/viewRoleByBand', async (req, res) => {
   if (req.session.isLoggedIn) {
     try {

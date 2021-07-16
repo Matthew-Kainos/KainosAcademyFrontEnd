@@ -68,4 +68,28 @@ describe('Jobs', function () {
     const noJobsText = await driver.findElement(webdriver.By.id('noJobs')).getText();
     expect(noJobsText).equal('No job Specification with that ID');
   });
+
+  it('should successfully show all list of Job Roles in hierarchy', async () => {
+    await driver.get('http://localhost:3001/jobs/job-roles');
+    const title = await driver.getTitle();
+    expect(title).equal('Show Job Roles in hierarchy');
+    const table = await driver.findElement(webdriver.By.id('jobRolesTable')).getText();
+    expect(table).to.include('Job Role Name');
+  });
+
+  it('should successfully render job spec for Job Role Name', async () => {
+    await driver.get('http://localhost:3001/jobs/job-roles');
+    await driver.findElement(webdriver.By.id('1joblink')).click();
+    const title = await driver.getTitle();
+    expect(title).equal('Specification for Job Role');
+
+    const roleNameText = await driver.findElement(webdriver.By.id('roleName')).getText();
+    expect(roleNameText).equal('Chief Technical Officer');
+
+    const specSumText = await driver.findElement(webdriver.By.id('specSum')).getText();
+    expect(specSumText).equal('Takes care of computer systems and IT processes');
+
+    const roleLinkText = await driver.findElement(webdriver.By.id('noLink')).getText();
+    expect(roleLinkText).equal('No link Available.');
+  });
 });
