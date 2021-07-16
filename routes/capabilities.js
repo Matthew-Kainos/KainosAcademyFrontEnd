@@ -6,25 +6,48 @@ const router = express.Router();
 const backEndURL = process.env.BACK_END_URL;
 
 router.get('/familyform', async (req, res) => {
-  res.render('viewFamilyByCapabilityForm');
+  if (req.session.isLoggedIn) {
+    res.render('viewFamilyByCapabilityForm', {
+      loggedIn: req.session.isLoggedIn,
+      isAdmin: req.session.isAdmin,
+    });
+  } else {
+    res.redirect('/');
+  }
 });
 
 router.get('/family', async (req, res) => {
-  try {
-    const allCapabilities = await axios(`${backEndURL}/capabilities/getAllFamiliesWithCapability`);
-    res.render('pages/viewFamilyByCapability', { title: 'Search for Family by Capability Name', results: allCapabilities.data });
-    res.status(200);
-  } catch (error) {
-    if (error.code === 'ECONNREFUSED') {
-      res.send('Backend not running');
-      res.status(500);
+  if (req.session.isLoggedIn) {
+    try {
+      const allCapabilities = await axios(`${backEndURL}/capabilities/getAllFamiliesWithCapability`);
+      res.render('pages/viewFamilyByCapability', {
+        title: 'Search for Family by Capability Name',
+        results: allCapabilities.data,
+        loggedIn: req.session.isLoggedIn,
+        isAdmin: req.session.isAdmin,
+      });
+      res.status(200);
+    } catch (error) {
+      if (error.code === 'ECONNREFUSED') {
+        res.send('Backend not running');
+        res.status(500);
+      }
+      console.error(error);
     }
-    console.error(error);
+  } else {
+    res.redirect('/');
   }
 });
 
 router.get('/findByJobNameForm', (req, res) => {
-  res.render('viewCapabilityByJobNameForm');
+  if (req.session.isLoggedIn) {
+    res.render('viewCapabilityByJobNameForm', {
+      loggedIn: req.session.isLoggedIn,
+      isAdmin: req.session.isAdmin,
+    });
+  } else {
+    res.redirect('/');
+  }
 });
 
 router.get('/findByJobName', async (req, res) => {

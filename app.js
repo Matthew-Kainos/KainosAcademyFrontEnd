@@ -10,7 +10,8 @@ const backEndURL = process.env.BACK_END_URL;
 const nunjucks = require('nunjucks');
 const jobs = require('./routes/jobs');
 const capabilities = require('./routes/capabilities');
-const bands = require('./routes/bands');
+const jobSpec = require('./routes/jobSpec');
+
 const admin = require('./routes/admin');
 const viewLead = require('./routes/viewCapabilityLead');
 
@@ -38,6 +39,7 @@ app.get('/viewCapabilityLead/:capID', (req, res) => {
   res.render('pages/viewCapabilityLeadResults');
 });
 
+app.use('/jobSpec', jobSpec);
 app.use('/admin', admin);
 
 app.get('/', (req, res) => {
