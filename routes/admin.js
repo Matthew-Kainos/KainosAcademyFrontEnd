@@ -2,6 +2,21 @@ const express = require('express');
 
 const router = express.Router();
 
+router.get('/', async (req, res) => {
+  if (req.session.isLoggedIn && req.session.isAdmin) {
+    res.render('pages/viewAdminMenu', {
+      title: 'Admin Menu',
+      loggedIn: req.session.isLoggedIn,
+      isAdmin: req.session.isAdmin,
+    });
+    res.status(200);
+  } else if (req.session.isLoggedIn) {
+    res.redirect('../home');
+  } else {
+    res.redirect('../');
+  }
+});
+
 router.get('/menu', async (req, res) => {
   if (req.session.isLoggedIn && req.session.isAdmin) {
     res.render('pages/viewAdminMenu', {
@@ -17,10 +32,10 @@ router.get('/menu', async (req, res) => {
   }
 });
 
-router.get('/', async (req, res) => {
+router.get('/add', async (req, res) => {
   if (req.session.isLoggedIn && req.session.isAdmin) {
-    res.render('pages/viewAdminMenu', {
-      title: 'Admin Menu',
+    res.render('pages/viewAdminAddMenu', {
+      title: 'Admin Add Menu',
       loggedIn: req.session.isLoggedIn,
       isAdmin: req.session.isAdmin,
     });
@@ -31,4 +46,5 @@ router.get('/', async (req, res) => {
     res.redirect('../');
   }
 });
+
 module.exports = router;
