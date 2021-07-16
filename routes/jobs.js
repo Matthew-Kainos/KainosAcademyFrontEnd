@@ -6,58 +6,65 @@ const axios = require('axios').default;
 const backEndURL = process.env.BACK_END_URL;
 
 router.get('/allJobIds', async (req, res) => {
-  try {
-    const response = await axios(`${backEndURL}/jobs/allJobIds`);
-    res.send(response.data);
-    res.status(200);
-  } catch (error) {
-    console.error(error);
+  if (req.session.isLoggedIn) {
+    try {
+      const response = await axios(`${backEndURL}/jobs/allJobIds`);
+      res.send(response.data);
+      res.status(200);
+    } catch (error) {
+      console.error(error);
+    }
+  } else {
+    res.redirect('/');
   }
 });
 
 router.get('/viewRoleByBand', async (req, res) => {
-  try {
-    const path = `${backEndURL}/jobs/band`;
-    console.log(path);
-    const response = await axios(path);
-    res.render('viewRoleByBand', {
-      roles: response.data,
-      error: 'No Errors',
-    });
-    res.status(200);
-  } catch (error) {
-    console.error(error);
+  if (req.session.isLoggedIn) {
+    try {
+      const path = `${backEndURL}/jobs/band`;
+      const response = await axios(path);
+      res.render('viewRoleByBand', {
+        roles: response.data,
+        error: 'No Errors',
+        loggedIn: req.session.isLoggedIn,
+        isAdmin: req.session.isAdmin,
+      });
+      res.status(200);
+    } catch (error) {
+      console.error(error);
+    }
+  } else {
+    res.redirect('/');
   }
 });
 
 router.post('/viewRoleByBand', async (req, res) => {
-  try {
-    const path = `${backEndURL}/jobs/band/${req.body.roleInput.replace(' ', '_')}`;
-    const response = await axios(path);
-    if (typeof response.data === 'string') {
-      res.render('viewRoleByBand', {
-        roles: [],
-        error: response.data,
-      });
+  if (req.session.isLoggedIn) {
+    try {
+      const path = `${backEndURL}/jobs/band/${req.body.roleInput.replace(' ', '_')}`;
+      const response = await axios(path);
+      if (typeof response.data === 'string') {
+        res.render('viewRoleByBand', {
+          roles: [],
+          error: response.data,
+          loggedIn: req.session.isLoggedIn,
+          isAdmin: req.session.isAdmin,
+        });
+      }
+      if (typeof response.data === 'object') {
+        res.render('viewRoleByBand', {
+          roles: response.data,
+          error: 'No Errors',
+          loggedIn: req.session.isLoggedIn,
+          isAdmin: req.session.isAdmin,
+        });
+      }
+    } catch (error) {
+      console.error(error);
     }
-    if (typeof response.data === 'object') {
-      res.render('viewRoleByBand', {
-        roles: response.data,
-        error: 'No Errors',
-      });
-    }
-  } catch (error) {
-    console.error(error);
-  }
-});
-
-router.get('/getAllJobs', async (req, res) => {
-  try {
-    const response = await axios(`${backEndURL}/jobs/getAllJobs`);
-    res.send(response.data);
-    res.status(200);
-  } catch (error) {
-    console.error(error);
+  } else {
+    res.redirect('/');
   }
 });
 
