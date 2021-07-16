@@ -1,0 +1,28 @@
+{% extends './base.njk' %}
+{% block pageTitle %}
+{% endblock %}
+{% block header %}{% include "../components/header.njk" %}{% endblock %}
+{% block main %}
+
+<form action="/login" method="post" class="loginForm">
+    <a href="/" class="brand-logo"><img class="responsive-img" id="logo" src="https://kainossoftwareltd.sharepoint.com/:i:/r/marketing/Shared%20Documents/Documents/Corporate/Logos,%20icons%20and%20illustrations/Logos/Kainos%20logo/Kainos%20800x250%20Logo%20(Transparent%20BG).png?csf=1&web=1&e=i4ySQG"/></a>
+    {% if error %}
+        <h3 id="ErrorMessage"> {{error}} </h3>
+    {% endif %}
+    <div>
+    <label class="loginFormText" for="Username"><b>Username</b></label>
+        <input id="Username" type="text" name="Username" required>
+    </div>
+    <div>
+
+    <label class="loginFormText" for="Password"><b>Password</b></label>
+    <input id="Password" type="password" name="Password" required>
+    </div>
+
+    <button id="SubmitButton" class="loginFormSubmit" type="submit">Login</button>
+</form>
+
+
+
+{% endblock %}
+{% block footer %} {% include "../components/footer.njk" %} {% endblock %}

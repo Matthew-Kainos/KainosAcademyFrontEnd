@@ -1,0 +1,15 @@
+{% extends './base.njk' %}
+{% block pageTitle %}
+{% endblock %}
+{% block header %}{% include "../components/header.njk" %}{% endblock %}
+{% block main %}
+<body>
+    {% if error %} 
+            <h2>{{error}}</h2>
+    {% endif %}
+            <h2>{{error}}</h2>
+            <button><a href="/">Home</a></button>
+    </div>
+</body>
+{% endblock %}
+{% block footer %} {% include "../components/footer.njk" %} {% endblock %}

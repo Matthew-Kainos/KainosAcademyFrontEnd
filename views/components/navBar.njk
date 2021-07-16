@@ -1,12 +1,16 @@
-
   <nav>
     <div class="nav-wrapper">
       <a href="/" class="brand-logo"><img class="responsive-img" id="logo" src="https://northeurope1-mediap.svc.ms/transform/thumbnail?provider=spo&inputFormat=png&cs=fFNQTw&docid=https%3A%2F%2Fkainossoftwareltd.sharepoint.com%3A443%2F_api%2Fv2.0%2Fdrives%2Fb!UANxfTUBe0W2AWztHWyUr0WzxJDKNehNpQi7pG3gsszzR_iGDZcWRquR2iadJLzc%2Fitems%2F01XRWG2PIHTMRO4VO73FEIIBDWQRVKIMVX%3Fversion%3DPublished&access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJub25lIn0.eyJhdWQiOiIwMDAwMDAwMy0wMDAwLTBmZjEtY2UwMC0wMDAwMDAwMDAwMDAva2Fpbm9zc29mdHdhcmVsdGQuc2hhcmVwb2ludC5jb21AN2VkOWJkYzctOTY0ZC00ZGMwLTkwODQtODEyYjkwZTA1YzZkIiwiaXNzIjoiMDAwMDAwMDMtMDAwMC0wZmYxLWNlMDAtMDAwMDAwMDAwMDAwIiwibmJmIjoiMTYyNjMyODgwMCIsImV4cCI6IjE2MjYzNTA0MDAiLCJlbmRwb2ludHVybCI6IkpJZXEvNHBwKzFWYVVSOVJGbDJOL0hvUTg3YjU3ZnozYkF1UXk5bk9wdFE9IiwiZW5kcG9pbnR1cmxMZW5ndGgiOiIxMjQiLCJpc2xvb3BiYWNrIjoiVHJ1ZSIsInZlciI6Imhhc2hlZHByb29mdG9rZW4iLCJzaXRlaWQiOiJOMlEzTVRBek5UQXRNREV6TlMwME5UZGlMV0kyTURFdE5tTmxaREZrTm1NNU5HRm0iLCJzaWduaW5fc3RhdGUiOiJbXCJrbXNpXCJdIiwibmFtZWlkIjoiMCMuZnxtZW1iZXJzaGlwfG1hdHRoZXcubWNjYWlnQGthaW5vcy5jb20iLCJuaWkiOiJtaWNyb3NvZnQuc2hhcmVwb2ludCIsImlzdXNlciI6InRydWUiLCJjYWNoZWtleSI6IjBoLmZ8bWVtYmVyc2hpcHwxMDAzMjAwMTM2NTU0Y2Q0QGxpdmUuY29tIiwidHQiOiIwIiwidXNlUGVyc2lzdGVudENvb2tpZSI6IjMifQ.OHJ1Z0I2elNabnhxMlpEYzBrM3VraTY4c1hWMUxiUjFabzM1NDkvVjRKZz0&encodeFailures=1&width=200&height=150&srcWidth=200&srcHeight=150"/></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="/">Home</a></li>
-        <li><a href="#">Placeholder</a></li>
-        <li><a href="#">Log In</a></li>
+        {% if isAdmin === true %}
+        <li id="AdminOptionNav"><a href="http://localhost:3001/admin">Admin</a></li>
+        {% endif %}
+        {% if loggedIn === true %}
+        <li id="LogOutOptionNav"><a href="http://localhost:3001/logout">Log Out</a></li>
+        {% else %}
+          <li><a href="http://localhost:3001/">Login</a></li>
+        {% endif %}
       </ul>
     </div>
   </nav>
-

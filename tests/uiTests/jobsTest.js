@@ -1,18 +1,29 @@
 const webdriver = require('selenium-webdriver');
 const chai = require('chai');
+require('dotenv').config();
 
 const { expect } = chai;
 
 let driver;
 
+const userDetails = {
+  username: process.env.DB_User_Username,
+  password: process.env.DB_User_Pw,
+};
+
 describe('Jobs', function () {
   this.timeout(0);
   beforeEach(async () => {
     driver = await new webdriver.Builder().forBrowser('chrome').build();
+    // Login as employee before each test
+    await driver.get('http://localhost:3001/');
+    await driver.findElement(webdriver.By.id('Username')).sendKeys(userDetails.username);
+    await driver.findElement(webdriver.By.id('Password')).sendKeys(userDetails.password);
+    await driver.findElement(webdriver.By.id('SubmitButton')).click();
   });
 
   afterEach(async () => {
-    driver.quit();
+    await driver.quit();
   });
 
   it('should render job spec page with job roles details when role id is valid', async () => {
@@ -20,9 +31,6 @@ describe('Jobs', function () {
 
     const title = await driver.getTitle();
     expect(title).equal('Specification for Job Role');
-
-    const roleIDText = await driver.findElement(webdriver.By.id('roleID')).getText();
-    expect(roleIDText).equal('2');
 
     const roleNameText = await driver.findElement(webdriver.By.id('roleName')).getText();
     expect(roleNameText).equal('Innovation Lead');
@@ -39,9 +47,6 @@ describe('Jobs', function () {
 
     const title = await driver.getTitle();
     expect(title).equal('Specification for Job Role');
-
-    const roleIDText = await driver.findElement(webdriver.By.id('roleID')).getText();
-    expect(roleIDText).equal('1');
 
     const roleNameText = await driver.findElement(webdriver.By.id('roleName')).getText();
     expect(roleNameText).equal('Chief Technical Officer');
@@ -60,6 +65,6 @@ describe('Jobs', function () {
     expect(title).equal('Specification for Job Role');
 
     const noJobsText = await driver.findElement(webdriver.By.id('noJobs')).getText();
-    expect(noJobsText).equal('No jobs Specification with that ID');
+    expect(noJobsText).equal('No job Specification with that ID');
   });
 });

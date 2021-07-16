@@ -13,16 +13,14 @@
 <div class="container">
 
     {% if jobs and jobs.length > 0 %}
-    <table style="margin: auto" border="1" id="jobSpecTable">
+    <table style="margin: auto" border="1" id="jobSpecTable" class="responsive-table">
     <tr>
-    <th>Job Role ID</th>
     <th>Job Role Name</th>
     <th>Specification Summary</th>
     <th>Sharepoint Link</th>
     </tr>
     {% for job in jobs %}
     <tr>
-    <td><h4 id="roleID">{{job.Role_ID}}</h4></td>
     <td><h4 id="roleName">{{job.Name}}</h4></td>
     <td><h4 id="specSum">{{job.Spec_Sum}}</h4></td>
     {% if job.Spec_Link == NULL %}
