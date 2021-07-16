@@ -10,6 +10,7 @@ const backEndURL = process.env.BACK_END_URL;
 const nunjucks = require('nunjucks');
 const jobs = require('./routes/jobs');
 const capabilities = require('./routes/capabilities');
+const jobSpec = require('./routes/jobSpec');
 const admin = require('./routes/admin');
 
 let sess = {};
@@ -30,6 +31,7 @@ app.use(express.static('public'));
 
 app.use('/jobs', jobs);
 app.use('/capabilities', capabilities);
+app.use('/jobSpec', jobSpec);
 app.use('/admin', admin);
 
 app.get('/', (req, res) => {
