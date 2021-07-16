@@ -22,16 +22,19 @@ router.get('/allJobIds', async (req, res) => {
 router.get('/viewRoleByBand', async (req, res) => {
   if (req.session.isLoggedIn) {
     try {
-      const path = `${backEndURL}/jobs/band`;
-      const response = await axios(path);
-      res.render('viewRoleByBand', {
-        roles: response.data,
-        error: 'No Errors',
+      const allRolesAndBands = await axios(`${backEndURL}/jobs/band`);
+      res.render('pages/viewRoleByBand', {
+        title: 'View Role and Band Level',
+        results: allRolesAndBands.data,
         loggedIn: req.session.isLoggedIn,
         isAdmin: req.session.isAdmin,
       });
       res.status(200);
     } catch (error) {
+      if (error.code === 'ECONNREFUSED') {
+        res.send('Backend not running');
+        res.status(500);
+      }
       console.error(error);
     }
   } else {
