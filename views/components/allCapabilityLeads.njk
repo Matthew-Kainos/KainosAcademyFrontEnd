@@ -1,0 +1,15 @@
+  
+<div class= "resultsContainer">
+    <ul class="resultsContainer" id="allCapLeads">
+        {% for result in results %}
+          <li class="resultBox">
+            <div class="resultText">
+              <h2 class="resultText" id="CapLead">{{result.Capability}}</h2>
+              {% if result.LeadName %}
+              <p class="resultText" id="LeadName">LeadName: {{result.LeadName}}</p>
+              {% endif %}
+            </div>
+          </li>
+        {% endfor %}
+    </ul> 
+</div>

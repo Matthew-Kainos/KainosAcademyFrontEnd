@@ -1,0 +1,43 @@
+{% extends './base.njk' %}
+{% block pageTitle %}
+{% endblock %}
+{% block header %}{% include "../components/header.njk" %}
+{% endblock %}
+{% block main %}
+{% include "../components/navBar.njk" %}
+
+<body>
+    <div class= "pageTitle">
+        <h2 class="pageTitle">Specification for Job Role</h2>
+    </div>
+<div class="container">
+
+    {% if jobs and jobs.length > 0 %}
+    <table style="margin: auto" border="1" id="jobSpecTable">
+    <tr>
+    <th>Job Role Name</th>
+    <th>Specification Summary</th>
+    <th>Sharepoint Link</th>
+    </tr>
+    {% for job in jobs %}
+    <tr>
+    <td><h4 id="roleName">{{job.Name}}</h4></td>
+    <td><h4 id="specSum">{{job.Spec_Sum}}</h4></td>
+    {% if job.Spec_Link == NULL %}
+    <td><h4 id="noLink">No link Available.</h4></td>
+    {% else %}
+    <td id="specLink"><a href={{job.Spec_Link}}><h4>Sharepoint Link</h4></a></td>
+    {% endif %}
+    </tr>
+    {% endfor %}
+    </table>
+
+    {% else %}
+    <h1 id="noJobs">No job Specification with that ID</h1>
+    {% endif %}
+    </div>
+    </div>
+    </div>
+</body>
+{% endblock %}
+{% block footer %} {% include "../components/footer.njk" %} {% endblock %}
