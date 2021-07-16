@@ -11,6 +11,7 @@ const nunjucks = require('nunjucks');
 const jobs = require('./routes/jobs');
 const capabilities = require('./routes/capabilities');
 const admin = require('./routes/admin');
+const bands = require('./routes/bands');
 
 let sess = {};
 
