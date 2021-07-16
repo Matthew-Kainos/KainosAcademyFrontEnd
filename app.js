@@ -11,7 +11,10 @@ const nunjucks = require('nunjucks');
 const jobs = require('./routes/jobs');
 const capabilities = require('./routes/capabilities');
 const jobSpec = require('./routes/jobSpec');
+
 const admin = require('./routes/admin');
+const add = require('./routes/add');
+const viewLead = require('./routes/viewCapabilityLead');
 
 let sess = {};
 
@@ -23,16 +26,29 @@ nunjucks.configure('views', {
 
 app.set('view engine', 'njk');
 
+// const { response } = require('express');
+nunjucks.configure('views', {
+  express: app,
+});
+app.set('view engine', 'njk');
+
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 
 // For rendering css and images
 app.use(express.static('public'));
 
 app.use('/jobs', jobs);
 app.use('/capabilities', capabilities);
+app.use('/viewCapabilityLead', viewLead);
+
+app.get('/viewCapabilityLead/:capID', (req, res) => {
+  res.render('pages/viewCapabilityLeadResults');
+});
+
 app.use('/jobSpec', jobSpec);
 app.use('/admin', admin);
+app.use('/add', add);
 
 app.get('/', (req, res) => {
   if (req.session.isLoggedIn === true) {
@@ -133,6 +149,10 @@ app.get('/logout', async (req, res) => {
   sess = {};
   req.session.destroy();
   res.redirect('/');
+});
+
+app.get('/job-roles', (req, res) => {
+  res.render('viewJobRoles');
 });
 
 // 404 Path
