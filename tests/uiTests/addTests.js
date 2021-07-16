@@ -6,11 +6,6 @@ const { expect } = chai;
 
 let driver;
 
-// const userDetails = {
-//   username: process.env.DB_User_Username,
-//   password: process.env.DB_User_Pw,
-// };
-
 const adminDetails = {
   username: process.env.DB_Admin_Username,
   password: process.env.DB_Admin_Pw,
