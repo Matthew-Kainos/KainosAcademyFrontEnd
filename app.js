@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 const express = require('express');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
@@ -33,7 +32,6 @@ app.use(express.static('public'));
 
 app.use('/jobs', jobs);
 app.use('/capabilities', capabilities);
-app.use('/bands', bands);
 app.use('/viewCapabilityLead', viewLead);
 
 app.get('/viewCapabilityLead/:capID', (req, res) => {
