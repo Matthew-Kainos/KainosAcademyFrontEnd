@@ -1,3 +1,5 @@
+/* eslint-disable func-names */
+/* eslint-disable no-unused-vars */
 const webdriver = require('selenium-webdriver');
 const chai = require('chai');
 
