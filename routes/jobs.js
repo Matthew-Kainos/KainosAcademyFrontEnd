@@ -21,6 +21,7 @@ router.get('/job-roles', async (req, res) => {
     console.log(response);
     res.render('pages/viewJobRoles', {
       jobs: response.data,
+      title: 'Show Job Roles in hierarchy',
     });
     res.status(200);
   } catch (error) {
