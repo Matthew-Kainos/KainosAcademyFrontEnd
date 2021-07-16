@@ -11,7 +11,7 @@ const backEndURL = process.env.BACK_END_URL;
 const nunjucks = require('nunjucks');
 const jobs = require('./routes/jobs');
 const capabilities = require('./routes/capabilities');
-const bands = require('./routes/capabilities');
+const bands = require('./routes/bands');
 const admin = require('./routes/admin');
 const viewLead = require('./routes/viewCapabilityLead');
 
