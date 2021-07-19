@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 const chai = require('chai');
 const sinon = require('sinon');
 const bcrypt = require('bcrypt');
