@@ -5,17 +5,6 @@ const router = express.Router();
 
 const backEndURL = process.env.BACK_END_URL;
 
-router.get('/familyform', async (req, res) => {
-  if (req.session.isLoggedIn) {
-    res.render('viewFamilyByCapabilityForm', {
-      loggedIn: req.session.isLoggedIn,
-      isAdmin: req.session.isAdmin,
-    });
-  } else {
-    res.redirect('/');
-  }
-});
-
 router.get('/family', async (req, res) => {
   if (req.session.isLoggedIn) {
     try {
@@ -34,17 +23,6 @@ router.get('/family', async (req, res) => {
       }
       console.error(error);
     }
-  } else {
-    res.redirect('/');
-  }
-});
-
-router.get('/findByJobNameForm', (req, res) => {
-  if (req.session.isLoggedIn) {
-    res.render('viewCapabilityByJobNameForm', {
-      loggedIn: req.session.isLoggedIn,
-      isAdmin: req.session.isAdmin,
-    });
   } else {
     res.redirect('/');
   }

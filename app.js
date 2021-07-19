@@ -1,13 +1,16 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
-
-const app = express();
-require('dotenv').config();
+const swaggerUi = require('swagger-ui-express');
+const nunjucks = require('nunjucks');
 const axios = require('axios').default;
+require('dotenv').config();
 
 const backEndURL = process.env.BACK_END_URL;
-const nunjucks = require('nunjucks');
+
+const app = express();
+const swaggerDocument = require('./swagger.json');
+
 const jobs = require('./routes/jobs');
 const capabilities = require('./routes/capabilities');
 const jobSpec = require('./routes/jobSpec');
@@ -151,9 +154,7 @@ app.get('/logout', async (req, res) => {
   res.redirect('/');
 });
 
-app.get('/job-roles', (req, res) => {
-  res.render('viewJobRoles');
-});
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // 404 Path
 app.use((req, res) => {

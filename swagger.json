@@ -1,0 +1,297 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Swagger Documentation for Jobs Portal Frontend",
+        "version": "1.0.0",
+        "title": "Jobs Portal Frontend"
+    },
+    "host": "localhost:3001",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "jobs",
+            "description": "Everything related to jobs"
+        },
+        {
+            "name": "capabilities",
+            "description": "Everything related to Capabilities"
+        },
+        {
+            "name": "admin",
+            "description": "Operations for admin privledges"
+        },
+        {
+            "name": "add",
+            "description": "Operations for adding"
+        },
+        {
+            "name": "login",
+            "description": "Operations for login and log out"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/jobs/job-roles": {
+            "get": {
+                "tags": [
+                    "jobs"
+                ],
+                "summary": "Gets All Jobs",
+                "description": "",
+                "operationId": "job-roles",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Error"
+                    }
+                }
+            }
+        },
+        "/job-spec/{roleID}": {
+            "get": {
+                "tags": [
+                    "jobs"
+                ],
+                "summary": "Gets job spec for job",
+                "description": "",
+                "operationId": "job-spec",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "roleId",
+                        "in": "path",
+                        "description": "ID of job role to show specifictaion",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Error"
+                    }
+                }
+            }
+        },
+        "/jobs/viewRoleByBand": {
+            "get": {
+                "tags": [
+                    "jobs"
+                ],
+                "summary": "Gets All Role and band details to display for search",
+                "description": "",
+                "operationId": "viewRoleByBand",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Error"
+                    }
+                }
+            }
+        },
+        "/capabilities/getAllCapabilityNames": {
+            "get": {
+                "tags": [
+                    "capabilities"
+                ],
+                "summary": "Get all Capabilities Name",
+                "description": "",
+                "operationId": "getAllCapabilityNames",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Error"
+                    }
+                }
+            }
+        },
+        "/capabilities/findByJobName": {
+            "get": {
+                "tags": [
+                    "capabilities"
+                ],
+                "summary": "Get all Jobs and capabilities of roles",
+                "description": "",
+                "operationId": "findByJobName",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Error"
+                    }
+                }
+            }
+        },
+        "/": {
+            "get": {
+                "tags": [
+                    "login"
+                ],
+                "summary": "Get login screen rendered",
+                "description": "",
+                "operationId": "login",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Error"
+                    }
+                }
+            }
+        },
+        "/admin/menu": {
+            "get": {
+                "tags": [
+                    "admin"
+                ],
+                "summary": "Gets admin menu",
+                "description": "",
+                "operationId": "menu",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Error"
+                    }
+                }
+            }
+        },
+        "/admin/add": {
+            "get": {
+                "tags": [
+                    "admin"
+                ],
+                "summary": "Gets admin add menu",
+                "description": "",
+                "operationId": "add",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Error"
+                    }
+                }
+            }
+        },
+        "/add/role": {
+            "get": {
+                "tags": [
+                    "add"
+                ],
+                "summary": "Gets Form to add Role",
+                "description": "",
+                "operationId": "form",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Error"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "add"
+                ],
+                "summary": "Adds role",
+                "description": "",
+                "operationId": "role",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Created user object",
+                        "required": true,
+                        "properties": {
+                            "newRoleDetails": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Error"
+                    }
+                }
+            }
+        }
+    }
+}
