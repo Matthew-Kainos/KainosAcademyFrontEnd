@@ -7,12 +7,11 @@ const backEndURL = process.env.BACK_END_URL;
 
 router.get('/addBand', async (req, res) => {
   try {
-    // const { roleID } = req.params;
-    // const response = await axios(`${backEndURL}/jobs/job-roles-spec/${roleID}`);
+    const response = await axios(`${backEndURL}/bands/info`);
     res.render('pages/addBand', {
-      bands: ['Principal', 'Associate'],
-      competencies: ['Expert', 'Advanced', 'Proficient', 'Emerging', 'Effective'],
-      training: ['TrainingA', 'TrainingB', 'TrainingC'],
+      names: response.data.names,
+      competencies: response.data.competencies,
+      training: response.data.training,
     });
     res.status(200);
   } catch (error) {
@@ -22,23 +21,25 @@ router.get('/addBand', async (req, res) => {
 
 router.post('/addBand', async (req, res) => {
   try {
+    const Data = {
+      name: req.body.bandName,
+      aboveOrBelow: req.body.bandPlace,
+      refBand: req.body.bands,
+      training: req.body.training,
+      competencies: req.body.competencies,
+      responsiblities: req.body.responsiblities,
+    };
     const response = await axios({
       method: 'post',
       url: `${backEndURL}/bands/addBand`,
-      data: {
-        name: req.body.bandName,
-        aboveOrBelow: req.body.bandPlace,
-        refBand: req.body.bands,
-        training: req.body.training,
-        competencies: req.body.competencies,
-        responsiblities: req.body.responsiblities,
-      },
+      data: Data,
     });
     console.log(response.data);
+    const resp = await axios(`${backEndURL}/bands/info`);
     res.render('pages/addBand', {
-      bands: ['Principal', 'Associate'],
-      competencies: ['Expert', 'Advanced', 'Proficient', 'Emerging', 'Effective'],
-      training: ['TrainingA', 'TrainingB', 'TrainingC'],
+      names: resp.data.names,
+      competencies: resp.data.competencies,
+      training: resp.data.training,
     });
     res.status(200);
   } catch (error) {
