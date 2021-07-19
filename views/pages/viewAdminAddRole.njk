@@ -5,46 +5,53 @@
 {% block main %}
 {% include "../components/navBar.njk" %}
 {% include "../components/popup.njk" %}
+
+<script>
+  $(document).ready(function(){
+    $('select').formSelect();
+  });
+</script>
+<body>
+
 <div class="formRow">
     <p class= "pageTitle">Add Role</p>
 <form class="createForm" action="/add/role" method="post">
-    <div class="col-25">
+    <div class="col s2">
     <label class="createFormText" for="RoleName"><b>Role Name</b></label>
     </div>
-    <div class="col-75">
+    <div class="col s2">
         <input class="createFormInput" id="RoleName" type="text" name="RoleName" required>
     </div>
 
-    <div class="col-25">
+    <div class="col s2">
     <label class="createFormText" for="SpecSum"><b>Specification Sumary</b></label>
     </div>
-    <div class="col-75">
+    <div class="col s2">
        <textarea rows = "5" cols = "45" class="createFormInput" id="SpecSum" type="text" name="SpecSum" required>
        </textarea>
     </div>
 
-    <div class="col-25">
+    <div class="col s2">
     <label class="createFormText" for="SpecLink"><b>Specification Link</b></label>
     </div>
-    <div class="col-75">
+    <div class="col s2">
         <input class="createFormInput" id="SpecLink" type="text" name="SpecLink" required>
     </div>
     
-    <div class="col-25">
+    <div class="col s2">
     <label class="createFormText" for="Capability"><b>Capability</b></label>
     </div>
-    <div class="col-75">
+    <div class="col s2">
     <select class="createFormInput" id="Capability" name="Capability">
       {% for capability in capabilities %}
         <option value="{{capability.Name}}">{{capability.Name}}</option>
       {% endfor %}
     </select>
     </div>
-
-    <div class="col-25">
+    <div class="col s2">
     <label class="createFormText" for="Band"><b>Band</b></label>
     </div>
-    <div class="col-75">
+    <div class="col s4">
     <select class="createFormInput" id="Band" name="Band">
       {% for band in bands %}
         <option value="{{band.Name}}">{{band.Name}}</option>
@@ -54,5 +61,7 @@
     <button id="AddSubmitButton" class="createFormSubmit" type="submit">Submit</button>
 </form>
 </div>
+
+</body>
 {% endblock %}
 {% block footer %} {% include "../components/footer.njk" %} {% endblock %}

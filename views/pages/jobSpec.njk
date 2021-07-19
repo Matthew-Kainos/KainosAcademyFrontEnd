@@ -11,7 +11,6 @@
         <h2 class="pageTitle">Specification for Job Role</h2>
     </div>
 <div class="container">
-
     {% if jobs and jobs.length > 0 %}
     <table style="margin: auto" border="1" id="jobSpecTable" class="responsive-table">
     <tr>
@@ -31,7 +30,7 @@
     </tr>
     {% endfor %}
     </table>
-
+    <a href='http://localhost:3001/jobs/job-roles' class="waves-effect green darken-1 btn">Back to Job Role Hierarchy</a>
     {% else %}
     <h1 id="noJobs">No job Specification with that ID</h1>
     {% endif %}
