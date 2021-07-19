@@ -7,19 +7,19 @@
 
 <body>
     <div class= "pageTitle">
-      <h2 class= "pageTitle">Find Capability</h2>
+      <h2 class= "pageTitle">View Job Role and Band Level</h2>
     <div>
     {% if error %} 
         <h2 id="errorMessage">{{error}}</h2>
     {% endif %}
-    
+
       {% if results %}
         {% include "../components/searchJobsBar.njk" %}
-        {% include "../components/allJobsResults.njk" %}
+        {% include "../components/allJobsAndBands.njk" %}
       {% else %}
         <h2 id="noResultsMessage">"No results"</h2>
       {% endif %}
-  </div>
+    </div>
 </body>
 {% endblock %}
 {% block footer %} {% include "../components/footer.njk" %} {% endblock %}
