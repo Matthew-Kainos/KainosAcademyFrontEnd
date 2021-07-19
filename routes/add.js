@@ -80,6 +80,48 @@ function handleResponse(res, req, response, page) {
   }
 }
 
+router.get('/band', async (req, res) => {
+  try {
+    const response = await axios(`${backEndURL}/bands/info`);
+    res.render('pages/viewAdminAddBand', {
+      names: response.data.names,
+      competencies: response.data.competencies,
+      training: response.data.training,
+    });
+    res.status(200);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+router.post('/band', async (req, res) => {
+  try {
+    const Data = {
+      name: req.body.bandName,
+      aboveOrBelow: req.body.bandPlace,
+      refBand: req.body.bands,
+      training: req.body.training,
+      competencies: req.body.competencies,
+      responsiblities: req.body.responsiblities,
+    };
+    const response = await axios({
+      method: 'post',
+      url: `${backEndURL}/bands/addBand`,
+      data: Data,
+    });
+    console.log(response.data);
+    const resp = await axios(`${backEndURL}/bands/info`);
+    res.render('pages/viewAdminAddBand', {
+      names: resp.data.names,
+      competencies: resp.data.competencies,
+      training: resp.data.training,
+    });
+    res.status(200);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 function handleSuccessScenerio(req, message) {
   req.session.popupType = 'success';
   req.session.popupMessage = message;

@@ -202,31 +202,12 @@ margin-bottom: 20px;
 box-shadow: 0 5px 10px 0 #61a83f;
 }
 
-label {
-  font-size: 40px;
-  padding-right: 10px;
-}
-
-select {
-  font-size: 40px;
-}
-
 #trainingList {
-	height: 150px;
-	width: 800px;
-	overflow: scroll; /* This is the key!! */
+  height:90px;
+	overflow: scroll;
 	border: 1px #aabbcc solid;
-	padding: 10px;
+	padding: 1px;
 }
-
-#responsiblities {
-  height: 150px;
-	width: 800px;
-}
-
-textarea { font-size: 30px; }
-
-input { font-size: 30px; }
 
 .loginForm {
 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);

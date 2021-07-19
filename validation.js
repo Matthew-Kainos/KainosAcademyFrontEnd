@@ -17,3 +17,18 @@ exports.validateNewRoleInput = (newRoleDetails) => {
   }
   return response;
 };
+
+exports.validateNewBandInput = (newRoleDetails) => {
+  const response = { error: false, message: 'Valid Input' };
+  if (newRoleDetails.RoleName.length < 3 || newRoleDetails.RoleName.length > 70) {
+    response.error = true;
+    response.message = 'Invalid Role Name length';
+    return response;
+  }
+  if (newRoleDetails.SpecSum.length > 255 || newRoleDetails.SpecSum.length < 10) {
+    response.error = true;
+    response.message = 'Invalid Summary length. Maximum 255 characters. Mimimum 10';
+    return response;
+  }
+  return response;
+};

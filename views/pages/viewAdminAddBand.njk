@@ -1,0 +1,78 @@
+{% extends './base.njk' %}
+{% block pageTitle %}
+{% endblock %}
+{% block header %}{% include "../components/header.njk" %}{% endblock %}
+{% block main %}
+{% include "../components/navBar.njk" %}
+
+{% include "../components/popup.njk" %}
+<div class="formRow">
+    <p class= "pageTitle">Add Role</p>
+<form class="createForm" action="/add/role" method="post">
+    <div class="col-25">
+    <label class="createFormText" for="bandName"><b>Band name</b></label>
+    </div>
+    <div class="col-75">
+        <input class="createFormInput" id="bandName" type="text" name="bandName" required>
+    </div>
+
+    <div class="col-25">
+    <label class="createFormText" for="bandAbove"><b>Place new band<b></label>
+    </div>
+    <div>
+        <input type="radio" id="bandAbove" name="bandPlace" value="bandAbove" checked>
+        <label for="bandAbove">above</label>
+    </div>
+
+    <div>
+        <input type="radio" id="bandBelow" name="bandPlace" value="bandBelow">
+        <label for="bandBelow">below</label>
+    </div>
+
+    <div class="col-75">
+    <select class="createFormInput" id="bandSelect" name="bands">
+      {% for name in names %}
+        <option value="{{name}}">{{name}}</option>
+      {% endfor %}
+    </select>
+    </div>
+
+    <div class="col-25">
+    <label class="createFormText" for="Competency"><b>Competency</b></label>
+    </div>
+    <div class="col-75">
+    <select class="createFormInput" id="Competency" name="Competency">
+      {% for competency in competencies %}
+        <option value="{{competency}}">{{competency}}</option>
+      {% endfor %}
+    </select>
+    </div>
+
+    <div class="col-25">
+    <label class="createFormText" for="responsiblities"><b>Responsiblities</b></label>
+    </div>
+    <div class="col-75">
+       <textarea rows = "5" cols = "45" class="createFormInput" id="responsiblities" type="text" name="responsiblities" required>
+       </textarea>
+    </div>
+
+    <div class="col-25">
+    <label class="createFormText" for="trainingList"><b>Training</b></label>
+    </div>
+    <div class="col-75">
+      <div id="trainingList">
+        <ul>
+          {% for course in training %}
+            <li><label for="{{course}}"> {{course}}</label>
+            <input type="checkbox" id="{{course}}" name="training" value="{{course}}"></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <button id="AddSubmitButton" class="createFormSubmit" type="submit">Submit</button>
+</form>
+</div>
+
+{% endblock %}
+{% block footer %} {% include "../components/footer.njk" %} {% endblock %}
