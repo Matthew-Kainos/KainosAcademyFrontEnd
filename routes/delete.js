@@ -29,7 +29,7 @@ router.post('/role', async (req, res) => {
   const { RoleName } = req.body;
   if (req.session.isLoggedIn && req.session.isAdmin) {
     const response = await axios({
-      method: 'post',
+      method: 'delete',
       url: `${backEndURL}/delete/role`,
       data: {
         RoleName,
