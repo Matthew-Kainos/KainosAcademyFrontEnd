@@ -103,4 +103,13 @@ router.get('/getAllJobs', async (req, res) => {
   }
 });
 
+router.get('/jobsHome', async (req, res) => {
+  res.render('pages/viewJobsHome', {
+    title: 'Jobs Home Menu',
+    loggedIn: req.session.isLoggedIn,
+    isAdmin: req.session.isAdmin,
+  });
+  res.status(200);
+});
+
 module.exports = router;
