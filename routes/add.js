@@ -71,7 +71,7 @@ router.post('/role', async (req, res) => {
 function handleResponse(res, req, response, page) {
   if (response.data.success === true) {
     handleSuccessScenerio(req, response.data.message);
-    res.redirect(page);
+    res.redirect('../jobs/job-roles');
     res.status(200);
   } else {
     handleErrorScenerio(req, response.data.message);
