@@ -6,8 +6,7 @@
               <h2 class="resultText" id="CapabilityName">{{result.Name}}</h2>
               {% if result.Job_Family %}
               <p class="resultText" id="Family">Family: {{result.Job_Family}}</p>
-              <a href = http://localhost:3001/viewCapabilityLead/${capID}>View Lead</a>
-              {% endif %}
+              <a href=http://localhost:3001/viewCapabilityLead/{{result.cap_ID}}><div id="{{result.cap_ID}}leadLink">View Leads</div></a>             {% endif %}
             </div>
           </li>
         {% endfor %}
