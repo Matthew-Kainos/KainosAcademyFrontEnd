@@ -11,9 +11,9 @@ const nunjucks = require('nunjucks');
 const jobs = require('./routes/jobs');
 const capabilities = require('./routes/capabilities');
 const jobSpec = require('./routes/jobSpec');
-
 const admin = require('./routes/admin');
 const add = require('./routes/add');
+const deleteRoute = require('./routes/delete');
 const viewLead = require('./routes/viewCapabilityLead');
 
 let sess = {};
@@ -24,12 +24,6 @@ nunjucks.configure('views', {
   express: app,
 });
 
-app.set('view engine', 'njk');
-
-// const { response } = require('express');
-nunjucks.configure('views', {
-  express: app,
-});
 app.set('view engine', 'njk');
 
 app.use(express.json());
@@ -49,6 +43,7 @@ app.get('/viewCapabilityLead/:capID', (req, res) => {
 app.use('/jobSpec', jobSpec);
 app.use('/admin', admin);
 app.use('/add', add);
+app.use('/delete', deleteRoute);
 
 app.get('/', (req, res) => {
   if (req.session.isLoggedIn === true) {
