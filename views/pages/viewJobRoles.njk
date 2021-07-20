@@ -5,6 +5,11 @@
 {% block main %}
 {% include "../components/navBar.njk" %}
 
+<script>
+  $(document).ready(function(){
+    $('.tooltipped').tooltip();
+  });
+</script>
 <body>
     <div class= "pageTitle">
         <h2 class="pageTitle">Show Job Roles in hierarchy </h2>
@@ -20,7 +25,7 @@
 {% for job in jobs %}
 <tr>
 <td>{{job.Level}}</td>
-<td><a href=http://localhost:3001/jobSpec/{{job.Role_ID}}><div id="{{job.Role_ID}}joblink">{{job.name}}</div></a></td>
+<td><a class="tooltipped" data-position="bottom" data-tooltip="Click here to see full Specification for this job" href=http://localhost:3001/jobSpec/{{job.Role_ID}}><div id="{{job.Role_ID}}joblink">{{job.name}}</div></a></td>
 <td>{{job.Name}}</td>
 
 </tr>

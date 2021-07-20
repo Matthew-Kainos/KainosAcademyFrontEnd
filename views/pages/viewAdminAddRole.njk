@@ -11,8 +11,8 @@
     $('select').formSelect();
   });
 </script>
-<body>
 
+<body>
 <div class="formRow">
     <p class= "pageTitle">Add Role</p>
 <form class="createForm" action="/add/role" method="post">
@@ -20,14 +20,14 @@
     <label class="createFormText" for="RoleName"><b>Role Name</b></label>
     </div>
     <div class="col s2">
-        <input class="createFormInput" id="RoleName" type="text" name="RoleName" required>
+        <input class="createFormInput" placeholder="Role Name" id="RoleName" type="text" name="RoleName" required>
     </div>
 
     <div class="col s2">
     <label class="createFormText" for="SpecSum"><b>Specification Sumary</b></label>
     </div>
     <div class="col s2">
-       <textarea rows = "5" cols = "45" class="createFormInput" id="SpecSum" type="text" name="SpecSum" required>
+       <textarea rows = "5" cols = "45" class="createFormInput" placeholder="Specification Summary" id="SpecSum" type="text" name="SpecSum" required>
        </textarea>
     </div>
 
@@ -35,7 +35,7 @@
     <label class="createFormText" for="SpecLink"><b>Specification Link</b></label>
     </div>
     <div class="col s2">
-        <input class="createFormInput" id="SpecLink" type="text" name="SpecLink" required>
+        <input class="createFormInput" id="SpecLink" placeholder="Link to Sharepoint" type="text" name="SpecLink" required>
     </div>
     
     <div class="col s2">
@@ -58,7 +58,7 @@
       {% endfor %}
     </select>
     </div>
-    <button id="AddSubmitButton" class="createFormSubmit" type="submit">Submit</button>
+    <button id="AddSubmitButton" class="createFormSubmit" type="submit">Add Role</button>
 </form>
 </div>
 

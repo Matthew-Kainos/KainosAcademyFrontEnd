@@ -20,12 +20,12 @@
     </tr>
     {% for job in jobs %}
     <tr>
-    <td><h4 id="roleName">{{job.Name}}</h4></td>
-    <td><h4 id="specSum">{{job.Spec_Sum}}</h4></td>
+    <td id="roleName">{{job.Name}}</td>
+    <td id="specSum">{{job.Spec_Sum}}</td>
     {% if job.Spec_Link == NULL %}
-    <td><h4 id="noLink">No link Available.</h4></td>
+    <td id="noLink">No link Available.</td>
     {% else %}
-    <td id="specLink"><a href={{job.Spec_Link}}><h4>Sharepoint Link</h4></a></td>
+    <td id="specLink"><a href={{job.Spec_Link}}>Sharepoint Link</a></td>
     {% endif %}
     </tr>
     {% endfor %}

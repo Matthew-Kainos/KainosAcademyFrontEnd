@@ -3,12 +3,12 @@
 {% endblock %}
 {% block header %}{% include "../components/header.njk" %}{% endblock %}
 {% block main %}
+{% include "../components/navBar.njk" %}
 <body>
     {% if error %} 
             <h2>{{error}}</h2>
+            <h3>Please use the navbar to return to the homepage</h3>
     {% endif %}
-            <h2>{{error}}</h2>
-            <button><a href="/">Home</a></button>
     </div>
 </body>
 {% endblock %}
