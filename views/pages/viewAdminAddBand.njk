@@ -8,7 +8,7 @@
 {% include "../components/popup.njk" %}
 <div class="formRow">
     <p class= "pageTitle">Add Role</p>
-<form class="createForm" action="/add/role" method="post">
+<form class="createForm" action="/add/band" method="post">
     <div class="col-25">
     <label class="createFormText" for="bandName"><b>Band name</b></label>
     </div>
@@ -38,10 +38,10 @@
     </div>
 
     <div class="col-25">
-    <label class="createFormText" for="Competency"><b>Competency</b></label>
+    <label class="createFormText" for="competency"><b>Competency Level</b></label>
     </div>
     <div class="col-75">
-    <select class="createFormInput" id="Competency" name="Competency">
+    <select class="createFormInput" id="competency" name="competency">
       {% for competency in competencies %}
         <option value="{{competency}}">{{competency}}</option>
       {% endfor %}
