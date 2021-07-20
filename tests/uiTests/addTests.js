@@ -95,9 +95,7 @@ describe('Add', function () {
       await driver.executeScript('window.scrollTo(0,10000);');
       await driver.findElement(webdriver.By.id('AddSubmitButton')).click();
       const titleAfterSubmission = await driver.getTitle();
-      expect(titleAfterSubmission).equal('Admin Add Role');
-      const errorText = await driver.findElement(webdriver.By.id('popupMessage')).getText();
-      expect(errorText).to.equal('New Role Selenium Developer Added');
+      expect(titleAfterSubmission).equal('Show Job Roles in hierarchy');
     });
     it('should successfully return success returm popup message if duplicate role name used', async () => {
       await driver.get('http://localhost:3001/add/role');
