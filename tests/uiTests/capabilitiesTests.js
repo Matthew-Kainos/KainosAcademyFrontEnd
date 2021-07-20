@@ -36,7 +36,7 @@ describe('Capabilities', function () {
     expect(capListText.length).to.be.greaterThan(0);
     expect(capListText).to.not.include('No Results Matching Name');
   });
-  it.only('should successfully search capabilities list for capabilites based on name and return family details', async () => {
+  it('should successfully search capabilities list for capabilites based on name and return family details', async () => {
     await driver.get('http://localhost:3001/capabilities/family');
     const title = await driver.getTitle();
     expect(title).equal('Search for Family by Capability Name');
