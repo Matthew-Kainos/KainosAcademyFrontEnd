@@ -9,7 +9,7 @@ const backEndURL = process.env.BACK_END_URL;
 router.get('/competencies', async (req, res) => {
   // if (req.session.isLoggedIn) {
   try {
-    const allBands = await axios(`${backEndURL}/bands/getAllBands`);
+    const allBands = await axios(`${backEndURL}/bands/getAllBandsAndCompetencies`);
     res.render('pages/viewCompetenciesByBand', {
       title: 'View Competencies Per Band',
       results: allBands.data,
