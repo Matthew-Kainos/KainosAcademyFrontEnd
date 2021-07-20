@@ -1,0 +1,25 @@
+{% extends './base.njk' %}
+{% block pageTitle %}
+{% endblock %}
+{% block header %}{% include "../components/header.njk" %}{% endblock %}
+{% block main %}
+{% include "../components/navBar.njk" %}
+
+<body>
+    <div class= "pageTitle">
+      <h2 class= "pageTitle">View Competencies Per Band</h2>
+    <div>
+    {% if error %} 
+        <h2 id="errorMessage">{{error}}</h2>
+    {% endif %}
+
+      {% if results %}
+      {% include "../components/searchBandsBar.njk" %}
+        {% include "../components/allBandsResults.njk" %}
+      {% else %}
+        
+      {% endif %}
+    </div>
+</body>
+{% endblock %}
+{% block footer %} {% include "../components/footer.njk" %} {% endblock %}

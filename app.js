@@ -11,6 +11,7 @@ const nunjucks = require('nunjucks');
 const jobs = require('./routes/jobs');
 const capabilities = require('./routes/capabilities');
 const jobSpec = require('./routes/jobSpec');
+const bands = require('./routes/bands');
 
 const admin = require('./routes/admin');
 const add = require('./routes/add');
@@ -41,6 +42,7 @@ app.use(express.static('public'));
 app.use('/jobs', jobs);
 app.use('/capabilities', capabilities);
 app.use('/viewCapabilityLead', viewLead);
+app.use('/bands', bands);
 
 app.get('/viewCapabilityLead/:capID', (req, res) => {
   res.render('pages/viewCapabilityLeadResults');

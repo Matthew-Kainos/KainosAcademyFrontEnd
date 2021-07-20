@@ -1,0 +1,14 @@
+<div class= "resultsContainer">
+    <ul class="resultsContainer" id="allBandsList">
+        {% for result in results %}
+          <li class="resultBox">
+            <div class="resultText">
+              <h2 class="resultText" id="BandName">{{result.Name}}</h2>
+              {% if result.Competencies %}
+              <p class="resultText" id="Competencies">Competencies: {{result.Competencies}}</p>
+              {% endif %}
+            </div>
+          </li>
+        {% endfor %}
+    </ul> 
+</div>

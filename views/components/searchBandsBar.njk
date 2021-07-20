@@ -1,0 +1,37 @@
+<script>
+function searchBands() {
+  let searchBar = document.getElementById('searchBar');
+  let searchValue = searchBar.value.toUpperCase();
+  let allBandsList = document.getElementById("allBandsList");
+  let bandItems = allBandsList.getElementsByTagName('li');
+  let hiddenCount = 0;
+  for (let i = 0; i < bandItems.length; i++) {
+    let bandName = bandItems[i].getElementsByTagName('h2')[0].innerHTML;;
+    if (bandName.toUpperCase().indexOf(searchValue) > -1) {
+      if(document.getElementById('errormessage')){
+        let errorOption = document.getElementById('errormessage');
+        allBandsList.removeChild(errorOption);
+      }
+      bandItems[i].style.display = "";
+    } else {
+      hiddenCount++;
+      bandItems[i].style.display = "none";
+    }
+  }
+  if(hiddenCount===bandItems.length){
+      let errorOption = document.createElement("li");
+      let h2Text = document.createElement("h2");
+      let text = document.createTextNode("No Results Matching Name");
+      h2Text.appendChild(text);
+      h2Text.className = 'resultText';
+      errorOption.appendChild(h2Text);
+      errorOption.id = 'errormessage';
+      errorOption.className = 'resultBox';
+      allBandsList.appendChild(errorOption);
+  }
+}
+</script>
+
+<div class= "searchContainer">
+    <input class="searchBar" type="text" id="searchBar" placeholder="Search for Band Name ..." onkeyup="searchBands()">
+<div>
