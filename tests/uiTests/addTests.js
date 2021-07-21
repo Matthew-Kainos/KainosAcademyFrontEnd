@@ -117,7 +117,7 @@ describe('Add', function () {
     });
   });
   describe('Capability', () => {
-    it('should successfully return popup message if new capability added', async () => {
+    it.skip('should successfully return popup message if new capability added', async () => {
       await driver.get('http://localhost:3001/add/capability');
       const title = await driver.getTitle();
       expect(title).equal('Admin Add Capability');
