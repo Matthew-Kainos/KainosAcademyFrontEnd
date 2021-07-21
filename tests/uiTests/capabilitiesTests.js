@@ -92,7 +92,7 @@ describe('Capabilities', function () {
     const capabilityLeadText = await driver.findElement(webdriver.By.id('capLeadName')).getText();
     expect(capabilityLeadText).equal('Aislinn McBride');
     const capabilityLeadMessageText = await driver.findElement(webdriver.By.id('capLeadMessage')).getText();
-    expect(capabilityLeadMessageText).equal('Test Message 2');
+    expect(capabilityLeadMessageText).equal('Test1');
   });
   it('should successfully render no capability leads if capability lead unavailable', async () => {
     await driver.get('http://localhost:3001/viewCapabilityLead/999999');
