@@ -20,7 +20,7 @@ exports.validateNewRoleInput = (newRoleDetails) => {
 
 exports.validateNewFamilyInput = (newFamilyDetails) => {
   const response = { error: false, message: 'Valid Input' };
-  if (newFamilyDetails.FamilyName.length < 2 || newFamilyDetails.FamilyName.length > 70) {
+  if (newFamilyDetails.FamilyName.length < 3 || newFamilyDetails.FamilyName.length > 70) {
     response.error = true;
     response.message = 'Invalid Family Name length';
     return response;
