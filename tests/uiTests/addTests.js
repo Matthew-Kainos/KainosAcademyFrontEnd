@@ -116,4 +116,39 @@ describe('Add', function () {
       expect(errorText).to.equal('Unable to add Role due to Duplicate Role Name');
     });
   });
+  describe('Capability', () => {
+    it('should successfully return popup message if new capability added', async () => {
+      await driver.get('http://localhost:3001/add/capability');
+      const title = await driver.getTitle();
+      expect(title).equal('Admin Add Capability');
+      await driver.findElement(webdriver.By.id('Name')).sendKeys('Testing Frontend Capability');
+      await driver.findElement(webdriver.By.id('AddSubmitButton')).click();
+      const titleAfterSubmission = await driver.getTitle();
+      expect(titleAfterSubmission).equal('Admin Add Capability');
+      const successText = await driver.findElement(webdriver.By.id('popupMessage')).getText();
+      expect(successText).to.equal('New Capability Testing Frontend Capability Added');
+    });
+    it('should successfully return failure popup message if trying to add capability of invalid length', async () => {
+      await driver.get('http://localhost:3001/add/capability');
+      const title = await driver.getTitle();
+      expect(title).equal('Admin Add Capability');
+      await driver.findElement(webdriver.By.id('Name')).sendKeys('a');
+      await driver.findElement(webdriver.By.id('AddSubmitButton')).click();
+      const titleAfterSubmission = await driver.getTitle();
+      expect(titleAfterSubmission).equal('Admin Add Capability');
+      const errorText = await driver.findElement(webdriver.By.id('popupMessage')).getText();
+      expect(errorText).to.equal('Invalid Role Name length');
+    });
+    it('should successfully return popup message if trying to add capability which is a duplicate', async () => {
+      await driver.get('http://localhost:3001/add/capability');
+      const title = await driver.getTitle();
+      expect(title).equal('Admin Add Capability');
+      await driver.findElement(webdriver.By.id('Name')).sendKeys('Engineering');
+      await driver.findElement(webdriver.By.id('AddSubmitButton')).click();
+      const titleAfterSubmission = await driver.getTitle();
+      expect(titleAfterSubmission).equal('Admin Add Capability');
+      const errorText = await driver.findElement(webdriver.By.id('popupMessage')).getText();
+      expect(errorText).to.equal('Unable to add Capability due to Duplicate Capability Name');
+    });
+  });
 });

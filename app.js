@@ -42,7 +42,7 @@ app.get('/viewCapabilityLead/:capID', (req, res) => {
 
 app.use('/jobSpec', jobSpec);
 app.use('/admin', admin);
-app.use('/add', add);
+app.use('/add', add.router);
 app.use('/delete', deleteRoute);
 
 app.get('/', (req, res) => {

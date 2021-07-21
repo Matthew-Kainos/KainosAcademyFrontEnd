@@ -17,3 +17,13 @@ exports.validateNewRoleInput = (newRoleDetails) => {
   }
   return response;
 };
+
+exports.validateNewCapabilityInput = (newRoleDetails) => {
+  const response = { error: false, message: 'Valid Input' };
+  if (newRoleDetails.Name.length < 2 || newRoleDetails.Name.length > 50) {
+    response.error = true;
+    response.message = 'Invalid Role Name length';
+    return response;
+  }
+  return response;
+};
