@@ -4,10 +4,9 @@
 {% block header %}{% include "../components/header.njk" %}{% endblock %}
 {% block main %}
 {% include "../components/navBar.njk" %}
-
 {% include "../components/popup.njk" %}
 <div class="formRow">
-    <p class= "pageTitle">Add Role</p>
+    <p class= "pageTitle">Add Band</p>
 <form class="createForm" action="/add/band" method="post">
     <div class="col-25">
     <label class="createFormText" for="bandName"><b>Band name</b></label>

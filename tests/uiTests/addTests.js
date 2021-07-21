@@ -116,4 +116,56 @@ describe('Add', function () {
       expect(errorText).to.equal('Unable to add Role due to Duplicate Role Name');
     });
   });
+
+  describe('Band', () => {
+    it('should successfully return popup message if trying to add band of invalid name length', async () => {
+      await driver.get('http://localhost:3001/add/band');
+      const title = await driver.getTitle();
+      expect(title).equal('Admin Add Band');
+      await driver.findElement(webdriver.By.id('bandName')).sendKeys('a');
+      await driver.findElement(webdriver.By.id('bandAbove')).click();
+      await driver.findElement(webdriver.By.css('#bandSelect > option:nth-child(2)')).click();
+      await driver.findElement(webdriver.By.css('#competency > option:nth-child(1)')).click();
+      await driver.findElement(webdriver.By.id('responsiblities')).sendKeys('Some fake responsiblies text for testing...');
+      await driver.findElement(webdriver.By.id('Mindset Modules')).click();
+      await driver.executeScript('window.scrollTo(0,10000);');
+      await driver.findElement(webdriver.By.id('AddSubmitButton')).click();
+      const titleAfterSubmission = await driver.getTitle();
+      expect(titleAfterSubmission).equal('Admin Add Band');
+      const errorText = await driver.findElement(webdriver.By.id('popupMessage')).getText();
+      expect(errorText).to.equal('Invalid Band Name length');
+    });
+    it('should successfully return popup message if trying to add role of invalid summary length', async () => {
+      await driver.get('http://localhost:3001/add/band');
+      const title = await driver.getTitle();
+      expect(title).equal('Admin Add Band');
+      await driver.findElement(webdriver.By.id('bandName')).sendKeys('NewBandName');
+      await driver.findElement(webdriver.By.id('bandAbove')).click();
+      await driver.findElement(webdriver.By.css('#bandSelect > option:nth-child(2)')).click();
+      await driver.findElement(webdriver.By.css('#competency > option:nth-child(1)')).click();
+      await driver.findElement(webdriver.By.id('responsiblities')).sendKeys('');
+      await driver.findElement(webdriver.By.id('Mindset Modules')).click();
+      await driver.executeScript('window.scrollTo(0,10000);');
+      await driver.findElement(webdriver.By.id('AddSubmitButton')).click();
+      const titleAfterSubmission = await driver.getTitle();
+      expect(titleAfterSubmission).equal('Admin Add Band');
+      const errorText = await driver.findElement(webdriver.By.id('popupMessage')).getText();
+      expect(errorText).to.equal('Invalid responsiblities length. Maximum 255 characters. Mimimum 10');
+    });
+    it('should successfully redirect to all jobs page if band added successfully', async () => {
+      await driver.get('http://localhost:3001/add/band');
+      const title = await driver.getTitle();
+      expect(title).equal('Admin Add Band');
+      await driver.findElement(webdriver.By.id('bandName')).sendKeys('NewBandName');
+      await driver.findElement(webdriver.By.id('bandAbove')).click();
+      await driver.findElement(webdriver.By.css('#bandSelect > option:nth-child(2)')).click();
+      await driver.findElement(webdriver.By.css('#competency > option:nth-child(1)')).click();
+      await driver.findElement(webdriver.By.id('responsiblities')).sendKeys('Some fake text representing responsiblities...');
+      await driver.findElement(webdriver.By.id('Mindset Modules')).click();
+      await driver.executeScript('window.scrollTo(0,10000);');
+      await driver.findElement(webdriver.By.id('AddSubmitButton')).click();
+      const titleAfterSubmission = await driver.getTitle();
+      expect(titleAfterSubmission).equal('Show Job Roles in hierarchy');
+    });
+  });
 });

@@ -85,9 +85,14 @@ router.get('/band', async (req, res) => {
     try {
       const response = await axios(`${backEndURL}/bands/info`);
       res.render('pages/viewAdminAddBand', {
+        title: 'Admin Add Band',
+        loggedIn: req.session.isLoggedIn,
+        isAdmin: req.session.isAdmin,
         names: response.data.names,
         competencies: response.data.competencies,
         training: response.data.training,
+        popupType: req.session.popupType,
+        popupMessage: req.session.popupMessage,
       });
       res.status(200);
     } catch (error) {
@@ -111,20 +116,19 @@ router.post('/band', async (req, res) => {
         competencies: req.body.competency,
         responsiblities: req.body.responsiblities,
       };
-      console.log(Data);
-      const response = await axios({
-        method: 'post',
-        url: `${backEndURL}/add/band`,
-        data: Data,
-      });
-      console.log(response.data);
-      const resp = await axios(`${backEndURL}/bands/info`);
-      res.render('pages/viewAdminAddBand', {
-        names: resp.data.names,
-        competencies: resp.data.competencies,
-        training: resp.data.training,
-      });
-      res.status(200);
+      const validateDetails = validation.validateNewBandInput(Data);
+      if (validateDetails.error === false) {
+        const response = await axios({
+          method: 'post',
+          url: `${backEndURL}/add/band`,
+          data: Data,
+        });
+        handleResponse(res, req, response, '../add/band');
+      } else {
+        handleErrorScenerio(req, validateDetails.message);
+        res.redirect('../add/band');
+        res.status(400);
+      }
     } catch (error) {
       console.error(error);
     }
