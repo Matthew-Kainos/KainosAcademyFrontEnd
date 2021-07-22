@@ -5,6 +5,13 @@
 {% block main %}
 {% include "../components/navBar.njk" %}
 {% include "../components/popup.njk" %}
+
+<script>
+  $(document).ready(function(){
+    $('select').formSelect();
+  });
+</script>
+
 <div class="formRow">
     <p class= "pageTitle">Delete Role</p>
 <form class="createForm" action="/delete/role" method="post">

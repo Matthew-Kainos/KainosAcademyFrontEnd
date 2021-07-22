@@ -34,10 +34,10 @@ describe('Add', function () {
       await driver.findElement(webdriver.By.id('RoleName')).sendKeys('a');
       await driver.findElement(webdriver.By.id('SpecSum')).sendKeys('Fake Summary');
       await driver.findElement(webdriver.By.id('SpecLink')).sendKeys('Fake Link');
-      await driver.findElement(webdriver.By.css('#Capability > option:nth-child(1)'))
-        .click();
-      await driver.findElement(webdriver.By.css('#Band > option:nth-child(2)'))
-        .click();
+      // await driver.findElement(webdriver.By.css('#Capability > option:nth-child(1)'))
+      //   .click();
+      // await driver.findElement(webdriver.By.css('#Band > option:nth-child(2)'))
+      //   .click();
       await driver.executeScript('window.scrollTo(0,10000);');
       await driver.findElement(webdriver.By.id('AddSubmitButton')).click();
       const titleAfterSubmission = await driver.getTitle();
@@ -52,10 +52,10 @@ describe('Add', function () {
       await driver.findElement(webdriver.By.id('RoleName')).sendKeys('Valid Name Length');
       await driver.findElement(webdriver.By.id('SpecSum')).sendKeys('a');
       await driver.findElement(webdriver.By.id('SpecLink')).sendKeys('Fake Link');
-      await driver.findElement(webdriver.By.css('#Capability > option:nth-child(1)'))
-        .click();
-      await driver.findElement(webdriver.By.css('#Band > option:nth-child(2)'))
-        .click();
+      // await driver.findElement(webdriver.By.css('#Capability > option:nth-child(1)'))
+      //   .click();
+      // await driver.findElement(webdriver.By.css('#Band > option:nth-child(2)'))
+      //   .click();
       await driver.executeScript('window.scrollTo(0,10000);');
       await driver.findElement(webdriver.By.id('AddSubmitButton')).click();
       const titleAfterSubmission = await driver.getTitle();
@@ -70,10 +70,10 @@ describe('Add', function () {
       await driver.findElement(webdriver.By.id('RoleName')).sendKeys('Valid Name Length');
       await driver.findElement(webdriver.By.id('SpecSum')).sendKeys('Valid Summary Length');
       await driver.findElement(webdriver.By.id('SpecLink')).sendKeys('a');
-      await driver.findElement(webdriver.By.css('#Capability > option:nth-child(1)'))
-        .click();
-      await driver.findElement(webdriver.By.css('#Band > option:nth-child(2)'))
-        .click();
+      // await driver.findElement(webdriver.By.css('#Capability > option:nth-child(1)'))
+      //   .click();
+      // await driver.findElement(webdriver.By.css('#Band > option:nth-child(2)'))
+      //   .click();
       await driver.executeScript('window.scrollTo(0,10000);');
       await driver.findElement(webdriver.By.id('AddSubmitButton')).click();
       const titleAfterSubmission = await driver.getTitle();
@@ -85,13 +85,13 @@ describe('Add', function () {
       await driver.get('http://localhost:3001/add/role');
       const title = await driver.getTitle();
       expect(title).equal('Admin Add Role');
-      await driver.findElement(webdriver.By.id('RoleName')).sendKeys('Selenium Developer');
+      await driver.findElement(webdriver.By.id('RoleName')).sendKeys('Architect');
       await driver.findElement(webdriver.By.id('SpecSum')).sendKeys('You make UI Tests');
       await driver.findElement(webdriver.By.id('SpecLink')).sendKeys('This is a link');
-      await driver.findElement(webdriver.By.css('#Capability > option:nth-child(1)'))
-        .click();
-      await driver.findElement(webdriver.By.css('#Band > option:nth-child(2)'))
-        .click();
+      // await driver.findElement(webdriver.By.css('#Capability > option:nth-child(1)'))
+      //   .click();
+      // await driver.findElement(webdriver.By.css('#Band > option:nth-child(2)'))
+      //   .click();
       await driver.executeScript('window.scrollTo(0,10000);');
       await driver.findElement(webdriver.By.id('AddSubmitButton')).click();
       const titleAfterSubmission = await driver.getTitle();
@@ -101,13 +101,13 @@ describe('Add', function () {
       await driver.get('http://localhost:3001/add/role');
       const title = await driver.getTitle();
       expect(title).equal('Admin Add Role');
-      await driver.findElement(webdriver.By.id('RoleName')).sendKeys('Selenium Developer');
+      await driver.findElement(webdriver.By.id('RoleName')).sendKeys('Architect');
       await driver.findElement(webdriver.By.id('SpecSum')).sendKeys('You make UI Tests');
       await driver.findElement(webdriver.By.id('SpecLink')).sendKeys('This is a link');
-      await driver.findElement(webdriver.By.css('#Capability > option:nth-child(1)'))
-        .click();
-      await driver.findElement(webdriver.By.css('#Band > option:nth-child(2)'))
-        .click();
+      // await driver.findElement(webdriver.By.css('#Capability > option:nth-child(1)'))
+      //   .click();
+      // await driver.findElement(webdriver.By.css('#Band > option:nth-child(2)'))
+      //   .click();
       await driver.executeScript('window.scrollTo(0,10000);');
       await driver.findElement(webdriver.By.id('AddSubmitButton')).click();
       const titleAfterSubmission = await driver.getTitle();
