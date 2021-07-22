@@ -108,6 +108,17 @@ router.get('/band', async (req, res) => {
 router.post('/band', async (req, res) => {
   if (req.session.isLoggedIn && req.session.isAdmin) {
     try {
+      const {
+        bandName, bandPlace, bands, training, competency, responsiblities,
+      } = req.body;
+      const newBandDetails = {
+        bandName,
+        bandPlace,
+        bands,
+        training,
+        competency,
+        responsiblities,
+      };
       const Data = {
         name: req.body.bandName,
         aboveOrBelow: req.body.bandPlace,
@@ -121,7 +132,9 @@ router.post('/band', async (req, res) => {
         const response = await axios({
           method: 'post',
           url: `${backEndURL}/add/band`,
-          data: Data,
+          data: {
+            newBandDetails,
+          },
         });
         handleResponse(res, req, response, '../add/band');
       } else {
