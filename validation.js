@@ -25,9 +25,9 @@ exports.validateNewBandInput = (newBandDetails) => {
     response.message = 'Invalid Band Name length';
     return response;
   }
-  if (newBandDetails.responsiblities.length > 255 || newBandDetails.responsiblities.length < 10) {
+  if (newBandDetails.responsibilities.length > 255 || newBandDetails.responsibilities.length < 10) {
     response.error = true;
-    response.message = 'Invalid responsiblities length. Maximum 255 characters. Mimimum 10';
+    response.message = 'Invalid responsibilities length. Maximum 255 characters. Mimimum 10';
     return response;
   }
   return response;

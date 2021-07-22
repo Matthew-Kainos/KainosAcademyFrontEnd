@@ -49,32 +49,32 @@ describe('Validation', () => {
   });
 
   describe('validateNewBandInput', async () => {
-    it('Should successfuly return true if input data valid', async () => {
+    it('Should successfully return true if input data valid', async () => {
       const newBandDetails = {
         name: 'This is a valid name',
-        responsiblities: 'This is a valid responsiblities',
+        responsibilities: 'This is a valid responsibilities',
       };
       const results = validation.validateNewBandInput(newBandDetails);
       expect(results.error).equal(false);
       expect(results.message).equal('Valid Input');
     });
-    it('Should successfuly return false if name length invalid', async () => {
+    it('Should successfully return false if name length invalid', async () => {
       const newBandDetails = {
         name: 'a',
-        responsiblities: 'This is a valid responsiblities',
+        responsibilities: 'This is a valid responsibilities',
       };
       const results = validation.validateNewBandInput(newBandDetails);
       expect(results.error).equal(true);
       expect(results.message).equal('Invalid Band Name length');
     });
-    it('Should successfuly return false if responsibilities invalid', async () => {
+    it('Should successfully return false if responsibilities invalid', async () => {
       const newBandDetails = {
         name: 'This is a valid name',
-        responsiblities: 'a',
+        responsibilities: 'a',
       };
       const results = validation.validateNewBandInput(newBandDetails);
       expect(results.error).equal(true);
-      expect(results.message).equal('Invalid responsiblities length. Maximum 255 characters. Mimimum 10');
+      expect(results.message).equal('Invalid responsibilities length. Maximum 255 characters. Mimimum 10');
     });
   });
 });

@@ -126,7 +126,7 @@ describe('Add', function () {
       await driver.findElement(webdriver.By.id('bandAbove')).click();
       await driver.findElement(webdriver.By.css('#bandSelect > option:nth-child(2)')).click();
       await driver.findElement(webdriver.By.css('#competency > option:nth-child(1)')).click();
-      await driver.findElement(webdriver.By.id('responsiblities')).sendKeys('Some fake responsiblies text for testing...');
+      await driver.findElement(webdriver.By.id('responsibilities')).sendKeys('Some fake responsibilities text for testing...');
       await driver.findElement(webdriver.By.id('Mindset Modules')).click();
       await driver.executeScript('window.scrollTo(0,10000);');
       await driver.findElement(webdriver.By.id('AddSubmitButton')).click();
@@ -143,14 +143,13 @@ describe('Add', function () {
       await driver.findElement(webdriver.By.id('bandAbove')).click();
       await driver.findElement(webdriver.By.css('#bandSelect > option:nth-child(2)')).click();
       await driver.findElement(webdriver.By.css('#competency > option:nth-child(1)')).click();
-      await driver.findElement(webdriver.By.id('responsiblities')).sendKeys('');
+      await driver.findElement(webdriver.By.id('responsibilities')).sendKeys('a');
       await driver.findElement(webdriver.By.id('Mindset Modules')).click();
-      await driver.executeScript('window.scrollTo(0,10000);');
       await driver.findElement(webdriver.By.id('AddSubmitButton')).click();
       const titleAfterSubmission = await driver.getTitle();
       expect(titleAfterSubmission).equal('Admin Add Band');
       const errorText = await driver.findElement(webdriver.By.id('popupMessage')).getText();
-      expect(errorText).to.equal('Invalid responsiblities length. Maximum 255 characters. Mimimum 10');
+      expect(errorText).to.equal('Invalid responsibilities length. Maximum 255 characters. Mimimum 10');
     });
     it('should successfully redirect to all jobs page if band added successfully', async () => {
       await driver.get('http://localhost:3001/add/band');
@@ -160,9 +159,8 @@ describe('Add', function () {
       await driver.findElement(webdriver.By.id('bandAbove')).click();
       await driver.findElement(webdriver.By.css('#bandSelect > option:nth-child(2)')).click();
       await driver.findElement(webdriver.By.css('#competency > option:nth-child(1)')).click();
-      await driver.findElement(webdriver.By.id('responsiblities')).sendKeys('Some fake text representing responsiblities...');
+      await driver.findElement(webdriver.By.id('responsibilities')).sendKeys('Some fake text representing responsibilities...');
       await driver.findElement(webdriver.By.id('Mindset Modules')).click();
-      await driver.executeScript('window.scrollTo(0,10000);');
       await driver.findElement(webdriver.By.id('AddSubmitButton')).click();
       const titleAfterSubmission = await driver.getTitle();
       expect(titleAfterSubmission).equal('Show Job Roles in hierarchy');

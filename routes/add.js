@@ -109,7 +109,7 @@ router.post('/band', async (req, res) => {
   if (req.session.isLoggedIn && req.session.isAdmin) {
     try {
       const {
-        bandName, bandPlace, bands, training, competency, responsiblities,
+        bandName, bandPlace, bands, training, competency, responsibilities,
       } = req.body;
       const newBandDetails = {
         bandName,
@@ -117,7 +117,7 @@ router.post('/band', async (req, res) => {
         bands,
         training,
         competency,
-        responsiblities,
+        responsibilities,
       };
       const Data = {
         name: req.body.bandName,
@@ -125,7 +125,7 @@ router.post('/band', async (req, res) => {
         refBand: req.body.bands,
         training: req.body.training,
         competencies: req.body.competency,
-        responsiblities: req.body.responsiblities,
+        responsibilities: req.body.responsibilities,
       };
       const validateDetails = validation.validateNewBandInput(Data);
       if (validateDetails.error === false) {
