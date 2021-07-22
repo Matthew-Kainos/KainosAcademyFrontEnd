@@ -1,0 +1,21 @@
+{% extends './base.njk' %}
+{% block pageTitle %}
+{% endblock %}
+{% block header %}{% include "../components/header.njk" %}{% endblock %}
+{% block main %}
+{% include "../components/navBar.njk" %}
+{% include "../components/popup.njk" %}
+<div class="formRow">
+    <p class= "pageTitle">Add Capability</p>
+<form class="createForm" action="/add/capability" method="post">
+    <div class="col-25">
+    <label class="createFormText" for="Name"><b>Capability Name</b></label>
+    </div>
+    <div class="col-75">
+        <input class="createFormInput" id="Name" type="text" name="Name" required>
+    </div>
+    <button id="AddSubmitButton" class="createFormSubmit" type="submit">Submit</button>
+</form>
+</div>
+{% endblock %}
+{% block footer %} {% include "../components/footer.njk" %} {% endblock %}

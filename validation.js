@@ -18,6 +18,15 @@ exports.validateNewRoleInput = (newRoleDetails) => {
   return response;
 };
 
+exports.validateNewCapabilityInput = (newCapabilityDetails) => {
+  const response = { error: false, message: 'Valid Input' };
+  if (newCapabilityDetails.Name.length < 2 || newCapabilityDetails.Name.length > 50) {
+    response.error = true;
+    response.message = 'Invalid Role Name length';
+  }
+  return response;
+};
+
 exports.validateNewFamilyInput = (newFamilyDetails) => {
   const response = { error: false, message: 'Valid Input' };
   if (newFamilyDetails.FamilyName.length < 3 || newFamilyDetails.FamilyName.length > 70) {

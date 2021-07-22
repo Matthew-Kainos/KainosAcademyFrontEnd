@@ -5,6 +5,7 @@ const backEndURL = process.env.BACK_END_URL;
 const router = express.Router();
 
 const validation = require('../validation');
+const sendAxioRequests = require('./sendAxioRequests');
 
 router.get('/role', async (req, res) => {
   if (req.session.isLoggedIn && req.session.isAdmin) {
@@ -67,6 +68,63 @@ router.post('/role', async (req, res) => {
     res.redirect('../');
   }
 });
+
+router.get('/capability', async (req, res) => {
+  await processNewCapabilityGetRequest(req, res);
+});
+
+router.post('/capability', async (req, res) => {
+  await processNewCapabilityPostRequest(req, res);
+});
+
+async function processNewCapabilityGetRequest(req, res) {
+  if (req.session.isLoggedIn === true && req.session.isAdmin === true) {
+    res.render('pages/viewAdminAddCapability', {
+      title: 'Admin Add Capability',
+      loggedIn: req.session.isLoggedIn,
+      isAdmin: req.session.isAdmin,
+      popupType: req.session.popupType,
+      popupMessage: req.session.popupMessage,
+    });
+    res.status(200);
+    req.session.popupType = '';
+    req.session.popupMessage = '';
+  } else if (req.session.isLoggedIn) {
+    res.status(404);
+    res.redirect('../home');
+  } else {
+    res.status(404);
+    res.redirect('../');
+  }
+}
+
+async function processNewCapabilityPostRequest(req, res) {
+  if (req.session.isLoggedIn && req.session.isAdmin) {
+    try {
+      const { Name } = req.body;
+      const newCapabilityDetails = { Name };
+      const validateDetails = validation.validateNewCapabilityInput(newCapabilityDetails);
+      if (validateDetails.error === false) {
+        const response = await sendAxioRequests
+          .sendCreateCapabilityPostRequest(newCapabilityDetails);
+        handleResponse(res, req, response, '../add/capability', '../add/capability');
+      } else {
+        handleErrorScenerio(req, validateDetails.message);
+        res.status(400);
+        res.redirect('../add/capability');
+      }
+    } catch (e) {
+      console.log(e);
+      res.send('error');
+    }
+  } else if (req.session.isLoggedIn) {
+    res.status(404);
+    res.redirect('../home');
+  } else {
+    res.status(404);
+    res.redirect('../');
+  }
+}
 
 router.get('/family', async (req, res) => {
   if (req.session.isLoggedIn && req.session.isAdmin) {
@@ -150,4 +208,8 @@ function handleErrorScenerio(req, message) {
   req.session.popupMessage = message;
 }
 
-module.exports = router;
+module.exports = {
+  router,
+  processNewCapabilityGetRequest,
+  processNewCapabilityPostRequest,
+};

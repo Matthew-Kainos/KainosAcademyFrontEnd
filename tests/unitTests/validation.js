@@ -47,6 +47,24 @@ describe('Validation', () => {
       expect(results.message).equal('Invalid Link length. Maximum 30 characters. Mimimum 5');
     });
   });
+  describe('validateNewCapabilityInput', async () => {
+    it('Should successfuly return true if input data valid', async () => {
+      const newCapabilityDetails = {
+        Name: 'This is a valid name',
+      };
+      const results = validation.validateNewCapabilityInput(newCapabilityDetails);
+      expect(results.error).equal(false);
+      expect(results.message).equal('Valid Input');
+    });
+    it('Should successfuly return false if name length invalid', async () => {
+      const newCapabilityDetails = {
+        Name: 'A',
+      };
+      const results = validation.validateNewCapabilityInput(newCapabilityDetails);
+      expect(results.error).equal(true);
+      expect(results.message).equal('Invalid Role Name length');
+    });
+  });
 });
 
 describe('Validation', () => {
