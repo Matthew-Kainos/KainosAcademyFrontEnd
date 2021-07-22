@@ -232,6 +232,13 @@ text-decoration: none;
 box-shadow: 0 5px 10px 0 #61a83f;
 }
 
+#trainingList {
+  height:90px;
+	overflow: scroll;
+	border: 1px #aabbcc solid;
+	padding: 1px;
+}
+
 .loginForm {
 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 background-color: #fdfdfd;
