@@ -10,6 +10,8 @@
     "unitTests": "npm run lint && mocha tests/unitTests --exit",
     "uiTests": "npm run lint && mocha tests/uiTests --exit",
     "jobTests": "npm run lint && mocha tests/uiTests/jobsTest --exit",
+    "bandUITests": "mocha tests/uiTests/addTests.js -g 'Band' --exit",
+    "bandUnitTests": "mocha tests/unitTests/validation.js -g 'Band' --exit",
     "capabilityTests": "npm run lint && mocha tests/uiTests/capabilitiesTests --exit",
     "loginTests": "npm run lint && mocha tests/uiTests/loginTests --exit",
     "adminTests": "npm run lint && mocha tests/uiTests/adminTests --exit",
