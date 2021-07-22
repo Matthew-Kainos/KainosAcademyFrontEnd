@@ -41,7 +41,7 @@
     <div class="col s2">
     <label class="createFormText" for="Capability"><b>Capability</b></label>
     </div>
-    <div class="col s2">
+    <div class="col s2" id="Capability">
     <select class="createFormInput" id="Capability" name="Capability">
       {% for capability in capabilities %}
         <option value="{{capability.Name}}">{{capability.Name}}</option>
@@ -51,7 +51,7 @@
     <div class="col s2">
     <label class="createFormText" for="Band"><b>Band</b></label>
     </div>
-    <div class="col s4">
+    <div class="col s4" id="Band">
     <select class="createFormInput" id="Band" name="Band">
       {% for band in bands %}
         <option value="{{band.Name}}">{{band.Name}}</option>

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const webdriver = require('selenium-webdriver');
 const chai = require('chai');
 require('dotenv').config();
@@ -26,9 +27,17 @@ describe('Add', function () {
   afterEach(async () => {
     await driver.quit();
   });
+
+  function sleep(ms) {
+    return new Promise((resolve) => {
+      setTimeout(resolve, ms);
+    });
+  }
+
   describe('Role', () => {
     it('should successfully return popup message if trying to add role of invalid name length', async () => {
       await driver.get('http://localhost:3001/add/role');
+      await sleep(3000);
       const title = await driver.getTitle();
       expect(title).equal('Admin Add Role');
       await driver.findElement(webdriver.By.id('RoleName')).sendKeys('a');
@@ -38,10 +47,13 @@ describe('Add', function () {
       //   .click();
       // await driver.findElement(webdriver.By.css('#Band > option:nth-child(2)'))
       //   .click();
+      await sleep(3000);
       await driver.executeScript('window.scrollTo(0,10000);');
       await driver.findElement(webdriver.By.id('AddSubmitButton')).click();
       const titleAfterSubmission = await driver.getTitle();
       expect(titleAfterSubmission).equal('Admin Add Role');
+      await driver.executeScript('window.scrollTo(10000, 0);');
+      await sleep(1000);
       const errorText = await driver.findElement(webdriver.By.id('popupMessage')).getText();
       expect(errorText).to.equal('Invalid Role Name length');
     });
