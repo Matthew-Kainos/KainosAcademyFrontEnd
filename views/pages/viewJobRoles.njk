@@ -5,22 +5,27 @@
 {% block main %}
 {% include "../components/navBar.njk" %}
 
-<title> Show Job Roles in hierarchy </title>
-<div class="row">
-<div class="col s3">
-</div>
-<h1>List of Job Roles</h1>
+<script>
+  $(document).ready(function(){
+    $('.tooltipped').tooltip();
+  });
+</script>
+<body>
+    <div class= "pageTitle">
+        <h2 class="pageTitle">Show Job Roles in hierarchy </h2>
+    </div>
+<div class="container">
 {% if jobs and jobs.length > 0 %}
 <table style="margin: auto" border="1" id="jobRolesTable">
 <tr>
-<th><h3>Job Role Name</h3></th>
 <th><h3>Band Level</h3></th>
+<th><h3>Job Role Name</h3></th>
 <th><h3>Band Name</h3></th>
 </tr>
 {% for job in jobs %}
 <tr>
-<td><a href=http://localhost:3001/jobSpec/{{job.Role_ID}}><div id="{{job.Role_ID}}joblink">{{job.name}}</div></a></td>
 <td>{{job.Level}}</td>
+<td><a class="tooltipped" data-position="bottom" data-tooltip="Click here to see full Specification for this job" href=http://localhost:3001/jobSpec/{{job.Role_ID}}><div id="{{job.Role_ID}}joblink">{{job.name}}</div></a></td>
 <td>{{job.Name}}</td>
 
 </tr>
@@ -30,5 +35,6 @@
 {% else %}
 No Job Roles in database.
 {% endif %}
+</body>
 {% endblock %}
 {% block footer %} {% include "../components/footer.njk" %} {% endblock %}

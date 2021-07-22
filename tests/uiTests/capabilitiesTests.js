@@ -44,7 +44,7 @@ describe('Capabilities', function () {
     const capListText = await driver.findElement(webdriver.By.id('allCapabilitiesList')).getText();
     expect(capListText).to.include('Engineering');
     const familyNameText = await driver.findElement(webdriver.By.id('Family')).getText();
-    expect(familyNameText).equal('Family: Architecture');
+    expect(familyNameText).equal('Family: A Family');
   });
   it('should successfully render no family details if capability searched does not exist',
     async () => {
