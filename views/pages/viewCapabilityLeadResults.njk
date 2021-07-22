@@ -4,16 +4,13 @@
 {% block header %}{% include "../components/header.njk" %}{% endblock %}
 {% block main %}
 {% include "../components/navBar.njk" %}
-
-<body>
-    <div class= "pageTitle">
-        <h2 class="pageTitle">View Capability Lead</h2>
-    </div>
-<div class="container">
-
-<h2 id = "capID">View Capability Lead: {{capID}} </h2>
+<title>View Capability Lead</title>
+<div class="row">
+<div class="col s2">
+</div>
+<h2>View Capability Lead</h2>
 {% if capabilities and capabilities.length > 0 %} 
-<table style="margin: auto" border="1" id="jobSpecTable" class="responsive-table">
+<table style="margin: auto" border="1" id="viewCapabilityLeadTable">
 <th>Capability Name</th>
 <th>Job Family</th>
 <th>Capability Lead</th>
@@ -23,7 +20,7 @@
 {% for cap in capabilities %}
 <tr>
 <td><h3 id="capName">{{cap.Name}}</h3></td>
-<td><h3>{{cap.Job_Family}}</h3></td>
+<td><h3>{{cap.JobFamily}}</h3></td>
 <td><h3 id="capLeadName">{{cap.LeadName}}</h3></td>
 <td><h3 id ="capLeadMessage">{{cap.LeadMessage}}</h3></td>
 <td><img src = {{cap.LeadImage}} width = 250 length = 250></td>

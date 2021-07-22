@@ -81,7 +81,7 @@ describe('Add', function () {
       const errorText = await driver.findElement(webdriver.By.id('popupMessage')).getText();
       expect(errorText).to.equal('Invalid Link length. Maximum 30 characters. Mimimum 5');
     });
-    it.skip('should successfully return success popup message adding new role successful', async () => {
+    it('should successfully redirect to all jobs page if role added successfully', async () => {
       await driver.get('http://localhost:3001/add/role');
       const title = await driver.getTitle();
       expect(title).equal('Admin Add Role');
@@ -97,7 +97,7 @@ describe('Add', function () {
       const titleAfterSubmission = await driver.getTitle();
       expect(titleAfterSubmission).equal('Show Job Roles in hierarchy');
     });
-    it.skip('should successfully return success returm popup message if duplicate role name used', async () => {
+    it('should successfully return success returm popup message if duplicate role name used', async () => {
       await driver.get('http://localhost:3001/add/role');
       const title = await driver.getTitle();
       expect(title).equal('Admin Add Role');

@@ -43,7 +43,8 @@ describe('Capabilities', function () {
     await driver.findElement(webdriver.By.id('searchBar')).sendKeys('Engineering');
     const capListText = await driver.findElement(webdriver.By.id('allCapabilitiesList')).getText();
     expect(capListText).to.include('Engineering');
-    expect(capListText).to.include('Family: Engineering and Strategy Planning');
+    const familyNameText = await driver.findElement(webdriver.By.id('Family')).getText();
+    expect(familyNameText).equal('Family: Architecture');
   });
   it('should successfully render no family details if capability searched does not exist',
     async () => {
@@ -67,9 +68,9 @@ describe('Capabilities', function () {
     await driver.get('http://localhost:3001/capabilities/findByJobName');
     const title = await driver.getTitle();
     expect(title).equal('Search for Capability by Job Name');
-    await driver.findElement(webdriver.By.id('searchBar')).sendKeys('Chief');
+    await driver.findElement(webdriver.By.id('searchBar')).sendKeys('Innovation');
     const jobListText = await driver.findElement(webdriver.By.id('allJobsList')).getText();
-    expect(jobListText).to.include('Chief Technical Officer');
+    expect(jobListText).to.include('Innovation Lead');
     expect(jobListText).to.include('Capability: Engineering');
   });
   it('should successfully render no job details if job searched does not exist', async () => {
@@ -85,14 +86,12 @@ describe('Capabilities', function () {
     await driver.get('http://localhost:3001/viewCapabilityLead/1');
     const title = await driver.getTitle();
     expect(title).equal('View Capability Lead');
-    const capIDText = await driver.findElement(webdriver.By.id('capID')).getText();
-    expect(capIDText).equal('View Capability Lead: 1');
     const capNameText = await driver.findElement(webdriver.By.id('capName')).getText();
     expect(capNameText).equal('Engineering');
     const capabilityLeadText = await driver.findElement(webdriver.By.id('capLeadName')).getText();
     expect(capabilityLeadText).equal('Aislinn McBride');
     const capabilityLeadMessageText = await driver.findElement(webdriver.By.id('capLeadMessage')).getText();
-    expect(capabilityLeadMessageText).equal('Test Message 2');
+    expect(capabilityLeadMessageText).equal('Test1');
   });
   it('should successfully render no capability leads if capability lead unavailable', async () => {
     await driver.get('http://localhost:3001/viewCapabilityLead/999999');

@@ -1,0 +1,25 @@
+{% extends './base.njk' %}
+{% block pageTitle %}
+{% endblock %}
+{% block header %}{% include "../components/header.njk" %}{% endblock %}
+{% block main %}
+{% include "../components/navBar.njk" %}
+{% include "../components/popup.njk" %}
+<div class="formRow">
+    <p class= "pageTitle">Delete Role</p>
+<form class="createForm" action="/delete/role" method="post">
+    <div class="col-25">
+    <label class="createFormText" for="RoleName"><b>Role Name</b></label>
+    </div>
+    <div class="col-75">
+    <select class="createFormInput" id="RoleName" name="RoleName">
+      {% for role in roles %}
+        <option value="{{role.name}}">{{role.name}}</option>
+      {% endfor %}
+    </select>
+    </div>
+    <input id="SubmitButton" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+</form>
+</div>
+{% endblock %}
+{% block footer %} {% include "../components/footer.njk" %} {% endblock %}
