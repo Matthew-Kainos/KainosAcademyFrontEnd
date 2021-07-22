@@ -68,9 +68,9 @@ describe('Capabilities', function () {
     await driver.get('http://localhost:3001/capabilities/findByJobName');
     const title = await driver.getTitle();
     expect(title).equal('Search for Capability by Job Name');
-    await driver.findElement(webdriver.By.id('searchBar')).sendKeys('Chief');
+    await driver.findElement(webdriver.By.id('searchBar')).sendKeys('Innovation');
     const jobListText = await driver.findElement(webdriver.By.id('allJobsList')).getText();
-    expect(jobListText).to.include('Chief Technical Officer');
+    expect(jobListText).to.include('Innovation Lead');
     expect(jobListText).to.include('Capability: Engineering');
   });
   it('should successfully render no job details if job searched does not exist', async () => {
