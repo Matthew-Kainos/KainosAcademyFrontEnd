@@ -166,4 +166,143 @@ describe('Add', function () {
       expect(titleAfterSubmission).equal('Show Job Roles in hierarchy');
     });
   });
+  describe('Capability', () => {
+    it.skip('should successfully return popup message if new capability added', async () => {
+      await driver.get('http://localhost:3001/add/capability');
+      const title = await driver.getTitle();
+      expect(title).equal('Admin Add Capability');
+      await driver.findElement(webdriver.By.id('Name')).sendKeys('Testing Frontend Capability');
+      await driver.findElement(webdriver.By.id('AddSubmitButton')).click();
+      const titleAfterSubmission = await driver.getTitle();
+      expect(titleAfterSubmission).equal('Admin Add Capability');
+      const successText = await driver.findElement(webdriver.By.id('popupMessage')).getText();
+      expect(successText).to.equal('New Capability Testing Frontend Capability Added');
+    });
+    it('should successfully return failure popup message if trying to add capability of invalid length', async () => {
+      await driver.get('http://localhost:3001/add/capability');
+      const title = await driver.getTitle();
+      expect(title).equal('Admin Add Capability');
+      await driver.findElement(webdriver.By.id('Name')).sendKeys('a');
+      await driver.findElement(webdriver.By.id('AddSubmitButton')).click();
+      const titleAfterSubmission = await driver.getTitle();
+      expect(titleAfterSubmission).equal('Admin Add Capability');
+      const errorText = await driver.findElement(webdriver.By.id('popupMessage')).getText();
+      expect(errorText).to.equal('Invalid Role Name length');
+    });
+    it('should successfully return popup message if trying to add capability which is a duplicate', async () => {
+      await driver.get('http://localhost:3001/add/capability');
+      const title = await driver.getTitle();
+      expect(title).equal('Admin Add Capability');
+      await driver.findElement(webdriver.By.id('Name')).sendKeys('Engineering');
+      await driver.findElement(webdriver.By.id('AddSubmitButton')).click();
+      const titleAfterSubmission = await driver.getTitle();
+      expect(titleAfterSubmission).equal('Admin Add Capability');
+      const errorText = await driver.findElement(webdriver.By.id('popupMessage')).getText();
+      expect(errorText).to.equal('Unable to add Capability due to Duplicate Capability Name');
+    });
+  });
+  describe('Family', () => {
+    it('should successfully return popup message if trying to add family of invalid name length', async () => {
+      await driver.get('http://localhost:3001/add/family');
+      const title = await driver.getTitle();
+      expect(title).equal('Admin Add Family');
+      await driver.findElement(webdriver.By.id('FamilyName')).sendKeys('a');
+      await driver.findElement(webdriver.By.id('LeadName')).sendKeys('FakeLeadName');
+      await driver.findElement(webdriver.By.id('LeadMessage')).sendKeys('FakeMessage');
+      await driver.findElement(webdriver.By.id('LeadImage')).sendKeys('FakeImageURL');
+      await driver.findElement(webdriver.By.css('#Capability > option:nth-child(1)'))
+        .click();
+      await driver.executeScript('window.scrollTo(0,10000);');
+      await driver.findElement(webdriver.By.id('AddSubmitButton')).click();
+      const titleAfterSubmission = await driver.getTitle();
+      expect(titleAfterSubmission).equal('Admin Add Family');
+      const errorText = await driver.findElement(webdriver.By.id('popupMessage')).getText();
+      expect(errorText).to.equal('Invalid Family Name length');
+    });
+    it('should successfully return popup message if trying to add family of invalid lead name length', async () => {
+      await driver.get('http://localhost:3001/add/family');
+      const title = await driver.getTitle();
+      expect(title).equal('Admin Add Family');
+      await driver.findElement(webdriver.By.id('FamilyName')).sendKeys('FakeFamileName');
+      await driver.findElement(webdriver.By.id('LeadName')).sendKeys('a');
+      await driver.findElement(webdriver.By.id('LeadMessage')).sendKeys('FakeMessage');
+      await driver.findElement(webdriver.By.id('LeadImage')).sendKeys('FakeImageURL');
+      await driver.findElement(webdriver.By.css('#Capability > option:nth-child(1)'))
+        .click();
+      await driver.executeScript('window.scrollTo(0,10000);');
+      await driver.findElement(webdriver.By.id('AddSubmitButton')).click();
+      const titleAfterSubmission = await driver.getTitle();
+      expect(titleAfterSubmission).equal('Admin Add Family');
+      const errorText = await driver.findElement(webdriver.By.id('popupMessage')).getText();
+      expect(errorText).to.equal('Invalid Lead Name length');
+    });
+    it('should successfully return popup message if trying to add family of invalid lead message length', async () => {
+      await driver.get('http://localhost:3001/add/family');
+      const title = await driver.getTitle();
+      expect(title).equal('Admin Add Family');
+      await driver.findElement(webdriver.By.id('FamilyName')).sendKeys('FakeFamileName');
+      await driver.findElement(webdriver.By.id('LeadName')).sendKeys('FakeLeadName');
+      await driver.findElement(webdriver.By.id('LeadMessage')).sendKeys('a');
+      await driver.findElement(webdriver.By.id('LeadImage')).sendKeys('FakeImageURL');
+      await driver.findElement(webdriver.By.css('#Capability > option:nth-child(1)'))
+        .click();
+      await driver.executeScript('window.scrollTo(0,10000);');
+      await driver.findElement(webdriver.By.id('AddSubmitButton')).click();
+      const titleAfterSubmission = await driver.getTitle();
+      expect(titleAfterSubmission).equal('Admin Add Family');
+      const errorText = await driver.findElement(webdriver.By.id('popupMessage')).getText();
+      expect(errorText).to.equal('Invalid Lead Message length. Maximum 250 characters. Mimimum 5');
+    });
+    it('should successfully return popup message if trying to add family of invalid lead image length', async () => {
+      await driver.get('http://localhost:3001/add/family');
+      const title = await driver.getTitle();
+      expect(title).equal('Admin Add Family');
+      await driver.findElement(webdriver.By.id('FamilyName')).sendKeys('FakeFamileName');
+      await driver.findElement(webdriver.By.id('LeadName')).sendKeys('FakeLeadName');
+      await driver.findElement(webdriver.By.id('LeadMessage')).sendKeys('FakeMessage');
+      await driver.findElement(webdriver.By.id('LeadImage')).sendKeys('a');
+      await driver.findElement(webdriver.By.css('#Capability > option:nth-child(1)'))
+        .click();
+      await driver.executeScript('window.scrollTo(0,10000);');
+      await driver.findElement(webdriver.By.id('AddSubmitButton')).click();
+      const titleAfterSubmission = await driver.getTitle();
+      expect(titleAfterSubmission).equal('Admin Add Family');
+      const errorText = await driver.findElement(webdriver.By.id('popupMessage')).getText();
+      expect(errorText).to.equal('Invalid Image URL length. Maximum 400 characters. Mimimum 10');
+    });
+    it('should successfully return success popup message adding new family successful', async () => {
+      await driver.get('http://localhost:3001/add/family');
+      const title = await driver.getTitle();
+      expect(title).equal('Admin Add Family');
+      await driver.findElement(webdriver.By.id('FamilyName')).sendKeys('Selenium Developer');
+      await driver.findElement(webdriver.By.id('LeadName')).sendKeys('You make UI Tests');
+      await driver.findElement(webdriver.By.id('LeadMessage')).sendKeys('You make UI Tests');
+      await driver.findElement(webdriver.By.id('LeadImage')).sendKeys('You make UI Tests');
+      await driver.findElement(webdriver.By.css('#Capability > option:nth-child(1)'))
+        .click();
+      await driver.executeScript('window.scrollTo(0,10000);');
+      await driver.findElement(webdriver.By.id('AddSubmitButton')).click();
+      const titleAfterSubmission = await driver.getTitle();
+      expect(titleAfterSubmission).equal('Admin Add Family');
+      const errorText = await driver.findElement(webdriver.By.id('popupMessage')).getText();
+      expect(errorText).to.equal('New Family Selenium Developer Added');
+    });
+    it('should successfully return success returm popup message if duplicate family name used', async () => {
+      await driver.get('http://localhost:3001/add/family');
+      const title = await driver.getTitle();
+      expect(title).equal('Admin Add Family');
+      await driver.findElement(webdriver.By.id('FamilyName')).sendKeys('Selenium Developer');
+      await driver.findElement(webdriver.By.id('LeadName')).sendKeys('You make UI Tests');
+      await driver.findElement(webdriver.By.id('LeadMessage')).sendKeys('You make UI Tests');
+      await driver.findElement(webdriver.By.id('LeadImage')).sendKeys('You make UI Tests');
+      await driver.findElement(webdriver.By.css('#Capability > option:nth-child(1)'))
+        .click();
+      await driver.executeScript('window.scrollTo(0,10000);');
+      await driver.findElement(webdriver.By.id('AddSubmitButton')).click();
+      const titleAfterSubmission = await driver.getTitle();
+      expect(titleAfterSubmission).equal('Admin Add Family');
+      const errorText = await driver.findElement(webdriver.By.id('popupMessage')).getText();
+      expect(errorText).to.equal('Unable to add Family due to Duplicate Family Name');
+    });
+  });
 });
