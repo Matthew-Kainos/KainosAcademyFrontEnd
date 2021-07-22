@@ -35,7 +35,6 @@ app.use(express.urlencoded({ extended: true }));
 // For rendering css and images
 app.use(express.static('public'));
 
-
 app.use('/jobs', jobs);
 app.use('/capabilities', capabilities);
 app.use('/viewCapabilityLead', viewLead);
