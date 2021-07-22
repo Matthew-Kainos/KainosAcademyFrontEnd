@@ -51,7 +51,7 @@ router.post('/role', async (req, res) => {
             newRoleDetails,
           },
         });
-        handleResponse(res, req, response, '../add/role');
+        handleResponse(res, req, response, '../jobs/job-roles', '../add/role');
       } else {
         handleErrorScenerio(req, validateDetails.message);
         res.redirect('../add/role');
@@ -111,7 +111,7 @@ router.post('/family', async (req, res) => {
             newFamilyDetails,
           },
         });
-        handleResponse(res, req, response, '../add/family');
+        handleResponse(res, req, response, '../add/family', '../add/family');
       } else {
         handleErrorScenerio(req, validateDetails.message);
         res.redirect('../add/family');
@@ -128,14 +128,14 @@ router.post('/family', async (req, res) => {
   }
 });
 
-function handleResponse(res, req, response, page) {
+function handleResponse(res, req, response, detinationSuccess, detinationFailure) {
   if (response.data.success === true) {
     handleSuccessScenerio(req, response.data.message);
-    res.redirect('../jobs/job-roles');
+    res.redirect(detinationSuccess);
     res.status(200);
   } else {
     handleErrorScenerio(req, response.data.message);
-    res.redirect(page);
+    res.redirect(detinationFailure);
     res.status(400);
   }
 }

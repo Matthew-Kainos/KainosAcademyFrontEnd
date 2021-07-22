@@ -91,7 +91,7 @@ describe('Validation', () => {
         LeadMessage: 'abc',
         LeadImage: 'This is a valid image',
       };
-      const results = validation.validateNewRoleInput(newFamilyDetails);
+      const results = validation.validateNewFamilyInput(newFamilyDetails);
       expect(results.error).equal(true);
       expect(results.message).equal('Invalid Lead Message length. Maximum 250 characters. Mimimum 5');
     });
@@ -102,7 +102,7 @@ describe('Validation', () => {
         LeadMessage: 'This is a valid message',
         LeadImage: 'ab',
       };
-      const results = validation.validateNewRoleInput(newFamilyDetails);
+      const results = validation.validateNewFamilyInput(newFamilyDetails);
       expect(results.error).equal(true);
       expect(results.message).equal('Invalid Image URL length. Maximum 400 characters. Mimimum 10');
     });

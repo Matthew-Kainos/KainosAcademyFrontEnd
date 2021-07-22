@@ -117,9 +117,9 @@ describe('Add', function () {
     });
   });
 
-  afterEach(async () => {
-    await driver.quit();
-  });
+  // afterEach(async () => {
+  //   await driver.quit();
+  // });
   describe('Family', () => {
     it('should successfully return popup message if trying to add family of invalid name length', async () => {
       await driver.get('http://localhost:3001/add/family');
@@ -138,7 +138,7 @@ describe('Add', function () {
       const errorText = await driver.findElement(webdriver.By.id('popupMessage')).getText();
       expect(errorText).to.equal('Invalid Family Name length');
     });
-    it('should successfully return popup message if trying to add role of invalid lead name length', async () => {
+    it('should successfully return popup message if trying to add family of invalid lead name length', async () => {
       await driver.get('http://localhost:3001/add/family');
       const title = await driver.getTitle();
       expect(title).equal('Admin Add Family');
@@ -155,7 +155,7 @@ describe('Add', function () {
       const errorText = await driver.findElement(webdriver.By.id('popupMessage')).getText();
       expect(errorText).to.equal('Invalid Lead Name length');
     });
-    it('should successfully return popup message if trying to add role of invalid lead message length', async () => {
+    it('should successfully return popup message if trying to add family of invalid lead message length', async () => {
       await driver.get('http://localhost:3001/add/family');
       const title = await driver.getTitle();
       expect(title).equal('Admin Add Family');
@@ -172,7 +172,7 @@ describe('Add', function () {
       const errorText = await driver.findElement(webdriver.By.id('popupMessage')).getText();
       expect(errorText).to.equal('Invalid Lead Message length. Maximum 250 characters. Mimimum 5');
     });
-    it('should successfully return popup message if trying to add role of invalid lead image length', async () => {
+    it('should successfully return popup message if trying to add family of invalid lead image length', async () => {
       await driver.get('http://localhost:3001/add/family');
       const title = await driver.getTitle();
       expect(title).equal('Admin Add Family');
@@ -189,7 +189,7 @@ describe('Add', function () {
       const errorText = await driver.findElement(webdriver.By.id('popupMessage')).getText();
       expect(errorText).to.equal('Invalid Image URL length. Maximum 400 characters. Mimimum 10');
     });
-    it.skip('should successfully return success popup message adding new family successful', async () => {
+    it('should successfully return success popup message adding new family successful', async () => {
       await driver.get('http://localhost:3001/add/family');
       const title = await driver.getTitle();
       expect(title).equal('Admin Add Family');
@@ -206,7 +206,7 @@ describe('Add', function () {
       const errorText = await driver.findElement(webdriver.By.id('popupMessage')).getText();
       expect(errorText).to.equal('New Family Selenium Developer Added');
     });
-    it.skip('should successfully return success returm popup message if duplicate family name used', async () => {
+    it('should successfully return success returm popup message if duplicate family name used', async () => {
       await driver.get('http://localhost:3001/add/family');
       const title = await driver.getTitle();
       expect(title).equal('Admin Add Family');
@@ -221,7 +221,7 @@ describe('Add', function () {
       const titleAfterSubmission = await driver.getTitle();
       expect(titleAfterSubmission).equal('Admin Add Family');
       const errorText = await driver.findElement(webdriver.By.id('popupMessage')).getText();
-      expect(errorText).to.equal('Unable to add Role due to Duplicate Family Name');
+      expect(errorText).to.equal('Unable to add Family due to Duplicate Family Name');
     });
   });
 });
