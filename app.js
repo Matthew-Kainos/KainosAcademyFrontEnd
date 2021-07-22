@@ -12,6 +12,7 @@ const jobs = require('./routes/jobs');
 const capabilities = require('./routes/capabilities');
 const jobSpec = require('./routes/jobSpec');
 const admin = require('./routes/admin');
+const bands = require('./routes/bands');
 const add = require('./routes/add');
 const deleteRoute = require('./routes/delete');
 const viewLead = require('./routes/viewCapabilityLead');
@@ -32,6 +33,7 @@ app.use(express.urlencoded({ extended: true }));
 // For rendering css and images
 app.use(express.static('public'));
 
+app.use('/bands', bands);
 app.use('/jobs', jobs);
 app.use('/capabilities', capabilities);
 app.use('/viewCapabilityLead', viewLead);

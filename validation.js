@@ -18,6 +18,20 @@ exports.validateNewRoleInput = (newRoleDetails) => {
   return response;
 };
 
+exports.validateNewBandInput = (newBandDetails) => {
+  const response = { error: false, message: 'Valid Input' };
+  if (newBandDetails.name.length < 3 || newBandDetails.name.length > 30) {
+    response.error = true;
+    response.message = 'Invalid Band Name length';
+    return response;
+  }
+  if (newBandDetails.responsibilities.length > 255 || newBandDetails.responsibilities.length < 10) {
+    response.error = true;
+    response.message = 'Invalid responsibilities length. Maximum 255 characters. Mimimum 10';
+  }
+  return response;
+};
+
 exports.validateNewCapabilityInput = (newCapabilityDetails) => {
   const response = { error: false, message: 'Valid Input' };
   if (newCapabilityDetails.Name.length < 2 || newCapabilityDetails.Name.length > 50) {
