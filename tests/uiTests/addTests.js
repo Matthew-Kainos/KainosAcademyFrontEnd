@@ -117,9 +117,6 @@ describe('Add', function () {
     });
   });
 
-  // afterEach(async () => {
-  //   await driver.quit();
-  // });
   describe('Family', () => {
     it('should successfully return popup message if trying to add family of invalid name length', async () => {
       await driver.get('http://localhost:3001/add/family');
