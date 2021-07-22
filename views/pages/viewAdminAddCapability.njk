@@ -5,6 +5,13 @@
 {% block main %}
 {% include "../components/navBar.njk" %}
 {% include "../components/popup.njk" %}
+
+<script>
+  $(document).ready(function(){
+    $('select').formSelect();
+  });
+</script>
+
 <div class="formRow">
     <p class= "pageTitle">Add Capability</p>
 <form class="createForm" action="/add/capability" method="post">

@@ -5,6 +5,13 @@
 {% block main %}
 {% include "../components/navBar.njk" %}
 {% include "../components/popup.njk" %}
+
+<script>
+  $(document).ready(function(){
+    $('select').formSelect();
+  });
+</script>
+
 <div class="formRow">
     <p class= "pageTitle">Add Band</p>
 <form class="createForm" action="/add/band" method="post">
@@ -18,14 +25,12 @@
     <div class="col-25">
     <label class="createFormText" for="bandAbove"><b>Place new band<b></label>
     </div>
-    <div>
-        <input type="radio" id="bandAbove" name="bandPlace" value="bandAbove" checked>
-        <label for="bandAbove">above</label>
-    </div>
-
-    <div>
-        <input type="radio" id="bandBelow" name="bandPlace" value="bandBelow">
-        <label for="bandBelow">below</label>
+    
+    <div class="col-75">
+    <select class="createFormInput" id="bandPlace" name="bandPlace">
+        <option value="bandAbove">Above</option>
+        <option value="bandBelow">Below</option>
+    </select>
     </div>
 
     <div class="col-75">
@@ -58,16 +63,15 @@
     <div class="col-25">
     <label class="createFormText" for="trainingList"><b>Training</b></label>
     </div>
+    
     <div class="col-75">
-      <div id="trainingList">
-        <ul>
-          {% for course in training %}
-            <li><label for="{{course}}"> {{course}}</label>
-            <input type="checkbox" id="{{course}}" name="training" value="{{course}}"></li>
-          {% endfor %}
-        </ul>
-      </div>
+    <select class="createFormInput" id="trainingList" name="training">
+      {% for course in training %}
+        <option value="{{course}}">{{course}}</option>
+      {% endfor %}
+    </select>
     </div>
+    
 
     <button id="AddSubmitButton" class="createFormSubmit" type="submit">Submit</button>
 </form>

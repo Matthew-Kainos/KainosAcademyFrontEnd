@@ -92,4 +92,18 @@ describe('Jobs', function () {
     const roleLinkText = await driver.findElement(webdriver.By.id('noLink')).getText();
     expect(roleLinkText).equal('No link Available.');
   });
+
+  it('should successfully render job home page', async () => {
+    await driver.get('http://localhost:3001/home');
+    await driver.findElement(webdriver.By.id('JobsHome')).click();
+    await driver.get('http://localhost:3001/jobs/jobsHome');
+    const title = await driver.getTitle();
+    expect(title).equal('Jobs Home Menu');
+
+    const viewAllJobsLink = await driver.findElement(webdriver.By.id('viewAllJobs')).getText();
+    expect(viewAllJobsLink).equal('View All Job Roles');
+
+    const viewJobsByBand = await driver.findElement(webdriver.By.id('jobsByBand')).getText();
+    expect(viewJobsByBand).equal('View Job Roles by Band');
+  });
 });
