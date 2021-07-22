@@ -17,3 +17,28 @@ exports.validateNewRoleInput = (newRoleDetails) => {
   }
   return response;
 };
+
+exports.validateNewFamilyInput = (newFamilyDetails) => {
+  const response = { error: false, message: 'Valid Input' };
+  if (newFamilyDetails.FamilyName.length < 3 || newFamilyDetails.FamilyName.length > 70) {
+    response.error = true;
+    response.message = 'Invalid Family Name length';
+    return response;
+  }
+  if (newFamilyDetails.LeadName.length < 3 || newFamilyDetails.LeadName.length > 70) {
+    response.error = true;
+    response.message = 'Invalid Lead Name length';
+    return response;
+  }
+  if (newFamilyDetails.LeadMessage.length > 250 || newFamilyDetails.LeadMessage.length < 5) {
+    response.error = true;
+    response.message = 'Invalid Lead Message length. Maximum 250 characters. Mimimum 5';
+    return response;
+  }
+  if (newFamilyDetails.LeadImage.length > 400 || newFamilyDetails.LeadImage.length < 10) {
+    response.error = true;
+    response.message = 'Invalid Image URL length. Maximum 400 characters. Mimimum 10';
+    return response;
+  }
+  return response;
+};

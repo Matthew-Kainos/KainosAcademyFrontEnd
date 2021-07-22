@@ -51,7 +51,7 @@ router.post('/role', async (req, res) => {
             newRoleDetails,
           },
         });
-        handleResponse(res, req, response, '../add/role');
+        handleResponse(res, req, response, '../jobs/job-roles', '../add/role');
       } else {
         handleErrorScenerio(req, validateDetails.message);
         res.redirect('../add/role');
@@ -68,14 +68,74 @@ router.post('/role', async (req, res) => {
   }
 });
 
-function handleResponse(res, req, response, page) {
+router.get('/family', async (req, res) => {
+  if (req.session.isLoggedIn && req.session.isAdmin) {
+    const getAllCapabilitiesResult = await axios(`${backEndURL}/capabilities/getAllCapabilityNames`);
+    res.render('pages/viewAdminAddFamily', {
+      title: 'Admin Add Family',
+      loggedIn: req.session.isLoggedIn,
+      isAdmin: req.session.isAdmin,
+      capabilities: getAllCapabilitiesResult.data,
+      popupType: req.session.popupType,
+      popupMessage: req.session.popupMessage,
+    });
+    req.session.popupType = '';
+    req.session.popupMessage = '';
+    res.status(200);
+  } else if (req.session.isLoggedIn) {
+    res.redirect('../home');
+  } else {
+    res.redirect('../');
+  }
+});
+
+router.post('/family', async (req, res) => {
+  if (req.session.isLoggedIn && req.session.isAdmin) {
+    try {
+      const {
+        FamilyName, LeadName, LeadMessage, LeadImage, Capability,
+      } = req.body;
+      const newFamilyDetails = {
+        FamilyName,
+        LeadName,
+        LeadMessage,
+        LeadImage,
+        Capability,
+      };
+      const validateDetails = validation.validateNewFamilyInput(newFamilyDetails);
+      if (validateDetails.error === false) {
+        const response = await axios({
+          method: 'post',
+          url: `${backEndURL}/add/family`,
+          data: {
+            newFamilyDetails,
+          },
+        });
+        handleResponse(res, req, response, '../add/family', '../add/family');
+      } else {
+        handleErrorScenerio(req, validateDetails.message);
+        res.redirect('../add/family');
+        res.status(400);
+      }
+    } catch (e) {
+      console.log(e);
+      res.send('error');
+    }
+  } else if (req.session.isLoggedIn) {
+    res.redirect('../home');
+  } else {
+    res.redirect('../');
+  }
+});
+
+function handleResponse(res, req, response, detinationSuccess, detinationFailure) {
   if (response.data.success === true) {
     handleSuccessScenerio(req, response.data.message);
-    res.redirect('../jobs/job-roles');
+    res.redirect(detinationSuccess);
     res.status(200);
   } else {
     handleErrorScenerio(req, response.data.message);
-    res.redirect(page);
+    res.redirect(detinationFailure);
     res.status(400);
   }
 }

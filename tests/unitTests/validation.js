@@ -48,3 +48,63 @@ describe('Validation', () => {
     });
   });
 });
+
+describe('Validation', () => {
+  describe('validateNewFamilyInput', async () => {
+    it('Should successfuly return true if input data valid', async () => {
+      const newFamilyDetails = {
+        FamilyName: 'This is a valid family name',
+        LeadName: 'This is a valid lead name',
+        LeadMessage: 'This is a valid message',
+        LeadImage: 'This is a valid image',
+      };
+      const results = validation.validateNewFamilyInput(newFamilyDetails);
+      expect(results.error).equal(false);
+      expect(results.message).equal('Valid Input');
+    });
+    it('Should successfuly return false if family name length invalid', async () => {
+      const newFamilyDetails = {
+        FamilyName: 'ab',
+        LeadName: 'This is a valid lead name',
+        LeadMessage: 'This is a valid message',
+        LeadImage: 'This is a valid image',
+      };
+      const results = validation.validateNewFamilyInput(newFamilyDetails);
+      expect(results.error).equal(true);
+      expect(results.message).equal('Invalid Family Name length');
+    });
+    it('Should successfuly return false if lead name invalid', async () => {
+      const newFamilyDetails = {
+        FamilyName: 'This is a valid family name',
+        LeadName: 'ab',
+        LeadMessage: 'This is a valid message',
+        LeadImage: 'This is a valid image',
+      };
+      const results = validation.validateNewFamilyInput(newFamilyDetails);
+      expect(results.error).equal(true);
+      expect(results.message).equal('Invalid Lead Name length');
+    });
+    it('Should successfuly return false if lead message invalid', async () => {
+      const newFamilyDetails = {
+        FamilyName: 'This is a valid family name',
+        LeadName: 'This is a valid lead name',
+        LeadMessage: 'abc',
+        LeadImage: 'This is a valid image',
+      };
+      const results = validation.validateNewFamilyInput(newFamilyDetails);
+      expect(results.error).equal(true);
+      expect(results.message).equal('Invalid Lead Message length. Maximum 250 characters. Mimimum 5');
+    });
+    it('Should successfuly return false if lead image invalid', async () => {
+      const newFamilyDetails = {
+        FamilyName: 'This is a valid family name',
+        LeadName: 'This is a valid lead name',
+        LeadMessage: 'This is a valid message',
+        LeadImage: 'ab',
+      };
+      const results = validation.validateNewFamilyInput(newFamilyDetails);
+      expect(results.error).equal(true);
+      expect(results.message).equal('Invalid Image URL length. Maximum 400 characters. Mimimum 10');
+    });
+  });
+});

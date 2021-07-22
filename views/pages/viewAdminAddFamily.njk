@@ -1,0 +1,53 @@
+{% extends './base.njk' %}
+{% block pageTitle %}
+{% endblock %}
+{% block header %}{% include "../components/header.njk" %}{% endblock %}
+{% block main %}
+{% include "../components/navBar.njk" %}
+{% include "../components/popup.njk" %}
+<div class="formRow">
+    <p class= "pageTitle">Add Family</p>
+<form class="createForm" action="/add/family" method="post">
+    <div class="col-25">
+    <label class="createFormText" for="FamilyName"><b>Family Name</b></label>
+    </div>
+    <div class="col-75">
+        <input class="createFormInput" id="FamilyName" type="text" name="FamilyName" required>
+    </div>
+
+    <div class="col-25">
+    <label class="createFormText" for="LeadName"><b>Lead Name</b></label>
+    </div>
+    <div class="col-75">
+        <input class="createFormInput" id="LeadName" type="text" name="LeadName" required>
+    </div>
+
+    <div class="col-25">
+    <label class="createFormText" for="LeadMessage"><b>Lead Message</b></label>
+    </div>
+    <div class="col-75">
+        <input class="createFormInput" id="LeadMessage" type="text" name="LeadMessage" required>
+    </div>
+
+    <div class="col-25">
+    <label class="createFormText" for="LeadImage"><b>Lead Image</b></label>
+    </div>
+    <div class="col-75">
+        <input class="createFormInput" id="LeadImage" type="text" name="LeadImage" required>
+    </div>
+    
+    <div class="col-25">
+    <label class="createFormText" for="Capability"><b>Capability</b></label>
+    </div>
+    <div class="col-75">
+    <select class="createFormInput" id="Capability" name="Capability">
+      {% for capability in capabilities %}
+        <option value="{{capability.Name}}">{{capability.Name}}</option>
+      {% endfor %}
+    </select>
+    </div>
+    <button id="AddSubmitButton" class="createFormSubmit" type="submit">Submit</button>
+</form>
+</div>
+{% endblock %}
+{% block footer %} {% include "../components/footer.njk" %} {% endblock %}
