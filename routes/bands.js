@@ -51,5 +51,4 @@ router.get('/allCompetencies', async (req, res) => {
     res.redirect('/');
   } */
 });
-
 module.exports = router;

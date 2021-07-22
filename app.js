@@ -14,6 +14,7 @@ const jobSpec = require('./routes/jobSpec');
 const bands = require('./routes/bands');
 
 const admin = require('./routes/admin');
+
 const add = require('./routes/add');
 const deleteRoute = require('./routes/delete');
 const viewLead = require('./routes/viewCapabilityLead');
@@ -34,6 +35,7 @@ app.use(express.urlencoded({ extended: true }));
 // For rendering css and images
 app.use(express.static('public'));
 
+
 app.use('/jobs', jobs);
 app.use('/capabilities', capabilities);
 app.use('/viewCapabilityLead', viewLead);
@@ -45,7 +47,7 @@ app.get('/viewCapabilityLead/:capID', (req, res) => {
 
 app.use('/jobSpec', jobSpec);
 app.use('/admin', admin);
-app.use('/add', add);
+app.use('/add', add.router);
 app.use('/delete', deleteRoute);
 
 app.get('/', (req, res) => {
